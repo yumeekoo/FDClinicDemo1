@@ -1,0 +1,256 @@
+import { createClient } from "@/lib/supabase/server";
+import { redirect } from "next/navigation";
+import Link from "next/link";
+import React from "react";
+import { BranchProvider } from "@/hooks/use-branch";
+import { BranchSelector } from "@/components/modules/branch/branch-selector";
+import { ErrorBoundary } from "@/components/error-boundary";
+
+interface SidebarLink {
+  href: string;
+  label: string;
+  icon: React.ReactNode;
+  roles: string[];
+}
+
+export default async function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
+  const role = user.user_metadata?.role || "RECEPTION";
+  const fullName = user.user_metadata?.full_name || user.email || "Nhân viên";
+  const branchName = user.user_metadata?.branch_name || "Chi nhánh mặc định";
+
+  const links: SidebarLink[] = [
+    {
+      href: "/admin",
+      label: "Tổng quan Admin",
+      roles: ["ADMIN", "BRANCH_ADMIN"],
+      icon: (
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z" />
+        </svg>
+      ),
+    },
+    {
+      href: "/admin/branches",
+      label: "Quản lý Chi nhánh",
+      roles: ["ADMIN"],
+      icon: (
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        </svg>
+      ),
+    },
+    {
+      href: "/admin/users",
+      label: "Quản lý Nhân viên",
+      roles: ["ADMIN", "BRANCH_ADMIN"],
+      icon: (
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+      ),
+    },
+    {
+      href: "/admin/inventory",
+      label: "Kho thuốc & Thiết bị",
+      roles: ["ADMIN", "BRANCH_ADMIN"],
+      icon: (
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+        </svg>
+      ),
+    },
+    {
+      href: "/admin/appointments",
+      label: "Quản lý Lịch hẹn",
+      roles: ["ADMIN", "BRANCH_ADMIN", "RECEPTION"],
+      icon: (
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+      ),
+    },
+    {
+      href: "/reception",
+      label: "Tiếp đón bệnh nhân",
+      roles: ["RECEPTION", "ADMIN", "BRANCH_ADMIN"],
+      icon: (
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+        </svg>
+      ),
+    },
+    {
+      href: "/reception/patients",
+      label: "Tìm kiếm Bệnh nhân",
+      roles: ["RECEPTION", "ADMIN", "BRANCH_ADMIN"],
+      icon: (
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      ),
+    },
+    {
+      href: "/reception/queue",
+      label: "Hàng đợi tiếp đón",
+      roles: ["RECEPTION", "ADMIN", "BRANCH_ADMIN"],
+      icon: (
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+        </svg>
+      ),
+    },
+    {
+      href: "/doctor",
+      label: "Phòng khám bác sĩ",
+      roles: ["DOCTOR", "ADMIN", "BRANCH_ADMIN"],
+      icon: (
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+        </svg>
+      ),
+    },
+    {
+      href: "/paraclinical",
+      label: "Khu Cận lâm sàng",
+      roles: ["PARACLINICAL", "ADMIN", "BRANCH_ADMIN"],
+      icon: (
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+      ),
+    },
+    {
+      href: "/cashier",
+      label: "Quầy thu ngân",
+      roles: ["CASHIER", "ADMIN", "BRANCH_ADMIN"],
+      icon: (
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+    },
+    {
+      href: "/pharmacy",
+      label: "Quầy phát thuốc",
+      roles: ["PHARMACIST", "ADMIN", "BRANCH_ADMIN"],
+      icon: (
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+        </svg>
+      ),
+    },
+  ];
+
+  const branchId = user.user_metadata?.branch_id || null;
+
+  return (
+    <BranchProvider initialBranchId={branchId} initialBranchName={branchName}>
+      <div className="flex h-screen bg-slate-950 text-slate-100 overflow-hidden">
+        {/* Sidebar */}
+        <aside className="w-64 border-r border-slate-800 bg-slate-900/50 flex flex-col backdrop-blur-xl">
+          {/* Brand */}
+          <div className="h-16 flex items-center px-6 border-b border-slate-800 bg-slate-950/20">
+            <div className="flex items-center space-x-3">
+              <div className="h-9 w-9 rounded-xl bg-gradient-to-tr from-blue-600 to-emerald-500 flex items-center justify-center text-white font-bold text-lg">
+                CH
+              </div>
+              <span className="font-extrabold text-xl bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
+                Clinic Hub
+              </span>
+            </div>
+          </div>
+
+          {/* User Info Card */}
+          <div className="p-4 mx-3 my-4 rounded-xl border border-slate-800 bg-slate-950/40">
+            <div className="flex items-center space-x-3">
+              <div className="h-10 w-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 font-bold border border-slate-700">
+                {fullName.charAt(0).toUpperCase()}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold truncate text-white">{fullName}</p>
+                <span className="inline-block px-2 py-0.5 mt-1 text-[10px] font-bold rounded bg-blue-500/10 border border-blue-500/20 text-blue-400">
+                  {role}
+                </span>
+              </div>
+            </div>
+            <div className="mt-3 pt-3 border-t border-slate-800">
+              <BranchSelector role={role} />
+            </div>
+          </div>
+
+          {/* Links */}
+          <nav className="flex-1 px-3 space-y-1 overflow-y-auto">
+            {links
+              .filter((link) => link.roles.includes(role))
+              .map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/60 transition duration-150"
+                >
+                  {link.icon}
+                  <span>{link.label}</span>
+                </Link>
+              ))}
+          </nav>
+
+          {/* Logout Actions */}
+          <div className="p-4 border-t border-slate-800 bg-slate-950/20">
+            <form action="/api/auth/signout" method="POST">
+              <button
+                type="submit"
+                className="flex w-full items-center justify-center space-x-2 px-4 py-2.5 rounded-lg border border-slate-800 bg-slate-900/50 hover:bg-slate-800 text-sm font-semibold text-slate-300 hover:text-white transition duration-150"
+              >
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                <span>Đăng xuất</span>
+              </button>
+            </form>
+          </div>
+        </aside>
+
+        {/* Main Content Area */}
+        <div className="flex-1 flex flex-col overflow-hidden">
+          {/* Header */}
+          <header className="h-16 border-b border-slate-800 bg-slate-900/30 flex items-center justify-between px-8 backdrop-blur-xl">
+            <div className="flex items-center space-x-4">
+              <h1 className="text-lg font-bold text-white">Bảng điều khiển</h1>
+            </div>
+            <div className="flex items-center space-x-4">
+              {/* Clock or auxiliary info */}
+              <div className="text-sm text-slate-400">
+                {new Date().toLocaleDateString("vi-VN", {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </div>
+            </div>
+          </header>
+
+          {/* Page Content */}
+          <main className="flex-1 overflow-y-auto bg-slate-950 p-8">
+            <ErrorBoundary>
+              {children}
+            </ErrorBoundary>
+          </main>
+        </div>
+      </div>
+    </BranchProvider>
+  );
+}
