@@ -12,7 +12,7 @@ export function ComboChart({ data }: ComboChartProps) {
   // Fallback if data is empty
   if (!data || data.length === 0) {
     return (
-      <div className="flex h-64 items-center justify-center rounded-2xl border border-slate-800 bg-slate-900/40 text-slate-400">
+      <div className="flex h-64 items-center justify-center rounded-2xl border border-border bg-white shadow-sm text-muted-foreground">
         Không có dữ liệu hiển thị
       </div>
     );
@@ -57,20 +57,20 @@ export function ComboChart({ data }: ComboChartProps) {
     : "";
 
   return (
-    <div className="relative rounded-2xl border border-slate-800 bg-slate-900/40 p-6 backdrop-blur-xl">
+    <div className="relative rounded-2xl border border-border bg-white p-6 shadow-sm">
       <div className="mb-4 flex items-center justify-between">
         <div>
-          <h3 className="text-base font-bold text-white">Doanh thu & Lượt khám</h3>
-          <p className="text-xs text-slate-400">Thống kê 7 ngày gần nhất</p>
+          <h3 className="text-base font-semibold text-foreground">Doanh thu & Lượt khám</h3>
+          <p className="text-xs text-muted-foreground mt-0.5">Thống kê 7 ngày gần nhất</p>
         </div>
-        <div className="flex items-center space-x-4 text-xs">
+        <div className="flex items-center space-x-4 text-xs font-medium text-muted-foreground">
           <div className="flex items-center space-x-1.5">
-            <span className="h-3 w-3 rounded bg-blue-500" />
-            <span className="text-slate-300">Lượt khám (Cột)</span>
+            <span className="h-3 w-3 rounded-full bg-blue-500" />
+            <span>Lượt khám (Cột)</span>
           </div>
           <div className="flex items-center space-x-1.5">
-            <span className="h-3 w-0.5 rounded bg-purple-500 block border-b border-purple-500 w-3" />
-            <span className="text-slate-300">Doanh thu (Đường)</span>
+            <span className="h-3 w-3 rounded-full bg-purple-500" />
+            <span>Doanh thu (Đường)</span>
           </div>
         </div>
       </div>
@@ -99,7 +99,7 @@ export function ComboChart({ data }: ComboChartProps) {
                 y1={y}
                 x2={width - paddingRight}
                 y2={y}
-                stroke="#334155"
+                stroke="#E5E7EB"
                 strokeWidth="0.5"
                 strokeDasharray="4,4"
               />
@@ -235,7 +235,7 @@ export function ComboChart({ data }: ComboChartProps) {
       {/* Floating Tooltip Box */}
       {hoveredIndex !== null && (
         <div
-          className="absolute z-20 rounded-xl border border-slate-800 bg-slate-950/95 p-3 shadow-xl backdrop-blur-md text-xs space-y-1.5 transition-all duration-150"
+          className="absolute z-20 rounded-lg border border-gray-200 bg-white p-3 shadow-lg text-xs space-y-1.5 transition-all duration-150"
           style={{
             left: `${Math.min(
               points[hoveredIndex].x,
@@ -245,16 +245,16 @@ export function ComboChart({ data }: ComboChartProps) {
             transform: "translateX(-50%)",
           }}
         >
-          <div className="font-bold text-white text-center border-b border-slate-800 pb-1 mb-1">
+          <div className="font-bold text-foreground text-center border-b border-gray-100 pb-1 mb-1">
             Ngày {points[hoveredIndex].date}
           </div>
           <div className="flex items-center justify-between space-x-4">
-            <span className="text-slate-400">Lượt khám:</span>
-            <span className="font-semibold text-blue-400">{points[hoveredIndex].visits} lượt</span>
+            <span className="text-muted-foreground">Lượt khám:</span>
+            <span className="font-semibold text-blue-600">{points[hoveredIndex].visits} lượt</span>
           </div>
           <div className="flex items-center justify-between space-x-4">
-            <span className="text-slate-400">Doanh thu:</span>
-            <span className="font-semibold text-purple-400">
+            <span className="text-muted-foreground">Doanh thu:</span>
+            <span className="font-semibold text-purple-600">
               {points[hoveredIndex].revenue.toLocaleString("vi-VN")} đ
             </span>
           </div>

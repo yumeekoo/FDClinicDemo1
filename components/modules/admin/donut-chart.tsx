@@ -18,7 +18,7 @@ export function DonutChart({ stats }: DonutChartProps) {
 
   if (total === 0) {
     return (
-      <div className="flex h-64 items-center justify-center rounded-2xl border border-slate-800 bg-slate-900/40 text-slate-400">
+      <div className="flex h-64 items-center justify-center rounded-2xl border border-border bg-white shadow-sm text-muted-foreground">
         Kho dược hiện chưa có thuốc
       </div>
     );
@@ -46,10 +46,10 @@ export function DonutChart({ stats }: DonutChartProps) {
   const offsetExpired = lenNormal + lenWarning;
 
   return (
-    <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-6 backdrop-blur-xl flex flex-col justify-between h-full">
+    <div className="rounded-2xl border border-border bg-white p-6 shadow-sm flex flex-col justify-between h-full">
       <div>
-        <h3 className="text-base font-bold text-white">Tồn kho theo hạn dùng</h3>
-        <p className="text-xs text-slate-400">Tổng tồn kho: {total} sản phẩm</p>
+        <h3 className="text-base font-semibold text-foreground">Tồn kho theo hạn dùng</h3>
+        <p className="text-xs text-muted-foreground mt-0.5">Tổng tồn kho: {total} sản phẩm</p>
       </div>
 
       <div className="flex flex-col sm:flex-row items-center justify-around py-4 gap-6">
@@ -62,7 +62,7 @@ export function DonutChart({ stats }: DonutChartProps) {
               cy={center}
               r={r}
               fill="transparent"
-              stroke="#1e293b"
+              stroke="#F3F4F6"
               strokeWidth={strokeWidth}
             />
 
@@ -73,7 +73,7 @@ export function DonutChart({ stats }: DonutChartProps) {
                 cy={center}
                 r={r}
                 fill="transparent"
-                stroke="#10b981"
+                stroke="#22C55E"
                 strokeWidth={hoveredSegment === "normal" ? strokeWidth + 3 : strokeWidth}
                 strokeDasharray={`${lenNormal} ${circumference}`}
                 strokeDashoffset={-offsetNormal}
@@ -122,38 +122,38 @@ export function DonutChart({ stats }: DonutChartProps) {
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
             {hoveredSegment === "normal" && (
               <>
-                <span className="text-xl font-extrabold text-emerald-400">
+                <span className="text-xl font-bold text-green-600">
                   {Math.round(pctNormal * 100)}%
                 </span>
-                <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">
+                <span className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">
                   An toàn
                 </span>
               </>
             )}
             {hoveredSegment === "warning" && (
               <>
-                <span className="text-xl font-extrabold text-amber-400">
+                <span className="text-xl font-bold text-amber-600">
                   {Math.round(pctWarning * 100)}%
                 </span>
-                <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">
+                <span className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">
                   Sắp hết hạn
                 </span>
               </>
             )}
             {hoveredSegment === "expired" && (
               <>
-                <span className="text-xl font-extrabold text-red-500">
+                <span className="text-xl font-bold text-red-600">
                   {Math.round(pctExpired * 100)}%
                 </span>
-                <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">
+                <span className="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">
                   Đã quá hạn
                 </span>
               </>
             )}
             {!hoveredSegment && (
               <>
-                <span className="text-2xl font-extrabold text-white">{total}</span>
-                <span className="text-[9px] text-slate-400 uppercase tracking-wider">
+                <span className="text-2xl font-bold text-foreground">{total}</span>
+                <span className="text-[9px] text-muted-foreground uppercase tracking-wider">
                   Thuốc / Vật tư
                 </span>
               </>
@@ -166,46 +166,46 @@ export function DonutChart({ stats }: DonutChartProps) {
           {/* Normal */}
           <div
             className={`flex items-center justify-between space-x-8 p-1.5 rounded-lg transition duration-150 ${
-              hoveredSegment === "normal" ? "bg-emerald-500/10" : ""
+              hoveredSegment === "normal" ? "bg-gray-50" : ""
             }`}
             onMouseEnter={() => setHoveredSegment("normal")}
             onMouseLeave={() => setHoveredSegment(null)}
           >
             <div className="flex items-center space-x-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
-              <span className="text-slate-300 text-xs font-medium">Bình thường (&gt;6th)</span>
+              <span className="h-2.5 w-2.5 rounded-full bg-[#22C55E]" />
+              <span className="text-muted-foreground text-xs font-medium">Bình thường (&gt;6th)</span>
             </div>
-            <span className="font-semibold text-emerald-400 text-xs">{normal} lô</span>
+            <span className="font-semibold text-foreground text-xs">{normal} lô</span>
           </div>
 
           {/* Warning */}
           <div
             className={`flex items-center justify-between space-x-8 p-1.5 rounded-lg transition duration-150 ${
-              hoveredSegment === "warning" ? "bg-amber-500/10" : ""
+              hoveredSegment === "warning" ? "bg-gray-50" : ""
             }`}
             onMouseEnter={() => setHoveredSegment("warning")}
             onMouseLeave={() => setHoveredSegment(null)}
           >
             <div className="flex items-center space-x-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-amber-500" />
-              <span className="text-slate-300 text-xs font-medium">Cảnh báo (1-6th)</span>
+              <span className="h-2.5 w-2.5 rounded-full bg-[#F59E0B]" />
+              <span className="text-muted-foreground text-xs font-medium">Cảnh báo (1-6th)</span>
             </div>
-            <span className="font-semibold text-amber-400 text-xs">{warning} lô</span>
+            <span className="font-semibold text-foreground text-xs">{warning} lô</span>
           </div>
 
           {/* Expired */}
           <div
             className={`flex items-center justify-between space-x-8 p-1.5 rounded-lg transition duration-150 ${
-              hoveredSegment === "expired" ? "bg-red-500/10" : ""
+              hoveredSegment === "expired" ? "bg-gray-50" : ""
             }`}
             onMouseEnter={() => setHoveredSegment("expired")}
             onMouseLeave={() => setHoveredSegment(null)}
           >
             <div className="flex items-center space-x-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-red-500" />
-              <span className="text-slate-300 text-xs font-medium">Đã quá hạn (&lt;1n)</span>
+              <span className="h-2.5 w-2.5 rounded-full bg-[#EF4444]" />
+              <span className="text-muted-foreground text-xs font-medium">Đã quá hạn (&lt;1n)</span>
             </div>
-            <span className="font-semibold text-red-400 text-xs">{expired} lô</span>
+            <span className="font-semibold text-foreground text-xs">{expired} lô</span>
           </div>
         </div>
       </div>

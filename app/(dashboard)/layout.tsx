@@ -5,6 +5,7 @@ import React from "react";
 import { BranchProvider } from "@/hooks/use-branch";
 import { BranchSelector } from "@/components/modules/branch/branch-selector";
 import { ErrorBoundary } from "@/components/error-boundary";
+import { SidebarNav } from "@/components/sidebar-nav";
 
 interface SidebarLink {
   href: string;
@@ -158,61 +159,48 @@ export default async function DashboardLayout({
 
   return (
     <BranchProvider initialBranchId={branchId} initialBranchName={branchName}>
-      <div className="flex h-screen bg-slate-950 text-slate-100 overflow-hidden">
+      <div className="flex h-screen bg-[#F5F7FA] text-foreground overflow-hidden">
         {/* Sidebar */}
-        <aside className="w-64 border-r border-slate-800 bg-slate-900/50 flex flex-col backdrop-blur-xl">
+        <aside className="w-64 border-r border-[var(--sidebar-border,var(--border))] bg-[var(--sidebar-bg)] flex flex-col">
           {/* Brand */}
-          <div className="h-16 flex items-center px-6 border-b border-slate-800 bg-slate-950/20">
+          <div className="h-16 flex items-center px-6 border-b border-[var(--sidebar-border,var(--border))]">
             <div className="flex items-center space-x-3">
-              <div className="h-9 w-9 rounded-xl bg-gradient-to-tr from-blue-600 to-emerald-500 flex items-center justify-center text-white font-bold text-lg">
+              <div className="h-9 w-9 rounded-xl bg-[#2563EB] flex items-center justify-center text-white font-bold text-lg">
                 CH
               </div>
-              <span className="font-extrabold text-xl bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">
+              <span className="font-semibold text-xl text-white">
                 Clinic Hub
               </span>
             </div>
           </div>
 
           {/* User Info Card */}
-          <div className="p-4 mx-3 my-4 rounded-xl border border-slate-800 bg-slate-950/40">
+          <div className="p-4 mx-3 my-4 rounded-xl border border-white/10 bg-white/5">
             <div className="flex items-center space-x-3">
-              <div className="h-10 w-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 font-bold border border-slate-700">
+              <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500 flex items-center justify-center text-white font-medium border border-white/20">
                 {fullName.charAt(0).toUpperCase()}
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold truncate text-white">{fullName}</p>
-                <span className="inline-block px-2 py-0.5 mt-1 text-[10px] font-bold rounded bg-blue-500/10 border border-blue-500/20 text-blue-400">
+                <span className="inline-block px-2 py-0.5 mt-1 text-[10px] font-semibold tracking-wider uppercase rounded bg-blue-500/20 text-blue-300">
                   {role}
                 </span>
               </div>
             </div>
-            <div className="mt-3 pt-3 border-t border-slate-800">
+            <div className="mt-3 pt-3 border-t border-white/10">
               <BranchSelector role={role} />
             </div>
           </div>
 
           {/* Links */}
-          <nav className="flex-1 px-3 space-y-1 overflow-y-auto">
-            {links
-              .filter((link) => link.roles.includes(role))
-              .map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800/60 transition duration-150"
-                >
-                  {link.icon}
-                  <span>{link.label}</span>
-                </Link>
-              ))}
-          </nav>
+          <SidebarNav links={links} role={role} />
 
           {/* Logout Actions */}
-          <div className="p-4 border-t border-slate-800 bg-slate-950/20">
+          <div className="p-4 border-t border-[var(--sidebar-border,var(--border))]">
             <form action="/api/auth/signout" method="POST">
               <button
                 type="submit"
-                className="flex w-full items-center justify-center space-x-2 px-4 py-2.5 rounded-lg border border-slate-800 bg-slate-900/50 hover:bg-slate-800 text-sm font-semibold text-slate-300 hover:text-white transition duration-150"
+                className="flex w-full items-center justify-center space-x-2 px-4 py-2.5 rounded-lg text-sm font-semibold text-[var(--sidebar-muted)] hover:text-red-400 hover:bg-red-500/10 transition duration-150"
               >
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -226,13 +214,13 @@ export default async function DashboardLayout({
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col overflow-hidden">
           {/* Header */}
-          <header className="h-16 border-b border-slate-800 bg-slate-900/30 flex items-center justify-between px-8 backdrop-blur-xl">
+          <header className="h-16 border-b border-border bg-white/80 flex items-center justify-between px-8 backdrop-blur-sm">
             <div className="flex items-center space-x-4">
-              <h1 className="text-lg font-bold text-white">Bảng điều khiển</h1>
+              <h1 className="text-xl font-semibold text-foreground">Bảng điều khiển</h1>
             </div>
             <div className="flex items-center space-x-4">
               {/* Clock or auxiliary info */}
-              <div className="text-sm text-slate-400">
+              <div className="text-sm text-muted-foreground">
                 {new Date().toLocaleDateString("vi-VN", {
                   weekday: "long",
                   year: "numeric",
@@ -244,7 +232,7 @@ export default async function DashboardLayout({
           </header>
 
           {/* Page Content */}
-          <main className="flex-1 overflow-y-auto bg-slate-950 p-8">
+          <main className="flex-1 overflow-y-auto bg-[#F5F7FA] p-6">
             <ErrorBoundary>
               {children}
             </ErrorBoundary>
