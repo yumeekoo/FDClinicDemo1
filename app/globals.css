@@ -168,3 +168,18 @@
   background: rgba(255,255,255,0.15);
   border-radius: 2px;
 }
+
+/* ===== DARK MODE CLASS OVERRIDE — FORCE LIGHT ===== */
+/* Reset bất kỳ component nào vô tình inherit dark styles */
+html, body, #__next, main {
+  background-color: #F5F7FA !important;
+  color: #1A1F36 !important;
+}
+
+/* Queue card columns — override hardcoded dark */
+[class*="queue-column"],
+[class*="kanban"],
+[data-queue] {
+  background-color: #F9FAFB !important;
+  border-color: #E5E7EB !important;
+}

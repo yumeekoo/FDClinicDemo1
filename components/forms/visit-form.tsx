@@ -85,13 +85,13 @@ export function VisitForm({ patientId, onSuccess }: VisitFormProps) {
 
       {/* Doctor Selection */}
       <div className="space-y-1.5">
-        <Label className="text-slate-300">Bác sĩ chỉ định khám <span className="text-rose-500">*</span></Label>
+        <Label className="text-gray-600">Bác sĩ chỉ định khám <span className="text-rose-500">*</span></Label>
         {loadingDoctors ? (
-          <div className="h-10 w-full rounded-md border border-slate-800 bg-slate-950 animate-pulse flex items-center px-3 text-sm text-slate-500">
+          <div className="h-10 w-full rounded-md border border-gray-200 bg-gray-50 animate-pulse flex items-center px-3 text-sm text-gray-500">
             Đang tải danh sách bác sĩ...
           </div>
         ) : doctors.length === 0 ? (
-          <div className="h-10 w-full rounded-md border border-slate-800 bg-slate-950 flex items-center px-3 text-sm text-amber-500">
+          <div className="h-10 w-full rounded-md border border-gray-200 bg-gray-50 flex items-center px-3 text-sm text-amber-500">
             Không có bác sĩ nào trực tại chi nhánh hôm nay
           </div>
         ) : (
@@ -99,10 +99,10 @@ export function VisitForm({ patientId, onSuccess }: VisitFormProps) {
             value={doctorIdValue}
             onValueChange={(val) => setValue("doctorId", val || "")}
           >
-            <SelectTrigger className="bg-slate-950 border-slate-800 text-white">
+            <SelectTrigger className="bg-gray-50 border-gray-200 text-gray-900">
               <SelectValue placeholder="Chọn bác sĩ khám" />
             </SelectTrigger>
-            <SelectContent className="bg-slate-900 border-slate-800 text-white">
+            <SelectContent className="bg-gray-50 border-gray-200 text-gray-900">
               {doctors.map((doc) => (
                 <SelectItem key={doc.id || ""} value={doc.id || ""}>
                   {doc.fullName} ({doc.employeeCode})
@@ -118,11 +118,11 @@ export function VisitForm({ patientId, onSuccess }: VisitFormProps) {
 
       {/* Chief Complaint */}
       <div className="space-y-1.5">
-        <Label htmlFor="chiefComplaint" className="text-slate-300">Lý do khám bệnh <span className="text-rose-500">*</span></Label>
+        <Label htmlFor="chiefComplaint" className="text-gray-600">Lý do khám bệnh <span className="text-rose-500">*</span></Label>
         <Input
           id="chiefComplaint"
           placeholder="Đau họng, nhức đầu, ho sốt nhẹ..."
-          className="bg-slate-950 border-slate-800 text-white"
+          className="bg-gray-50 border-gray-200 text-gray-900"
           {...register("chiefComplaint")}
         />
         {formErrors.chiefComplaint && (
@@ -132,11 +132,11 @@ export function VisitForm({ patientId, onSuccess }: VisitFormProps) {
 
       {/* Medical History */}
       <div className="space-y-1.5">
-        <Label htmlFor="medicalHistory" className="text-slate-300">Tiền sử bệnh án</Label>
+        <Label htmlFor="medicalHistory" className="text-gray-600">Tiền sử bệnh án</Label>
         <Textarea
           id="medicalHistory"
           placeholder="Cao huyết áp 2 năm, tiểu đường type 2..."
-          className="bg-slate-950 border-slate-800 text-white min-h-[80px]"
+          className="bg-gray-50 border-gray-200 text-gray-900 min-h-[80px]"
           {...register("medicalHistory")}
         />
         {formErrors.medicalHistory && (
@@ -144,7 +144,7 @@ export function VisitForm({ patientId, onSuccess }: VisitFormProps) {
         )}
       </div>
 
-      <div className="pt-4 flex justify-end gap-2 border-t border-slate-850">
+      <div className="pt-4 flex justify-end gap-2 border-t border-gray-200">
         <Button
           type="submit"
           disabled={isPending || loadingDoctors || doctors.length === 0}

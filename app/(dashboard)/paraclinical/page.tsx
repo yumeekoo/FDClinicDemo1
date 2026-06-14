@@ -15,8 +15,8 @@ export default async function ParaclinicalDashboardPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-extrabold tracking-tight text-white">Khu Cận Lâm Sàng</h1>
-        <p className="text-slate-400 mt-1">
+        <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">Khu Cận Lâm Sàng</h1>
+        <p className="text-gray-500 mt-1">
           Tiếp nhận y lệnh, thực hiện kỹ thuật và trả kết quả xét nghiệm, chẩn đoán hình ảnh.
         </p>
       </div>

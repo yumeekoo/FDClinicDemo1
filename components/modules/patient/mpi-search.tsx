@@ -70,10 +70,10 @@ export function MpiSearch() {
 
   return (
     <div className="space-y-6">
-      <Card className="border-slate-800 bg-slate-900/40 backdrop-blur-xl">
+      <Card className="border-gray-200 bg-gray-50/40 backdrop-blur-xl">
         <CardHeader>
-          <CardTitle className="text-xl font-bold text-white">Tìm kiếm bệnh nhân (MPI)</CardTitle>
-          <CardDescription className="text-slate-400">
+          <CardTitle className="text-xl font-bold text-gray-900">Tìm kiếm bệnh nhân (MPI)</CardTitle>
+          <CardDescription className="text-gray-500">
             Tra cứu thông tin bệnh nhân trên toàn bộ hệ thống bằng số điện thoại hoặc căn cước công dân (CCCD).
           </CardDescription>
         </CardHeader>
@@ -83,7 +83,7 @@ export function MpiSearch() {
               placeholder="Nhập số điện thoại hoặc CCCD..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="flex-1 bg-slate-950 border-slate-800 text-white placeholder-slate-500 focus-visible:ring-blue-500"
+              className="flex-1 bg-gray-50 border-gray-200 text-gray-900 placeholder-slate-500 focus-visible:ring-blue-500"
             />
             <Button
               type="submit"
@@ -99,16 +99,16 @@ export function MpiSearch() {
       {searched && (
         <div className="space-y-4">
           <div className="flex justify-between items-center">
-            <h3 className="text-lg font-bold text-white">Kết quả tìm kiếm ({patients.length})</h3>
+            <h3 className="text-lg font-bold text-gray-900">Kết quả tìm kiếm ({patients.length})</h3>
             
             <Dialog>
-              <DialogTrigger className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-emerald-600 hover:bg-emerald-500 text-white shadow h-9 px-4 cursor-pointer">
+              <DialogTrigger className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-emerald-600 hover:bg-emerald-500 text-gray-900 shadow h-9 px-4 cursor-pointer">
                 Thêm bệnh nhân mới
               </DialogTrigger>
-              <DialogContent className="sm:max-w-[600px] bg-slate-900 border-slate-850 text-white max-h-[90vh] overflow-y-auto">
+              <DialogContent className="sm:max-w-[600px] bg-gray-50 border-gray-200 text-gray-900 max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                   <DialogTitle>Đăng ký bệnh nhân mới</DialogTitle>
-                  <DialogDescription className="text-slate-400">
+                  <DialogDescription className="text-gray-500">
                     Nhập thông tin cá nhân của bệnh nhân để đăng ký vào hệ thống MPI.
                   </DialogDescription>
                 </DialogHeader>
@@ -121,9 +121,9 @@ export function MpiSearch() {
           </div>
 
           {patients.length === 0 ? (
-            <Card className="border-dashed border-slate-800 bg-transparent text-center p-8">
-              <p className="text-slate-400">Không tìm thấy bệnh nhân nào khớp với từ khóa của bạn.</p>
-              <p className="text-sm text-slate-500 mt-1">Vui lòng đăng ký bệnh nhân mới nếu đây là lần đầu khám.</p>
+            <Card className="border-dashed border-gray-200 bg-transparent text-center p-8">
+              <p className="text-gray-500">Không tìm thấy bệnh nhân nào khớp với từ khóa của bạn.</p>
+              <p className="text-sm text-gray-500 mt-1">Vui lòng đăng ký bệnh nhân mới nếu đây là lần đầu khám.</p>
             </Card>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -135,12 +135,12 @@ export function MpiSearch() {
                 return (
                   <Card
                     key={p.id}
-                    className="border-slate-800 bg-slate-900/20 hover:bg-slate-900/40 transition duration-200"
+                    className="border-gray-200 bg-gray-50/20 hover:bg-gray-50/40 transition duration-200"
                   >
                     <CardHeader className="pb-3">
                       <div className="flex justify-between items-start">
                         <div>
-                          <CardTitle className="text-lg font-bold text-white flex items-center gap-2">
+                          <CardTitle className="text-lg font-bold text-gray-900 flex items-center gap-2">
                             {p.fullName}
                             {isLinkedToCurrent ? (
                               <Badge className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
@@ -152,20 +152,20 @@ export function MpiSearch() {
                               </Badge>
                             )}
                           </CardTitle>
-                          <span className="text-xs text-slate-500 font-mono mt-1 block">
+                          <span className="text-xs text-gray-500 font-mono mt-1 block">
                             Mã BN: {p.patientCode}
                           </span>
                         </div>
                       </div>
                     </CardHeader>
-                    <CardContent className="space-y-3 text-sm text-slate-300">
+                    <CardContent className="space-y-3 text-sm text-gray-600">
                       <div className="grid grid-cols-2 gap-2 text-xs">
                         <div>
-                          <span className="text-slate-500 block">Ngày sinh</span>
+                          <span className="text-gray-500 block">Ngày sinh</span>
                           <span>{new Date(p.dateOfBirth).toLocaleDateString("vi-VN")}</span>
                         </div>
                         <div>
-                          <span className="text-slate-500 block">Giới tính</span>
+                          <span className="text-gray-500 block">Giới tính</span>
                           <span>
                             {p.gender === "MALE"
                               ? "Nam"
@@ -175,28 +175,28 @@ export function MpiSearch() {
                           </span>
                         </div>
                         <div>
-                          <span className="text-slate-500 block">Số điện thoại</span>
+                          <span className="text-gray-500 block">Số điện thoại</span>
                           <span>{p.phone}</span>
                         </div>
                         <div>
-                          <span className="text-slate-500 block">CCCD</span>
+                          <span className="text-gray-500 block">CCCD</span>
                           <span>{p.cccd || "Không có"}</span>
                         </div>
                       </div>
 
                       <div className="text-xs">
-                        <span className="text-slate-500 block">Địa chỉ</span>
+                        <span className="text-gray-500 block">Địa chỉ</span>
                         <span className="line-clamp-1">{p.address}</span>
                       </div>
 
                       {p.allergies && p.allergies.length > 0 && (
                         <div className="text-xs">
-                          <span className="text-slate-500 block">Dị ứng</span>
+                          <span className="text-gray-500 block">Dị ứng</span>
                           <span className="text-rose-400">{p.allergies.join(", ")}</span>
                         </div>
                       )}
 
-                      <div className="pt-2 border-t border-slate-800 flex justify-end gap-2">
+                      <div className="pt-2 border-t border-gray-200 flex justify-end gap-2">
                         {isLinkedToCurrent ? (
                           <Button
                             size="sm"
@@ -212,7 +212,7 @@ export function MpiSearch() {
                           <Button
                             size="sm"
                             variant="secondary"
-                            className="bg-slate-800 hover:bg-slate-700 text-slate-200"
+                            className="bg-white hover:bg-gray-50 text-gray-700"
                             onClick={() => handleLinkBranch(p.id)}
                           >
                             Liên kết chi nhánh này
@@ -230,11 +230,11 @@ export function MpiSearch() {
 
       {/* Dialog for Visit Registration */}
       <Dialog open={isVisitOpen} onOpenChange={setIsVisitOpen}>
-        <DialogContent className="sm:max-w-[500px] bg-slate-900 border-slate-850 text-white">
+        <DialogContent className="sm:max-w-[500px] bg-gray-50 border-gray-200 text-gray-900">
           <DialogHeader>
             <DialogTitle>Đăng ký lượt khám</DialogTitle>
-            <DialogDescription className="text-slate-400">
-              Đăng ký lượt khám mới cho bệnh nhân: <strong className="text-white">{selectedPatientForVisit?.fullName}</strong>.
+            <DialogDescription className="text-gray-500">
+              Đăng ký lượt khám mới cho bệnh nhân: <strong className="text-gray-900">{selectedPatientForVisit?.fullName}</strong>.
             </DialogDescription>
           </DialogHeader>
           {selectedPatientForVisit && (

@@ -68,11 +68,11 @@ export function PatientForm({ onSuccess }: PatientFormProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Full Name */}
         <div className="space-y-1.5">
-          <Label htmlFor="fullName" className="text-slate-300">Họ và tên <span className="text-rose-500">*</span></Label>
+          <Label htmlFor="fullName" className="text-gray-600">Họ và tên <span className="text-rose-500">*</span></Label>
           <Input
             id="fullName"
             placeholder="Nguyễn Văn A"
-            className="bg-slate-950 border-slate-800 text-white"
+            className="bg-gray-50 border-gray-200 text-gray-900"
             {...register("fullName")}
           />
           {formErrors.fullName && (
@@ -82,11 +82,11 @@ export function PatientForm({ onSuccess }: PatientFormProps) {
 
         {/* Date of Birth */}
         <div className="space-y-1.5">
-          <Label htmlFor="dateOfBirth" className="text-slate-300">Ngày sinh <span className="text-rose-500">*</span></Label>
+          <Label htmlFor="dateOfBirth" className="text-gray-600">Ngày sinh <span className="text-rose-500">*</span></Label>
           <Input
             id="dateOfBirth"
             type="date"
-            className="bg-slate-950 border-slate-800 text-white"
+            className="bg-gray-50 border-gray-200 text-gray-900"
             {...register("dateOfBirth")}
           />
           {formErrors.dateOfBirth && (
@@ -98,15 +98,15 @@ export function PatientForm({ onSuccess }: PatientFormProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Gender */}
         <div className="space-y-1.5">
-          <Label className="text-slate-300">Giới tính <span className="text-rose-500">*</span></Label>
+          <Label className="text-gray-600">Giới tính <span className="text-rose-500">*</span></Label>
           <Select
             value={genderValue}
             onValueChange={(val) => setValue("gender", val || "MALE")}
           >
-            <SelectTrigger className="bg-slate-950 border-slate-800 text-white">
+            <SelectTrigger className="bg-gray-50 border-gray-200 text-gray-900">
               <SelectValue placeholder="Chọn giới tính" />
             </SelectTrigger>
-            <SelectContent className="bg-slate-900 border-slate-800 text-white">
+            <SelectContent className="bg-gray-50 border-gray-200 text-gray-900">
               <SelectItem value="MALE">Nam</SelectItem>
               <SelectItem value="FEMALE">Nữ</SelectItem>
               <SelectItem value="OTHER">Khác</SelectItem>
@@ -119,11 +119,11 @@ export function PatientForm({ onSuccess }: PatientFormProps) {
 
         {/* Phone */}
         <div className="space-y-1.5">
-          <Label htmlFor="phone" className="text-slate-300">Số điện thoại <span className="text-rose-500">*</span></Label>
+          <Label htmlFor="phone" className="text-gray-600">Số điện thoại <span className="text-rose-500">*</span></Label>
           <Input
             id="phone"
             placeholder="09XXXXXXXX"
-            className="bg-slate-950 border-slate-800 text-white"
+            className="bg-gray-50 border-gray-200 text-gray-900"
             {...register("phone")}
           />
           {formErrors.phone && (
@@ -135,11 +135,11 @@ export function PatientForm({ onSuccess }: PatientFormProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* CCCD */}
         <div className="space-y-1.5">
-          <Label htmlFor="cccd" className="text-slate-300">Số CCCD (12 chữ số)</Label>
+          <Label htmlFor="cccd" className="text-gray-600">Số CCCD (12 chữ số)</Label>
           <Input
             id="cccd"
             placeholder="012345678901"
-            className="bg-slate-950 border-slate-800 text-white"
+            className="bg-gray-50 border-gray-200 text-gray-900"
             {...register("cccd")}
           />
           {formErrors.cccd && (
@@ -149,11 +149,11 @@ export function PatientForm({ onSuccess }: PatientFormProps) {
 
         {/* BHYT */}
         <div className="space-y-1.5">
-          <Label htmlFor="bhytCode" className="text-slate-300">Mã thẻ BHYT (15 ký tự)</Label>
+          <Label htmlFor="bhytCode" className="text-gray-600">Mã thẻ BHYT (15 ký tự)</Label>
           <Input
             id="bhytCode"
             placeholder="GD479XXXXXXXXXX"
-            className="bg-slate-950 border-slate-800 text-white"
+            className="bg-gray-50 border-gray-200 text-gray-900"
             {...register("bhytCode")}
           />
           {formErrors.bhytCode && (
@@ -164,11 +164,11 @@ export function PatientForm({ onSuccess }: PatientFormProps) {
 
       {/* Address */}
       <div className="space-y-1.5">
-        <Label htmlFor="address" className="text-slate-300">Địa chỉ thường trú <span className="text-rose-500">*</span></Label>
+        <Label htmlFor="address" className="text-gray-600">Địa chỉ thường trú <span className="text-rose-500">*</span></Label>
         <Input
           id="address"
           placeholder="Số nhà, Đường, Phường/Xã, Quận/Huyện, Tỉnh/Thành phố"
-          className="bg-slate-950 border-slate-800 text-white"
+          className="bg-gray-50 border-gray-200 text-gray-900"
           {...register("address")}
         />
         {formErrors.address && (
@@ -179,15 +179,15 @@ export function PatientForm({ onSuccess }: PatientFormProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Blood Type */}
         <div className="space-y-1.5">
-          <Label className="text-slate-300">Nhóm máu</Label>
+          <Label className="text-gray-600">Nhóm máu</Label>
           <Select
             value={bloodTypeValue || "none"}
             onValueChange={(val) => setValue("bloodType", val || "none")}
           >
-            <SelectTrigger className="bg-slate-950 border-slate-800 text-white">
+            <SelectTrigger className="bg-gray-50 border-gray-200 text-gray-900">
               <SelectValue placeholder="Chọn nhóm máu" />
             </SelectTrigger>
-            <SelectContent className="bg-slate-900 border-slate-800 text-white">
+            <SelectContent className="bg-gray-50 border-gray-200 text-gray-900">
               <SelectItem value="none">Không rõ</SelectItem>
               <SelectItem value="A+">A+</SelectItem>
               <SelectItem value="A-">A-</SelectItem>
@@ -203,11 +203,11 @@ export function PatientForm({ onSuccess }: PatientFormProps) {
 
         {/* Allergies */}
         <div className="space-y-1.5">
-          <Label htmlFor="allergies" className="text-slate-300">Dị ứng (phân tách bằng dấu phẩy)</Label>
+          <Label htmlFor="allergies" className="text-gray-600">Dị ứng (phân tách bằng dấu phẩy)</Label>
           <Input
             id="allergies"
             placeholder="Hải sản, Penicillin, Phấn hoa..."
-            className="bg-slate-950 border-slate-800 text-white"
+            className="bg-gray-50 border-gray-200 text-gray-900"
             {...register("allergies")}
           />
         </div>
@@ -215,16 +215,16 @@ export function PatientForm({ onSuccess }: PatientFormProps) {
 
       {/* Notes */}
       <div className="space-y-1.5">
-        <Label htmlFor="notes" className="text-slate-300">Ghi chú tiền sử / Thể trạng</Label>
+        <Label htmlFor="notes" className="text-gray-600">Ghi chú tiền sử / Thể trạng</Label>
         <Textarea
           id="notes"
           placeholder="Thông tin lưu ý thêm về bệnh nhân..."
-          className="bg-slate-950 border-slate-800 text-white min-h-[80px]"
+          className="bg-gray-50 border-gray-200 text-gray-900 min-h-[80px]"
           {...register("notes")}
         />
       </div>
 
-      <div className="pt-4 flex justify-end gap-2 border-t border-slate-850">
+      <div className="pt-4 flex justify-end gap-2 border-t border-gray-200">
         <Button
           type="submit"
           disabled={isPending}

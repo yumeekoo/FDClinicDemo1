@@ -71,18 +71,18 @@ export function ClsWorkspaceClient({ data }: ClsWorkspaceClientProps) {
             variant="ghost"
             size="sm"
             onClick={() => router.push("/paraclinical")}
-            className="text-slate-400 hover:text-white border border-slate-800 hover:bg-slate-900 h-9 w-9 p-0"
+            className="text-gray-500 hover:text-gray-900 border border-gray-200 hover:bg-gray-50 h-9 w-9 p-0"
           >
             <ArrowLeft className="h-4 w-4" />
           </Button>
           <div>
-            <h1 className="text-2xl font-black text-white flex items-center gap-2">
+            <h1 className="text-2xl font-black text-gray-900 flex items-center gap-2">
               Trả kết quả: {patient.fullName}
               <Badge className="bg-blue-500/10 text-blue-400 border border-blue-500/20 font-bold">
                 {order.serviceName}
               </Badge>
             </h1>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-gray-500 mt-1">
               Y lệnh: {order.orderCode} • Chỉ định bởi BS. {doctor.fullName}
             </p>
           </div>
@@ -92,7 +92,7 @@ export function ClsWorkspaceClient({ data }: ClsWorkspaceClientProps) {
           <Button
             variant="outline"
             onClick={() => router.push("/paraclinical")}
-            className="border-slate-800 hover:bg-slate-900 text-slate-350"
+            className="border-gray-200 hover:bg-gray-50 text-slate-350"
           >
             Quay lại
           </Button>
@@ -115,55 +115,55 @@ export function ClsWorkspaceClient({ data }: ClsWorkspaceClientProps) {
         {/* Left: Administrative & Vitals (1/4) */}
         <div className="lg:col-span-1 space-y-6">
           {/* Administrative info */}
-          <Card className="border-slate-800 bg-slate-900/40 backdrop-blur-xl">
-            <CardHeader className="pb-3 border-b border-slate-850">
-              <CardTitle className="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-1.5">
-                <User className="h-4 w-4 text-slate-400" />
+          <Card className="border-gray-200 bg-gray-50/40 backdrop-blur-xl">
+            <CardHeader className="pb-3 border-b border-gray-200">
+              <CardTitle className="text-xs font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
+                <User className="h-4 w-4 text-gray-500" />
                 Hành chính & Sức khỏe
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-4 space-y-3.5 text-xs text-slate-300">
+            <CardContent className="p-4 space-y-3.5 text-xs text-gray-600">
               <div>
-                <span className="text-slate-500 block">Họ và tên:</span>
-                <span className="text-sm font-bold text-white">{patient.fullName}</span>
+                <span className="text-gray-500 block">Họ và tên:</span>
+                <span className="text-sm font-bold text-gray-900">{patient.fullName}</span>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <span className="text-slate-500 block">Mã BN:</span>
+                  <span className="text-gray-500 block">Mã BN:</span>
                   <span className="font-mono">{patient.patientCode}</span>
                 </div>
                 <div>
-                  <span className="text-slate-500 block">Số điện thoại:</span>
+                  <span className="text-gray-500 block">Số điện thoại:</span>
                   <span>{patient.phone}</span>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <span className="text-slate-500 block">Ngày sinh:</span>
+                  <span className="text-gray-500 block">Ngày sinh:</span>
                   <span>{new Date(patient.dateOfBirth).toLocaleDateString("vi-VN")}</span>
                 </div>
                 <div>
-                  <span className="text-slate-500 block">Giới tính:</span>
+                  <span className="text-gray-500 block">Giới tính:</span>
                   <span>{patient.gender === "MALE" ? "Nam" : patient.gender === "FEMALE" ? "Nữ" : "Khác"}</span>
                 </div>
               </div>
               <div>
-                <span className="text-slate-500 block">Địa chỉ:</span>
+                <span className="text-gray-500 block">Địa chỉ:</span>
                 <span className="truncate block">{patient.address || "Chưa cập nhật"}</span>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <span className="text-slate-500 block">Nhóm máu:</span>
-                  <span className="font-bold text-white">{patient.bloodGroup || "Không rõ"}</span>
+                  <span className="text-gray-500 block">Nhóm máu:</span>
+                  <span className="font-bold text-gray-900">{patient.bloodGroup || "Không rõ"}</span>
                 </div>
                 <div>
-                  <span className="text-slate-500 block">CCCD:</span>
+                  <span className="text-gray-500 block">CCCD:</span>
                   <span className="font-mono">{patient.nationalId || "Không có"}</span>
                 </div>
               </div>
-              <Separator className="bg-slate-850" />
+              <Separator className="bg-gray-100" />
               <div>
-                <span className="text-slate-500 block">Tiền sử dị ứng:</span>
+                <span className="text-gray-500 block">Tiền sử dị ứng:</span>
                 <span className={patient.allergies?.length > 0 ? "text-rose-400 font-semibold" : ""}>
                   {patient.allergies?.length > 0 ? patient.allergies.join(", ") : "Không có thông tin dị ứng"}
                 </span>
@@ -172,10 +172,10 @@ export function ClsWorkspaceClient({ data }: ClsWorkspaceClientProps) {
           </Card>
 
           {/* Patient Vitals */}
-          <Card className="border-slate-800 bg-slate-900/40 backdrop-blur-xl">
-            <CardHeader className="pb-3 border-b border-slate-850">
-              <CardTitle className="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-1.5">
-                <Activity className="h-4 w-4 text-slate-400" />
+          <Card className="border-gray-200 bg-gray-50/40 backdrop-blur-xl">
+            <CardHeader className="pb-3 border-b border-gray-200">
+              <CardTitle className="text-xs font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
+                <Activity className="h-4 w-4 text-gray-500" />
                 Chỉ số sinh hiệu
               </CardTitle>
             </CardHeader>
@@ -183,28 +183,28 @@ export function ClsWorkspaceClient({ data }: ClsWorkspaceClientProps) {
               {vitals ? (
                 <div className="space-y-3 text-xs">
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-500">Huyết áp:</span>
-                    <strong className="text-white font-mono">
+                    <span className="text-gray-500">Huyết áp:</span>
+                    <strong className="text-gray-900 font-mono">
                       {vitals.bloodPressureSystolic}/{vitals.bloodPressureDiastolic} mmHg
                     </strong>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-500">Mạch / SpO2:</span>
-                    <strong className="text-white font-mono">
+                    <span className="text-gray-500">Mạch / SpO2:</span>
+                    <strong className="text-gray-900 font-mono">
                       {vitals.heartRate} nhịp • {vitals.spo2}%
                     </strong>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-500">Nhiệt độ:</span>
-                    <strong className="text-white">{vitals.temperature}°C</strong>
+                    <span className="text-gray-500">Nhiệt độ:</span>
+                    <strong className="text-gray-900">{vitals.temperature}°C</strong>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-500">Thể trạng:</span>
+                    <span className="text-gray-500">Thể trạng:</span>
                     <span>{vitals.weight}kg / {vitals.height}cm</span>
                   </div>
                 </div>
               ) : (
-                <p className="text-center py-4 text-slate-500 text-xs">Chưa có thông tin sinh hiệu</p>
+                <p className="text-center py-4 text-gray-500 text-xs">Chưa có thông tin sinh hiệu</p>
               )}
             </CardContent>
           </Card>
@@ -213,22 +213,22 @@ export function ClsWorkspaceClient({ data }: ClsWorkspaceClientProps) {
         {/* Right: Diagnosis form, results text, file uploads (3/4) */}
         <div className="lg:col-span-3 space-y-6">
           {/* Clinical notes from Doctor */}
-          <Card className="border-slate-800 bg-slate-900/40 backdrop-blur-xl">
-            <CardHeader className="py-3 px-4 border-b border-slate-850 bg-slate-950/10">
-              <CardTitle className="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-1.5">
-                <Heart className="h-4 w-4 text-slate-400" />
+          <Card className="border-gray-200 bg-gray-50/40 backdrop-blur-xl">
+            <CardHeader className="py-3 px-4 border-b border-gray-200 bg-gray-50/10">
+              <CardTitle className="text-xs font-bold text-gray-700 uppercase tracking-wider flex items-center gap-1.5">
+                <Heart className="h-4 w-4 text-gray-500" />
                 Yêu cầu lâm sàng từ Bác sĩ
               </CardTitle>
             </CardHeader>
             <CardContent className="p-4 text-xs text-slate-350 space-y-3">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <span className="text-slate-500 block">Triệu chứng lâm sàng chính:</span>
-                  <p className="text-white font-medium italic mt-1">"{visit.chiefComplaint}"</p>
+                  <span className="text-gray-500 block">Triệu chứng lâm sàng chính:</span>
+                  <p className="text-gray-900 font-medium italic mt-1">"{visit.chiefComplaint}"</p>
                 </div>
                 <div>
-                  <span className="text-slate-500 block">Ghi chú y lệnh CLS:</span>
-                  <p className="text-white font-medium italic mt-1">
+                  <span className="text-gray-500 block">Ghi chú y lệnh CLS:</span>
+                  <p className="text-gray-900 font-medium italic mt-1">
                     {order.notes ? `"${order.notes}"` : "Không có ghi chú thêm"}
                   </p>
                 </div>
@@ -237,19 +237,19 @@ export function ClsWorkspaceClient({ data }: ClsWorkspaceClientProps) {
           </Card>
 
           {/* Results Form */}
-          <Card className="border-slate-800 bg-slate-900/40 backdrop-blur-xl">
-            <CardHeader className="pb-3 border-b border-slate-850">
-              <CardTitle className="text-sm font-bold text-white">
+          <Card className="border-gray-200 bg-gray-50/40 backdrop-blur-xl">
+            <CardHeader className="pb-3 border-b border-gray-200">
+              <CardTitle className="text-sm font-bold text-gray-900">
                 Ghi nhận kết quả cận lâm sàng
               </CardTitle>
-              <CardDescription className="text-slate-400">
+              <CardDescription className="text-gray-500">
                 Nhập mô tả chi tiết và tải ảnh chụp/tài liệu đính kèm.
               </CardDescription>
             </CardHeader>
             <CardContent className="p-6 space-y-6">
               {/* Result Text */}
               <div className="space-y-2">
-                <Label htmlFor="resultText" className="text-slate-300 font-bold block">
+                <Label htmlFor="resultText" className="text-gray-600 font-bold block">
                   Mô tả kết quả chi tiết <span className="text-rose-500">*</span>
                 </Label>
                 <Textarea
@@ -257,7 +257,7 @@ export function ClsWorkspaceClient({ data }: ClsWorkspaceClientProps) {
                   value={resultText}
                   onChange={(e) => setResultText(e.target.value)}
                   placeholder="Nhập chẩn đoán hình ảnh, các chỉ số xét nghiệm, kết luận cận lâm sàng..."
-                  className="bg-slate-950 border-slate-850 text-white min-h-[160px]"
+                  className="bg-gray-50 border-gray-200 text-gray-900 min-h-[160px]"
                 />
               </div>
 
@@ -275,7 +275,7 @@ export function ClsWorkspaceClient({ data }: ClsWorkspaceClientProps) {
                     <AlertTriangle className="h-4 w-4" />
                     Đánh dấu là KẾT QUẢ BẤT THƯỜNG
                   </Label>
-                  <p className="text-[10px] text-slate-500">
+                  <p className="text-[10px] text-gray-500">
                     Kết quả này sẽ được bôi đỏ cảnh báo nổi bật trên hồ sơ của Bác sĩ điều trị.
                   </p>
                 </div>

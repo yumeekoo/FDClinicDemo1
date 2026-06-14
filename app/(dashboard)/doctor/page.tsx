@@ -16,8 +16,8 @@ export default async function DoctorDashboardPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-extrabold tracking-tight text-white">Phòng khám Bác Sĩ</h1>
-        <p className="text-slate-400 mt-1">
+        <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">Phòng khám Bác Sĩ</h1>
+        <p className="text-gray-500 mt-1">
           Quản lý hàng đợi khám lâm sàng, lập chỉ định cận lâm sàng và kê toa thuốc điều trị.
         </p>
       </div>

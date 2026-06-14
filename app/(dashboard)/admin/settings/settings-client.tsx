@@ -27,7 +27,7 @@ export function SettingsClient() {
 
   if (!mounted) {
     return (
-      <div className="flex h-64 items-center justify-center text-slate-400">
+      <div className="flex h-64 items-center justify-center text-gray-500">
         Đang tải trang cài đặt...
       </div>
     );
@@ -36,16 +36,16 @@ export function SettingsClient() {
   return (
     <div className="space-y-6 max-w-2xl">
       <div>
-        <h2 className="text-2xl font-extrabold text-white">Cài đặt Hệ thống</h2>
-        <p className="text-sm text-slate-400">Cấu hình chung và tùy chọn giao diện người dùng</p>
+        <h2 className="text-2xl font-extrabold text-gray-900">Cài đặt Hệ thống</h2>
+        <p className="text-sm text-gray-500">Cấu hình chung và tùy chọn giao diện người dùng</p>
       </div>
 
-      <div className="space-y-6 rounded-2xl border border-slate-800 bg-slate-900/40 p-6 backdrop-blur-xl">
+      <div className="space-y-6 rounded-2xl border border-gray-200 bg-gray-50/40 p-6 backdrop-blur-xl">
         {/* Theme select */}
-        <div className="space-y-3 pb-6 border-b border-slate-800/60">
+        <div className="space-y-3 pb-6 border-b border-gray-200/60">
           <div>
-            <h3 className="text-sm font-bold text-white">Giao diện (Theme)</h3>
-            <p className="text-xs text-slate-400">Chọn chế độ màu sắc hiển thị cho giao diện quản trị</p>
+            <h3 className="text-sm font-bold text-gray-900">Giao diện (Theme)</h3>
+            <p className="text-xs text-gray-500">Chọn chế độ màu sắc hiển thị cho giao diện quản trị</p>
           </div>
           <div className="grid grid-cols-3 gap-4">
             {/* Dark */}
@@ -54,10 +54,10 @@ export function SettingsClient() {
               className={`flex flex-col items-center justify-center p-4 rounded-xl border transition-all ${
                 theme === "dark"
                   ? "bg-blue-600/10 border-blue-500 text-blue-400 font-bold"
-                  : "bg-slate-950 border-slate-800 text-slate-400 hover:text-white"
+                  : "bg-gray-50 border-gray-200 text-gray-500 hover:text-white"
               }`}
             >
-              <div className="h-6 w-6 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center mb-2">
+              <div className="h-6 w-6 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center mb-2">
                 🌙
               </div>
               <span className="text-xs">Chế độ Tối (Dark)</span>
@@ -69,7 +69,7 @@ export function SettingsClient() {
               className={`flex flex-col items-center justify-center p-4 rounded-xl border transition-all ${
                 theme === "light"
                   ? "bg-blue-600/10 border-blue-500 text-blue-400 font-bold"
-                  : "bg-slate-950 border-slate-800 text-slate-400 hover:text-white"
+                  : "bg-gray-50 border-gray-200 text-gray-500 hover:text-white"
               }`}
             >
               <div className="h-6 w-6 rounded-full bg-white border border-slate-300 flex items-center justify-center mb-2">
@@ -84,10 +84,10 @@ export function SettingsClient() {
               className={`flex flex-col items-center justify-center p-4 rounded-xl border transition-all ${
                 theme === "system"
                   ? "bg-blue-600/10 border-blue-500 text-blue-400 font-bold"
-                  : "bg-slate-950 border-slate-800 text-slate-400 hover:text-white"
+                  : "bg-gray-50 border-gray-200 text-gray-500 hover:text-white"
               }`}
             >
-              <div className="h-6 w-6 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center mb-2">
+              <div className="h-6 w-6 rounded-full bg-white border border-gray-200 flex items-center justify-center mb-2">
                 💻
               </div>
               <span className="text-xs">Hệ thống (System)</span>
@@ -96,26 +96,26 @@ export function SettingsClient() {
         </div>
 
         {/* General Options */}
-        <div className="space-y-4 pb-6 border-b border-slate-800/60">
+        <div className="space-y-4 pb-6 border-b border-gray-200/60">
           <div>
-            <h3 className="text-sm font-bold text-white">Định dạng & Quốc gia</h3>
-            <p className="text-xs text-slate-400">Định dạng chung cho tiền tệ, ngôn ngữ hiển thị</p>
+            <h3 className="text-sm font-bold text-gray-900">Định dạng & Quốc gia</h3>
+            <p className="text-xs text-gray-500">Định dạng chung cho tiền tệ, ngôn ngữ hiển thị</p>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1">
-              <Label className="text-xs text-slate-400">Ngôn ngữ giao diện</Label>
+              <Label className="text-xs text-gray-500">Ngôn ngữ giao diện</Label>
               <Input
                 value="Tiếng Việt (Vietnamese)"
                 disabled
-                className="bg-slate-950/60 border-slate-800 text-xs text-slate-500 rounded-xl h-10"
+                className="bg-gray-50/60 border-gray-200 text-xs text-gray-500 rounded-xl h-10"
               />
             </div>
             <div className="space-y-1">
-              <Label className="text-xs text-slate-400">Định dạng tiền tệ</Label>
+              <Label className="text-xs text-gray-500">Định dạng tiền tệ</Label>
               <Input
                 value="Việt Nam Đồng (VND - đ)"
                 disabled
-                className="bg-slate-950/60 border-slate-800 text-xs text-slate-500 rounded-xl h-10"
+                className="bg-gray-50/60 border-gray-200 text-xs text-gray-500 rounded-xl h-10"
               />
             </div>
           </div>
@@ -124,43 +124,43 @@ export function SettingsClient() {
         {/* Clinic info */}
         <div className="space-y-4">
           <div>
-            <h3 className="text-sm font-bold text-white">Thông tin Phòng khám</h3>
-            <p className="text-xs text-slate-400">Hiển thị trên tiêu đề hóa đơn in ấn và biểu mẫu</p>
+            <h3 className="text-sm font-bold text-gray-900">Thông tin Phòng khám</h3>
+            <p className="text-xs text-gray-500">Hiển thị trên tiêu đề hóa đơn in ấn và biểu mẫu</p>
           </div>
 
           <div className="space-y-3">
             <div className="space-y-1">
-              <Label htmlFor="clinicName" className="text-xs text-slate-300 font-semibold">
+              <Label htmlFor="clinicName" className="text-xs text-gray-600 font-semibold">
                 Tên tổng công ty / phòng khám
               </Label>
               <Input
                 id="clinicName"
                 value={clinicName}
                 onChange={(e) => setClinicName(e.target.value)}
-                className="bg-slate-950 border-slate-800 text-xs text-white rounded-xl h-10 focus:ring-1 focus:ring-blue-500"
+                className="bg-gray-50 border-gray-200 text-xs text-gray-900 rounded-xl h-10 focus:ring-1 focus:ring-blue-500"
               />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <Label htmlFor="hotline" className="text-xs text-slate-300 font-semibold">
+                <Label htmlFor="hotline" className="text-xs text-gray-600 font-semibold">
                   Hotline hỗ trợ
                 </Label>
                 <Input
                   id="hotline"
                   value={hotline}
                   onChange={(e) => setHotline(e.target.value)}
-                  className="bg-slate-950 border-slate-800 text-xs text-white rounded-xl h-10 focus:ring-1 focus:ring-blue-500"
+                  className="bg-gray-50 border-gray-200 text-xs text-gray-900 rounded-xl h-10 focus:ring-1 focus:ring-blue-500"
                 />
               </div>
               <div className="space-y-1">
-                <Label htmlFor="email" className="text-xs text-slate-300 font-semibold">
+                <Label htmlFor="email" className="text-xs text-gray-600 font-semibold">
                   Email liên hệ
                 </Label>
                 <Input
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="bg-slate-950 border-slate-800 text-xs text-white rounded-xl h-10 focus:ring-1 focus:ring-blue-500"
+                  className="bg-gray-50 border-gray-200 text-xs text-gray-900 rounded-xl h-10 focus:ring-1 focus:ring-blue-500"
                 />
               </div>
             </div>
@@ -171,7 +171,7 @@ export function SettingsClient() {
       <div className="flex justify-end pt-4">
         <Button
           onClick={handleSave}
-          className="bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 text-white font-semibold text-xs h-10 rounded-xl px-8 shadow-lg shadow-blue-500/10"
+          className="bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 text-gray-900 font-semibold text-xs h-10 rounded-xl px-8 shadow-lg shadow-blue-500/10"
         >
           Lưu cài đặt
         </Button>

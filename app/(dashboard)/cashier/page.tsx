@@ -15,8 +15,8 @@ export default async function CashierDashboardPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-extrabold tracking-tight text-white">Quầy Thu Ngân</h1>
-        <p className="text-slate-400 mt-1">
+        <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">Quầy Thu Ngân</h1>
+        <p className="text-gray-500 mt-1">
           Duyệt viện phí, áp dụng giảm trừ BHYT/ưu đãi và xử lý thanh toán viện phí của bệnh nhân.
         </p>
       </div>

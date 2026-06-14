@@ -99,18 +99,18 @@ export function PrescriptionForm({ onAdd, addedItems }: PrescriptionFormProps) {
   };
 
   return (
-    <form onSubmit={handleAdd} className="space-y-4 text-left p-4 rounded-xl border border-slate-800 bg-slate-950/20">
+    <form onSubmit={handleAdd} className="space-y-4 text-left p-4 rounded-xl border border-gray-200 bg-gray-50/20">
       <h4 className="text-sm font-bold text-slate-350 uppercase tracking-wider">Thêm thuốc vào toa</h4>
       
       {/* Select Drug */}
       <div className="space-y-1.5">
-        <Label className="text-slate-300">Chọn thuốc có trong kho <span className="text-rose-500">*</span></Label>
+        <Label className="text-gray-600">Chọn thuốc có trong kho <span className="text-rose-500">*</span></Label>
         {loading ? (
-          <div className="h-10 w-full rounded-md border border-slate-800 bg-slate-950 animate-pulse flex items-center px-3 text-sm text-slate-500">
+          <div className="h-10 w-full rounded-md border border-gray-200 bg-gray-50 animate-pulse flex items-center px-3 text-sm text-gray-500">
             Đang tải kho thuốc chi nhánh...
           </div>
         ) : inventory.length === 0 ? (
-          <div className="h-10 w-full rounded-md border border-slate-800 bg-slate-950 flex items-center px-3 text-sm text-amber-500">
+          <div className="h-10 w-full rounded-md border border-gray-200 bg-gray-50 flex items-center px-3 text-sm text-amber-500">
             Kho thuốc trống hoặc hết hàng. Vui lòng nạp kho thuốc mẫu!
           </div>
         ) : (
@@ -118,10 +118,10 @@ export function PrescriptionForm({ onAdd, addedItems }: PrescriptionFormProps) {
             value={selectedDrugId}
             onValueChange={(val) => setSelectedDrugId(val || "")}
           >
-            <SelectTrigger className="bg-slate-950 border-slate-800 text-white">
+            <SelectTrigger className="bg-gray-50 border-gray-200 text-gray-900">
               <SelectValue placeholder="Chọn thuốc..." />
             </SelectTrigger>
-            <SelectContent className="bg-slate-900 border-slate-800 text-white max-h-[250px]">
+            <SelectContent className="bg-gray-50 border-gray-200 text-gray-900 max-h-[250px]">
               {inventory.map((item) => (
                 <SelectItem key={item.id} value={item.id}>
                   {item.drugName} (Tồn: {item.quantityInStock} {item.unit})
@@ -135,19 +135,19 @@ export function PrescriptionForm({ onAdd, addedItems }: PrescriptionFormProps) {
       {selectedDrug && (
         <div className="text-xs text-blue-400 bg-blue-500/5 p-2 rounded border border-blue-500/10 grid grid-cols-2 gap-2">
           <div>
-            <span className="text-slate-500">Mã thuốc: </span>
+            <span className="text-gray-500">Mã thuốc: </span>
             <span className="font-mono font-bold">{selectedDrug.drugCode}</span>
           </div>
           <div>
-            <span className="text-slate-500">Tồn kho khả dụng: </span>
+            <span className="text-gray-500">Tồn kho khả dụng: </span>
             <span className="font-bold">{selectedDrug.quantityInStock} {selectedDrug.unit}</span>
           </div>
           <div>
-            <span className="text-slate-500">Hạn sử dụng: </span>
+            <span className="text-gray-500">Hạn sử dụng: </span>
             <span>{new Date(selectedDrug.expiryDate).toLocaleDateString("vi-VN")}</span>
           </div>
           <div>
-            <span className="text-slate-500">Lô sản xuất: </span>
+            <span className="text-gray-500">Lô sản xuất: </span>
             <span className="font-mono">{selectedDrug.batchNumber}</span>
           </div>
         </div>
@@ -156,60 +156,60 @@ export function PrescriptionForm({ onAdd, addedItems }: PrescriptionFormProps) {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {/* Dosage */}
         <div className="space-y-1.5 md:col-span-1">
-          <Label htmlFor="dosage" className="text-slate-300">Liều dùng</Label>
+          <Label htmlFor="dosage" className="text-gray-600">Liều dùng</Label>
           <Input
             id="dosage"
             value={dosage}
             onChange={(e) => setDosage(e.target.value)}
-            className="bg-slate-950 border-slate-850 text-white"
+            className="bg-gray-50 border-gray-200 text-gray-900"
           />
         </div>
 
         {/* Frequency */}
         <div className="space-y-1.5 md:col-span-1">
-          <Label htmlFor="frequency" className="text-slate-300">Tần suất</Label>
+          <Label htmlFor="frequency" className="text-gray-600">Tần suất</Label>
           <Input
             id="frequency"
             value={frequency}
             onChange={(e) => setFrequency(e.target.value)}
-            className="bg-slate-950 border-slate-850 text-white"
+            className="bg-gray-50 border-gray-200 text-gray-900"
           />
         </div>
 
         {/* Duration Days */}
         <div className="space-y-1.5 md:col-span-1">
-          <Label htmlFor="durationDays" className="text-slate-300">Số ngày dùng</Label>
+          <Label htmlFor="durationDays" className="text-gray-600">Số ngày dùng</Label>
           <Input
             id="durationDays"
             type="number"
             value={durationDays}
             onChange={(e) => setDurationDays(parseInt(e.target.value) || 0)}
-            className="bg-slate-950 border-slate-850 text-white"
+            className="bg-gray-50 border-gray-200 text-gray-900"
           />
         </div>
 
         {/* Quantity */}
         <div className="space-y-1.5 md:col-span-1">
-          <Label htmlFor="quantity" className="text-slate-300">Tổng số lượng</Label>
+          <Label htmlFor="quantity" className="text-gray-600">Tổng số lượng</Label>
           <Input
             id="quantity"
             type="number"
             value={quantity}
             onChange={(e) => setQuantity(parseInt(e.target.value) || 0)}
-            className="bg-slate-950 border-slate-850 text-white"
+            className="bg-gray-50 border-gray-200 text-gray-900"
           />
         </div>
       </div>
 
       {/* Instructions */}
       <div className="space-y-1.5">
-        <Label htmlFor="instructions" className="text-slate-300">Cách sử dụng / Hướng dẫn uống</Label>
+        <Label htmlFor="instructions" className="text-gray-600">Cách sử dụng / Hướng dẫn uống</Label>
         <Input
           id="instructions"
           placeholder="Ví dụ: Uống sau ăn sáng, tối 30 phút..."
           value={instructions}
           onChange={(e) => setInstructions(e.target.value)}
-          className="bg-slate-950 border-slate-850 text-white"
+          className="bg-gray-50 border-gray-200 text-gray-900"
         />
       </div>
 
@@ -217,7 +217,7 @@ export function PrescriptionForm({ onAdd, addedItems }: PrescriptionFormProps) {
         <Button
           type="submit"
           disabled={loading || !selectedDrugId}
-          className="bg-sky-650 hover:bg-sky-550 text-white px-5 font-semibold text-xs"
+          className="bg-sky-650 hover:bg-sky-550 text-gray-900 px-5 font-semibold text-xs"
         >
           Thêm vào toa thuốc
         </Button>

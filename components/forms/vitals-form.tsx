@@ -60,12 +60,12 @@ export function VitalsForm({ visitId, initialData, onSuccess }: VitalsFormProps)
       <div className="grid grid-cols-2 gap-4">
         {/* Blood Pressure Systolic */}
         <div className="space-y-1.5">
-          <Label htmlFor="bloodPressureSystolic" className="text-slate-300">Huyết áp tâm thu (mmHg) <span className="text-rose-500">*</span></Label>
+          <Label htmlFor="bloodPressureSystolic" className="text-gray-600">Huyết áp tâm thu (mmHg) <span className="text-rose-500">*</span></Label>
           <Input
             id="bloodPressureSystolic"
             type="number"
             placeholder="Ví dụ: 120"
-            className="bg-slate-950 border-slate-800 text-white"
+            className="bg-gray-50 border-gray-200 text-gray-900"
             {...register("bloodPressureSystolic", { valueAsNumber: true })}
           />
           {errors.bloodPressureSystolic && (
@@ -75,12 +75,12 @@ export function VitalsForm({ visitId, initialData, onSuccess }: VitalsFormProps)
 
         {/* Blood Pressure Diastolic */}
         <div className="space-y-1.5">
-          <Label htmlFor="bloodPressureDiastolic" className="text-slate-300">Huyết áp tâm trương (mmHg) <span className="text-rose-500">*</span></Label>
+          <Label htmlFor="bloodPressureDiastolic" className="text-gray-600">Huyết áp tâm trương (mmHg) <span className="text-rose-500">*</span></Label>
           <Input
             id="bloodPressureDiastolic"
             type="number"
             placeholder="Ví dụ: 80"
-            className="bg-slate-950 border-slate-800 text-white"
+            className="bg-gray-50 border-gray-200 text-gray-900"
             {...register("bloodPressureDiastolic", { valueAsNumber: true })}
           />
           {errors.bloodPressureDiastolic && (
@@ -92,12 +92,12 @@ export function VitalsForm({ visitId, initialData, onSuccess }: VitalsFormProps)
       <div className="grid grid-cols-2 gap-4">
         {/* Heart Rate */}
         <div className="space-y-1.5">
-          <Label htmlFor="heartRate" className="text-slate-300">Nhịp tim (nhịp/phút) <span className="text-rose-500">*</span></Label>
+          <Label htmlFor="heartRate" className="text-gray-600">Nhịp tim (nhịp/phút) <span className="text-rose-500">*</span></Label>
           <Input
             id="heartRate"
             type="number"
             placeholder="Ví dụ: 75"
-            className="bg-slate-950 border-slate-800 text-white"
+            className="bg-gray-50 border-gray-200 text-gray-900"
             {...register("heartRate", { valueAsNumber: true })}
           />
           {errors.heartRate && (
@@ -107,13 +107,13 @@ export function VitalsForm({ visitId, initialData, onSuccess }: VitalsFormProps)
 
         {/* Temperature */}
         <div className="space-y-1.5">
-          <Label htmlFor="temperature" className="text-slate-300">Nhiệt độ (°C) <span className="text-rose-500">*</span></Label>
+          <Label htmlFor="temperature" className="text-gray-600">Nhiệt độ (°C) <span className="text-rose-500">*</span></Label>
           <Input
             id="temperature"
             type="number"
             step="0.1"
             placeholder="Ví dụ: 36.5"
-            className="bg-slate-950 border-slate-800 text-white"
+            className="bg-gray-50 border-gray-200 text-gray-900"
             {...register("temperature", { valueAsNumber: true })}
           />
           {errors.temperature && (
@@ -125,13 +125,13 @@ export function VitalsForm({ visitId, initialData, onSuccess }: VitalsFormProps)
       <div className="grid grid-cols-3 gap-4">
         {/* Weight */}
         <div className="space-y-1.5 col-span-1">
-          <Label htmlFor="weight" className="text-slate-300">Cân nặng (kg) <span className="text-rose-500">*</span></Label>
+          <Label htmlFor="weight" className="text-gray-600">Cân nặng (kg) <span className="text-rose-500">*</span></Label>
           <Input
             id="weight"
             type="number"
             step="0.01"
             placeholder="Ví dụ: 60"
-            className="bg-slate-950 border-slate-800 text-white"
+            className="bg-gray-50 border-gray-200 text-gray-900"
             {...register("weight", { valueAsNumber: true })}
           />
           {errors.weight && (
@@ -141,13 +141,13 @@ export function VitalsForm({ visitId, initialData, onSuccess }: VitalsFormProps)
 
         {/* Height */}
         <div className="space-y-1.5 col-span-1">
-          <Label htmlFor="height" className="text-slate-300">Chiều cao (cm) <span className="text-rose-500">*</span></Label>
+          <Label htmlFor="height" className="text-gray-600">Chiều cao (cm) <span className="text-rose-500">*</span></Label>
           <Input
             id="height"
             type="number"
             step="0.1"
             placeholder="Ví dụ: 165"
-            className="bg-slate-950 border-slate-800 text-white"
+            className="bg-gray-50 border-gray-200 text-gray-900"
             {...register("height", { valueAsNumber: true })}
           />
           {errors.height && (
@@ -157,12 +157,12 @@ export function VitalsForm({ visitId, initialData, onSuccess }: VitalsFormProps)
 
         {/* SpO2 */}
         <div className="space-y-1.5 col-span-1">
-          <Label htmlFor="spo2" className="text-slate-300">Chỉ số SpO2 (%) <span className="text-rose-500">*</span></Label>
+          <Label htmlFor="spo2" className="text-gray-600">Chỉ số SpO2 (%) <span className="text-rose-500">*</span></Label>
           <Input
             id="spo2"
             type="number"
             placeholder="Ví dụ: 98"
-            className="bg-slate-950 border-slate-800 text-white"
+            className="bg-gray-50 border-gray-200 text-gray-900"
             {...register("spo2", { valueAsNumber: true })}
           />
           {errors.spo2 && (
@@ -173,16 +173,16 @@ export function VitalsForm({ visitId, initialData, onSuccess }: VitalsFormProps)
 
       {/* Notes */}
       <div className="space-y-1.5">
-        <Label htmlFor="notes" className="text-slate-300">Lưu ý khi đo / Thể chất khác</Label>
+        <Label htmlFor="notes" className="text-gray-600">Lưu ý khi đo / Thể chất khác</Label>
         <Textarea
           id="notes"
           placeholder="Bệnh nhân vừa đi bộ lên lầu, tim đập nhanh..."
-          className="bg-slate-950 border-slate-800 text-white min-h-[60px]"
+          className="bg-gray-50 border-gray-200 text-gray-900 min-h-[60px]"
           {...register("notes")}
         />
       </div>
 
-      <div className="pt-4 flex justify-end gap-2 border-t border-slate-850">
+      <div className="pt-4 flex justify-end gap-2 border-t border-gray-200">
         <Button
           type="submit"
           disabled={isPending}

@@ -104,12 +104,12 @@ export function FileUploader({ orderId, visitId, fileUrls, onChange }: FileUploa
 
   return (
     <div className="space-y-4 text-left">
-      <Label className="text-slate-300 font-bold block">Tệp đính kèm kết quả (Hình ảnh, siêu âm, PDF)</Label>
+      <Label className="text-gray-600 font-bold block">Tệp đính kèm kết quả (Hình ảnh, siêu âm, PDF)</Label>
 
       {/* Upload Zone */}
       <div
         onClick={() => fileInputRef.current?.click()}
-        className="border-2 border-dashed border-slate-800 hover:border-blue-500 bg-slate-950 hover:bg-slate-900/40 p-6 rounded-lg text-center cursor-pointer transition"
+        className="border-2 border-dashed border-gray-200 hover:border-blue-500 bg-gray-50 hover:bg-gray-50/40 p-6 rounded-lg text-center cursor-pointer transition"
       >
         <input
           type="file"
@@ -118,8 +118,8 @@ export function FileUploader({ orderId, visitId, fileUrls, onChange }: FileUploa
           multiple
           className="hidden"
         />
-        <Upload className="h-8 w-8 mx-auto text-slate-500 mb-2 group-hover:text-blue-400" />
-        <p className="text-sm font-semibold text-slate-200">
+        <Upload className="h-8 w-8 mx-auto text-gray-500 mb-2 group-hover:text-blue-400" />
+        <p className="text-sm font-semibold text-gray-700">
           Kéo thả file vào đây hoặc nhấp để chọn file
         </p>
         <p className="text-[10px] text-slate-550 mt-1">
@@ -138,7 +138,7 @@ export function FileUploader({ orderId, visitId, fileUrls, onChange }: FileUploa
         <button
           type="button"
           onClick={() => setShowManualUrl(!showManualUrl)}
-          className="text-slate-500 hover:text-slate-300 underline flex items-center gap-1.5"
+          className="text-gray-500 hover:text-gray-600 underline flex items-center gap-1.5"
         >
           <LinkIcon className="h-3.5 w-3.5" />
           {showManualUrl ? "Ẩn nhập liên kết thủ công" : "Nhập liên kết tệp thủ công (nếu lỗi)"}
@@ -146,7 +146,7 @@ export function FileUploader({ orderId, visitId, fileUrls, onChange }: FileUploa
       </div>
 
       {showManualUrl && (
-        <div className="p-3 bg-slate-900/60 border border-slate-850 rounded-lg space-y-2">
+        <div className="p-3 bg-gray-50/60 border border-gray-200 rounded-lg space-y-2">
           <div className="flex items-center gap-1.5 text-amber-400 text-[10px] font-bold">
             <AlertTriangle className="h-3.5 w-3.5" />
             <span>NHẬP ĐƯỜNG DẪN KẾT QUẢ THỦ CÔNG</span>
@@ -156,18 +156,18 @@ export function FileUploader({ orderId, visitId, fileUrls, onChange }: FileUploa
               placeholder="Nhập https://example.com/result.pdf..."
               value={manualUrlInput}
               onChange={(e) => setManualUrlInput(e.target.value)}
-              className="bg-slate-950 border-slate-850 text-xs text-white"
+              className="bg-gray-50 border-gray-200 text-xs text-gray-900"
             />
             <Button
               type="button"
               size="sm"
-              className="bg-slate-800 hover:bg-slate-700 text-white text-xs whitespace-nowrap"
+              className="bg-white hover:bg-gray-50 text-gray-900 text-xs whitespace-nowrap"
               onClick={handleAddManualUrl}
             >
               Thêm Link
             </Button>
           </div>
-          <p className="text-[9px] text-slate-500">
+          <p className="text-[9px] text-gray-500">
             Sử dụng khi chưa cấu hình Supabase Storage Bucket hoặc muốn chèn link tài liệu bên ngoài.
           </p>
         </div>
@@ -176,7 +176,7 @@ export function FileUploader({ orderId, visitId, fileUrls, onChange }: FileUploa
       {/* Uploaded Files List */}
       {fileUrls.length > 0 && (
         <div className="space-y-2">
-          <span className="text-xs text-slate-400 font-bold block">Danh sách tệp đính kèm ({fileUrls.length}):</span>
+          <span className="text-xs text-gray-500 font-bold block">Danh sách tệp đính kèm ({fileUrls.length}):</span>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {fileUrls.map((url, index) => {
               const fileName = url.substring(url.lastIndexOf("/") + 1);
@@ -185,15 +185,15 @@ export function FileUploader({ orderId, visitId, fileUrls, onChange }: FileUploa
               return (
                 <div
                   key={index}
-                  className="flex items-center justify-between p-2 rounded bg-slate-900 border border-slate-850/60 relative overflow-hidden group"
+                  className="flex items-center justify-between p-2 rounded bg-gray-50 border border-gray-200/60 relative overflow-hidden group"
                 >
                   <div className="flex items-center space-x-2.5 min-w-0 flex-1">
                     {isImg ? (
-                      <div className="h-10 w-10 rounded bg-slate-950 border border-slate-800 overflow-hidden flex items-center justify-center">
+                      <div className="h-10 w-10 rounded bg-gray-50 border border-gray-200 overflow-hidden flex items-center justify-center">
                         <img src={url} alt="Result thumbnail" className="h-full w-full object-cover" />
                       </div>
                     ) : (
-                      <div className="h-10 w-10 rounded bg-slate-950 border border-slate-800 flex items-center justify-center text-slate-500">
+                      <div className="h-10 w-10 rounded bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-500">
                         <FileText className="h-5 w-5" />
                       </div>
                     )}
@@ -202,17 +202,17 @@ export function FileUploader({ orderId, visitId, fileUrls, onChange }: FileUploa
                         href={url}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-xs font-semibold text-slate-200 hover:text-blue-400 truncate block hover:underline"
+                        className="text-xs font-semibold text-gray-700 hover:text-blue-400 truncate block hover:underline"
                       >
                         {fileName.length > 25 ? fileName.slice(0, 25) + "..." : fileName}
                       </a>
-                      <span className="text-[9px] text-slate-500 block">Tệp đính kèm #{index + 1}</span>
+                      <span className="text-[9px] text-gray-500 block">Tệp đính kèm #{index + 1}</span>
                     </div>
                   </div>
                   <button
                     type="button"
                     onClick={() => handleRemoveFile(index)}
-                    className="h-7 w-7 rounded bg-rose-500/10 hover:bg-rose-500 text-rose-400 hover:text-white flex items-center justify-center transition ml-2 cursor-pointer"
+                    className="h-7 w-7 rounded bg-rose-500/10 hover:bg-rose-500 text-rose-400 hover:text-gray-900 flex items-center justify-center transition ml-2 cursor-pointer"
                   >
                     <X className="h-3.5 w-3.5" />
                   </button>

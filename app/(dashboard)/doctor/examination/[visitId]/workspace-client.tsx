@@ -120,26 +120,26 @@ export function DoctorWorkspace({ visit, patient, vitals, clsOrders = [] }: Doct
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-black text-white flex items-center gap-2">
+          <h1 className="text-2xl font-black text-gray-900 flex items-center gap-2">
             Khám bệnh: {patient.fullName}
             <Badge className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               Đang khám
             </Badge>
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-gray-500 mt-1">
             Mã lượt khám: {visit.visitCode} • Phòng khám nội bộ
           </p>
         </div>
         <div className="flex gap-2">
           <Dialog open={isClsOpen} onOpenChange={setIsClsOpen}>
-            <DialogTrigger className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-slate-800 bg-slate-900/50 hover:bg-slate-800 text-slate-200 h-9 px-4 cursor-pointer">
+            <DialogTrigger className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-gray-200 bg-gray-50/50 hover:bg-white text-gray-700 h-9 px-4 cursor-pointer">
               Chỉ định Cận lâm sàng (CLS)
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px] bg-slate-900 border-slate-850 text-white">
+            <DialogContent className="sm:max-w-[500px] bg-gray-50 border-gray-200 text-gray-900">
               <DialogHeader>
                 <DialogTitle>Lập phiếu chỉ định CLS</DialogTitle>
-                <DialogDescription className="text-slate-400">
-                  Chọn các dịch vụ cận lâm sàng cho bệnh nhân: <strong className="text-white">{patient.fullName}</strong>.
+                <DialogDescription className="text-gray-500">
+                  Chọn các dịch vụ cận lâm sàng cho bệnh nhân: <strong className="text-gray-900">{patient.fullName}</strong>.
                 </DialogDescription>
               </DialogHeader>
               <ClsOrderForm
@@ -165,53 +165,53 @@ export function DoctorWorkspace({ visit, patient, vitals, clsOrders = [] }: Doct
         {/* Left column: Patient vital signs & Info (1/4) */}
         <div className="lg:col-span-1 space-y-6">
           {/* Vitals summary */}
-          <Card className="border-slate-800 bg-slate-900/40 backdrop-blur-xl">
-            <CardHeader className="pb-3 bg-slate-950/20 border-b border-slate-850">
-              <CardTitle className="text-sm font-bold text-slate-200">Chỉ số sinh hiệu (Reception)</CardTitle>
+          <Card className="border-gray-200 bg-gray-50/40 backdrop-blur-xl">
+            <CardHeader className="pb-3 bg-gray-50/20 border-b border-gray-200">
+              <CardTitle className="text-sm font-bold text-gray-700">Chỉ số sinh hiệu (Reception)</CardTitle>
             </CardHeader>
             <CardContent className="p-4 space-y-4">
               {vitals ? (
                 <div className="space-y-3.5 text-sm">
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-500">Huyết áp:</span>
-                    <strong className="text-white font-mono text-base">
-                      {vitals.bloodPressureSystolic}/{vitals.bloodPressureDiastolic} <span className="text-xs font-normal text-slate-500">mmHg</span>
+                    <span className="text-gray-500">Huyết áp:</span>
+                    <strong className="text-gray-900 font-mono text-base">
+                      {vitals.bloodPressureSystolic}/{vitals.bloodPressureDiastolic} <span className="text-xs font-normal text-gray-500">mmHg</span>
                     </strong>
                   </div>
-                  <Separator className="bg-slate-900" />
+                  <Separator className="bg-gray-50" />
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-500">Nhịp tim:</span>
+                    <span className="text-gray-500">Nhịp tim:</span>
                     <strong className="text-sky-400 font-mono text-base">
-                      {vitals.heartRate} <span className="text-xs font-normal text-slate-500">nhịp/p</span>
+                      {vitals.heartRate} <span className="text-xs font-normal text-gray-500">nhịp/p</span>
                     </strong>
                   </div>
-                  <Separator className="bg-slate-900" />
+                  <Separator className="bg-gray-50" />
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-500">Nhiệt độ:</span>
+                    <span className="text-gray-500">Nhiệt độ:</span>
                     <strong className="text-emerald-400 font-mono text-base">
                       {vitals.temperature}°C
                     </strong>
                   </div>
-                  <Separator className="bg-slate-900" />
+                  <Separator className="bg-gray-50" />
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-500">SpO2:</span>
+                    <span className="text-gray-500">SpO2:</span>
                     <strong className="text-rose-400 font-mono text-base">
                       {vitals.spo2}%
                     </strong>
                   </div>
-                  <Separator className="bg-slate-900" />
+                  <Separator className="bg-gray-50" />
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-500">Cân nặng:</span>
-                    <span className="text-slate-200 font-semibold">{vitals.weight} kg</span>
+                    <span className="text-gray-500">Cân nặng:</span>
+                    <span className="text-gray-700 font-semibold">{vitals.weight} kg</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-500">Chiều cao:</span>
-                    <span className="text-slate-200 font-semibold">{vitals.height} cm</span>
+                    <span className="text-gray-500">Chiều cao:</span>
+                    <span className="text-gray-700 font-semibold">{vitals.height} cm</span>
                   </div>
                   
                   {vitals.notes && (
-                    <div className="mt-3 p-2 bg-slate-950/45 rounded border border-slate-900 text-xs text-slate-400">
-                      <span className="text-slate-500 font-semibold block">Ghi chú sinh hiệu:</span>
+                    <div className="mt-3 p-2 bg-gray-50/45 rounded border border-slate-900 text-xs text-gray-500">
+                      <span className="text-gray-500 font-semibold block">Ghi chú sinh hiệu:</span>
                       {vitals.notes}
                     </div>
                   )}
@@ -225,21 +225,21 @@ export function DoctorWorkspace({ visit, patient, vitals, clsOrders = [] }: Doct
           </Card>
 
           {/* Quick Patient Card */}
-          <Card className="border-slate-800 bg-slate-900/40 backdrop-blur-xl text-xs space-y-3">
+          <Card className="border-gray-200 bg-gray-50/40 backdrop-blur-xl text-xs space-y-3">
             <CardHeader className="pb-2">
               <CardTitle className="text-xs font-bold text-slate-450 uppercase">Tóm tắt hành chính</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-2 text-slate-300">
+            <CardContent className="space-y-2 text-gray-600">
               <div>
-                <span className="text-slate-500 block">Số điện thoại:</span>
+                <span className="text-gray-500 block">Số điện thoại:</span>
                 <span>{patient.phone}</span>
               </div>
               <div>
-                <span className="text-slate-500 block">Mã BHYT:</span>
+                <span className="text-gray-500 block">Mã BHYT:</span>
                 <span>{patient.bhytCode || "Không có"}</span>
               </div>
               <div>
-                <span className="text-slate-500 block">Dị ứng:</span>
+                <span className="text-gray-500 block">Dị ứng:</span>
                 <span className={patient.allergies?.length > 0 ? "text-rose-400 font-semibold" : ""}>
                   {patient.allergies?.length > 0 ? patient.allergies.join(", ") : "Không phát hiện"}
                 </span>
@@ -251,34 +251,34 @@ export function DoctorWorkspace({ visit, patient, vitals, clsOrders = [] }: Doct
         {/* Right columns: Clinical workspace tabs (3/4) */}
         <div className="lg:col-span-3">
           <Tabs defaultValue="exam" className="w-full">
-            <TabsList className="bg-slate-900 border border-slate-800 text-slate-450">
-              <TabsTrigger value="exam" className="data-[state=active]:bg-slate-800 data-[state=active]:text-white font-bold">Khám & Chẩn đoán</TabsTrigger>
-              <TabsTrigger value="cls" className="data-[state=active]:bg-slate-800 data-[state=active]:text-white font-bold">
+            <TabsList className="bg-gray-50 border border-gray-200 text-slate-450">
+              <TabsTrigger value="exam" className="data-[state=active]:bg-white data-[state=active]:text-gray-900 font-bold">Khám & Chẩn đoán</TabsTrigger>
+              <TabsTrigger value="cls" className="data-[state=active]:bg-white data-[state=active]:text-gray-900 font-bold">
                 Kết quả CLS {clsOrders.length > 0 && `(${clsOrders.length})`}
               </TabsTrigger>
-              <TabsTrigger value="prescription" className="data-[state=active]:bg-slate-800 data-[state=active]:text-white font-bold">Kê đơn thuốc</TabsTrigger>
-              <TabsTrigger value="history" className="data-[state=active]:bg-slate-800 data-[state=active]:text-white font-bold">Lịch sử bệnh án (360)</TabsTrigger>
+              <TabsTrigger value="prescription" className="data-[state=active]:bg-white data-[state=active]:text-gray-900 font-bold">Kê đơn thuốc</TabsTrigger>
+              <TabsTrigger value="history" className="data-[state=active]:bg-white data-[state=active]:text-gray-900 font-bold">Lịch sử bệnh án (360)</TabsTrigger>
             </TabsList>
 
             {/* Tab 1: Examination & Diagnosis */}
             <TabsContent value="exam" className="mt-4 space-y-4">
-              <Card className="border-slate-800 bg-slate-900/30">
+              <Card className="border-gray-200 bg-gray-50/30">
                 <CardContent className="p-6 space-y-4">
                   {/* Symptoms Input */}
                   <div className="space-y-1.5">
-                    <Label htmlFor="chiefComplaint" className="text-slate-300 font-bold">Triệu chứng lâm sàng / Lý do khám <span className="text-rose-500">*</span></Label>
+                    <Label htmlFor="chiefComplaint" className="text-gray-600 font-bold">Triệu chứng lâm sàng / Lý do khám <span className="text-rose-500">*</span></Label>
                     <Textarea
                       id="chiefComplaint"
                       value={chiefComplaint}
                       onChange={(e) => setChiefComplaint(e.target.value)}
                       placeholder="Nhập ghi chép triệu chứng của bệnh nhân..."
-                      className="bg-slate-950 border-slate-850 text-white min-h-[100px]"
+                      className="bg-gray-50 border-gray-200 text-gray-900 min-h-[100px]"
                     />
                   </div>
 
                   {/* ICD-10 Diagnosis */}
                   <div className="space-y-3">
-                    <Label className="text-slate-300 font-bold">Chẩn đoán bệnh (mã ICD-10) <span className="text-rose-500">*</span></Label>
+                    <Label className="text-gray-600 font-bold">Chẩn đoán bệnh (mã ICD-10) <span className="text-rose-500">*</span></Label>
                     
                     {/* Common diagnoses selection */}
                     <div className="flex flex-wrap gap-2 py-1">
@@ -287,7 +287,7 @@ export function DoctorWorkspace({ visit, patient, vitals, clsOrders = [] }: Doct
                           key={item.code}
                           type="button"
                           onClick={() => handleSelectIcd10(item)}
-                          className="px-2 py-1 rounded bg-slate-950 hover:bg-slate-800 text-xs text-slate-400 hover:text-white border border-slate-850 transition font-mono"
+                          className="px-2 py-1 rounded bg-gray-50 hover:bg-white text-xs text-gray-500 hover:text-gray-900 border border-gray-200 transition font-mono"
                         >
                           {item.code} - {item.desc.slice(0, 15)}...
                         </button>
@@ -296,23 +296,23 @@ export function DoctorWorkspace({ visit, patient, vitals, clsOrders = [] }: Doct
 
                     <div className="grid grid-cols-3 gap-3">
                       <div className="col-span-1 space-y-1.5">
-                        <Label htmlFor="icd10Code" className="text-xs text-slate-400">Mã ICD-10</Label>
+                        <Label htmlFor="icd10Code" className="text-xs text-gray-500">Mã ICD-10</Label>
                         <Input
                           id="icd10Code"
                           placeholder="Ví dụ: I10"
                           value={icd10Code}
                           onChange={(e) => setIcd10Code(e.target.value)}
-                          className="bg-slate-950 border-slate-850 text-white font-mono uppercase"
+                          className="bg-gray-50 border-gray-200 text-gray-900 font-mono uppercase"
                         />
                       </div>
                       <div className="col-span-2 space-y-1.5">
-                        <Label htmlFor="icd10Description" className="text-xs text-slate-400">Mô tả chẩn đoán xác định</Label>
+                        <Label htmlFor="icd10Description" className="text-xs text-gray-500">Mô tả chẩn đoán xác định</Label>
                         <Input
                           id="icd10Description"
                           placeholder="Ví dụ: Tăng huyết áp vô căn..."
                           value={icd10Description}
                           onChange={(e) => setIcd10Description(e.target.value)}
-                          className="bg-slate-950 border-slate-850 text-white"
+                          className="bg-gray-50 border-gray-200 text-gray-900"
                         />
                       </div>
                     </div>
@@ -320,13 +320,13 @@ export function DoctorWorkspace({ visit, patient, vitals, clsOrders = [] }: Doct
 
                   {/* Doctor's Notes / Advice */}
                   <div className="space-y-1.5">
-                    <Label htmlFor="notes" className="text-slate-300 font-bold">Lời dặn / Ghi chú điều trị</Label>
+                    <Label htmlFor="notes" className="text-gray-600 font-bold">Lời dặn / Ghi chú điều trị</Label>
                     <Textarea
                       id="notes"
                       value={notes}
                       onChange={(e) => setNotes(e.target.value)}
                       placeholder="Dặn dò chế độ ăn uống, nghỉ ngơi, hẹn tái khám..."
-                      className="bg-slate-950 border-slate-850 text-white min-h-[80px]"
+                      className="bg-gray-50 border-gray-200 text-gray-900 min-h-[80px]"
                     />
                   </div>
                 </CardContent>
@@ -337,20 +337,20 @@ export function DoctorWorkspace({ visit, patient, vitals, clsOrders = [] }: Doct
             <TabsContent value="prescription" className="mt-4 space-y-4">
               <PrescriptionForm onAdd={handleAddDrug} addedItems={prescriptionItems} />
 
-              <Card className="border-slate-800 bg-slate-900/30">
-                <CardHeader className="py-3 px-4 border-b border-slate-850 bg-slate-950/20">
-                  <CardTitle className="text-sm font-bold text-slate-200">
+              <Card className="border-gray-200 bg-gray-50/30">
+                <CardHeader className="py-3 px-4 border-b border-gray-200 bg-gray-50/20">
+                  <CardTitle className="text-sm font-bold text-gray-700">
                     Toa thuốc hiện tại ({prescriptionItems.length})
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
                   {prescriptionItems.length === 0 ? (
-                    <p className="text-xs text-slate-500 text-center py-12">Chưa có thuốc nào được chọn trong toa.</p>
+                    <p className="text-xs text-gray-500 text-center py-12">Chưa có thuốc nào được chọn trong toa.</p>
                   ) : (
                     <div className="overflow-x-auto">
                       <table className="w-full text-sm text-left">
                         <thead>
-                          <tr className="text-slate-500 border-b border-slate-850 bg-slate-950/10">
+                          <tr className="text-gray-500 border-b border-gray-200 bg-gray-50/10">
                             <th className="py-2.5 px-4 font-semibold text-xs">Tên thuốc</th>
                             <th className="py-2.5 px-4 font-semibold text-xs">Liều dùng</th>
                             <th className="py-2.5 px-4 font-semibold text-xs text-center">Số lượng</th>
@@ -359,18 +359,18 @@ export function DoctorWorkspace({ visit, patient, vitals, clsOrders = [] }: Doct
                         </thead>
                         <tbody>
                           {prescriptionItems.map((item) => (
-                            <tr key={item.drugId} className="border-b border-slate-900/50 last:border-0 hover:bg-slate-900/20">
+                            <tr key={item.drugId} className="border-b border-slate-900/50 last:border-0 hover:bg-gray-50/20">
                               <td className="py-3 px-4">
-                                <span className="font-semibold text-slate-200 block">{item.drugName}</span>
+                                <span className="font-semibold text-gray-700 block">{item.drugName}</span>
                                 <span className="text-[10px] text-slate-550 font-mono">Mã: {item.drugCode}</span>
                               </td>
                               <td className="py-3 px-4 text-xs text-slate-350">
-                                <div className="font-semibold text-slate-300">
+                                <div className="font-semibold text-gray-600">
                                   {item.dosage} — {item.frequency} ({item.durationDays} ngày)
                                 </div>
-                                {item.instructions && <div className="text-[10px] text-slate-500 italic mt-0.5">{item.instructions}</div>}
+                                {item.instructions && <div className="text-[10px] text-gray-500 italic mt-0.5">{item.instructions}</div>}
                               </td>
-                              <td className="py-3 px-4 text-center font-mono font-bold text-slate-200">
+                              <td className="py-3 px-4 text-center font-mono font-bold text-gray-700">
                                 {item.quantity} {item.unit}
                               </td>
                               <td className="py-3 px-4 text-right">
@@ -396,14 +396,14 @@ export function DoctorWorkspace({ visit, patient, vitals, clsOrders = [] }: Doct
             {/* Tab: CLS Results */}
             <TabsContent value="cls" className="mt-4 space-y-4">
               {clsOrders.length === 0 ? (
-                <Card className="border-slate-800 bg-slate-900/30 text-center py-12">
+                <Card className="border-gray-200 bg-gray-50/30 text-center py-12">
                   <CardContent className="space-y-3">
-                    <p className="text-sm text-slate-500">Chưa có chỉ định cận lâm sàng nào cho lượt khám này.</p>
+                    <p className="text-sm text-gray-500">Chưa có chỉ định cận lâm sàng nào cho lượt khám này.</p>
                     <Button
                       variant="outline"
                       size="sm"
                       onClick={() => setIsClsOpen(true)}
-                      className="border-slate-800 hover:bg-slate-900 text-slate-300"
+                      className="border-gray-200 hover:bg-gray-50 text-gray-600"
                     >
                       Tạo chỉ định cận lâm sàng
                     </Button>
@@ -417,12 +417,12 @@ export function DoctorWorkspace({ visit, patient, vitals, clsOrders = [] }: Doct
                     const isPending = order.status === "PENDING";
                     
                     return (
-                      <Card key={order.id} className="border-slate-800 bg-slate-900/20 overflow-hidden">
-                        <CardHeader className="py-3 px-4 bg-slate-950/20 border-b border-slate-850/60 flex flex-row justify-between items-center">
+                      <Card key={order.id} className="border-gray-200 bg-gray-50/20 overflow-hidden">
+                        <CardHeader className="py-3 px-4 bg-gray-50/20 border-b border-gray-200/60 flex flex-row justify-between items-center">
                           <div>
-                            <CardTitle className="text-sm font-bold text-slate-200 flex items-center gap-2">
+                            <CardTitle className="text-sm font-bold text-gray-700 flex items-center gap-2">
                               {order.serviceName}
-                              <Badge className="bg-slate-800 text-slate-400 border border-slate-700 text-[9px] font-mono scale-90">
+                              <Badge className="bg-white text-gray-500 border border-gray-200 text-[9px] font-mono scale-90">
                                 {order.serviceType}
                               </Badge>
                             </CardTitle>
@@ -455,8 +455,8 @@ export function DoctorWorkspace({ visit, patient, vitals, clsOrders = [] }: Doct
                         
                         <CardContent className="p-4 space-y-3 text-sm">
                           {order.notes && (
-                            <div className="text-xs text-slate-400 italic">
-                              <span className="text-slate-500 font-semibold">Ghi chú chỉ định: </span>
+                            <div className="text-xs text-gray-500 italic">
+                              <span className="text-gray-500 font-semibold">Ghi chú chỉ định: </span>
                               "{order.notes}"
                             </div>
                           )}
@@ -471,34 +471,34 @@ export function DoctorWorkspace({ visit, patient, vitals, clsOrders = [] }: Doct
                               )}
                               
                               <div className="space-y-1.5">
-                                <span className="text-xs text-slate-500 font-bold block">Mô tả chi tiết kết quả CLS:</span>
-                                <div className="p-3 rounded bg-slate-950/40 border border-slate-900 text-slate-200 whitespace-pre-wrap leading-relaxed text-xs">
+                                <span className="text-xs text-gray-500 font-bold block">Mô tả chi tiết kết quả CLS:</span>
+                                <div className="p-3 rounded bg-gray-50/40 border border-slate-900 text-gray-700 whitespace-pre-wrap leading-relaxed text-xs">
                                   {result.resultText}
                                 </div>
                               </div>
                               
                               {result.fileUrls && result.fileUrls.length > 0 && (
                                 <div className="space-y-1.5">
-                                  <span className="text-xs text-slate-500 font-bold block">Tài liệu / Hình ảnh đính kèm:</span>
+                                  <span className="text-xs text-gray-500 font-bold block">Tài liệu / Hình ảnh đính kèm:</span>
                                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                                     {result.fileUrls.map((url: string, fileIdx: number) => {
                                       const isImg = url.match(/\.(jpeg|jpg|gif|png|webp)/i) != null;
                                       const fileName = url.substring(url.lastIndexOf("/") + 1);
                                       
                                       return (
-                                        <div key={fileIdx} className="group relative border border-slate-850 rounded overflow-hidden bg-slate-950/80">
+                                        <div key={fileIdx} className="group relative border border-gray-200 rounded overflow-hidden bg-gray-50/80">
                                           {isImg ? (
-                                            <div className="h-28 w-full overflow-hidden flex items-center justify-center bg-slate-900">
+                                            <div className="h-28 w-full overflow-hidden flex items-center justify-center bg-gray-50">
                                               <img src={url} alt="CLS Scan" className="h-full w-full object-cover group-hover:scale-105 transition" />
                                             </div>
                                           ) : (
-                                            <div className="h-28 w-full flex flex-col items-center justify-center p-3 text-slate-500 bg-slate-900/50">
+                                            <div className="h-28 w-full flex flex-col items-center justify-center p-3 text-gray-500 bg-gray-50/50">
                                               <FileText className="h-8 w-8 mb-2" />
                                               <span className="text-[10px] text-center truncate w-full">{fileName}</span>
                                             </div>
                                           )}
-                                          <div className="p-1.5 border-t border-slate-850 bg-slate-900 flex justify-between items-center text-[10px]">
-                                            <span className="text-slate-400 font-semibold">Tệp #{fileIdx + 1}</span>
+                                          <div className="p-1.5 border-t border-gray-200 bg-gray-50 flex justify-between items-center text-[10px]">
+                                            <span className="text-gray-500 font-semibold">Tệp #{fileIdx + 1}</span>
                                             <a
                                               href={url}
                                               target="_blank"
@@ -517,7 +517,7 @@ export function DoctorWorkspace({ visit, patient, vitals, clsOrders = [] }: Doct
                               )}
                             </div>
                           ) : (
-                            <p className="text-xs text-slate-500 italic py-2">Chưa có dữ liệu kết quả cận lâm sàng.</p>
+                            <p className="text-xs text-gray-500 italic py-2">Chưa có dữ liệu kết quả cận lâm sàng.</p>
                           )}
                         </CardContent>
                       </Card>

@@ -108,12 +108,12 @@ export function ClsOrderForm({ visitId, onSuccess }: ClsOrderFormProps) {
                 className={`p-3 rounded-lg border cursor-pointer transition flex justify-between items-center ${
                   isChecked
                     ? "bg-blue-600/10 border-blue-500/50 text-white"
-                    : "bg-slate-950 border-slate-850 hover:bg-slate-900/40 text-slate-300"
+                    : "bg-gray-50 border-gray-200 hover:bg-gray-50/40 text-gray-600"
                 }`}
               >
                 <div className="flex items-center space-x-3">
                   <div className={`h-4.5 w-4.5 rounded border flex items-center justify-center ${
-                    isChecked ? "bg-blue-600 border-blue-500 text-white" : "border-slate-700 bg-slate-950"
+                    isChecked ? "bg-blue-600 border-blue-500 text-white" : "border-gray-200 bg-gray-50"
                   }`}>
                     {isChecked && (
                       <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -123,19 +123,19 @@ export function ClsOrderForm({ visitId, onSuccess }: ClsOrderFormProps) {
                   </div>
                   <div>
                     <span className="text-sm font-semibold">{option.name}</span>
-                    <span className="ml-2 inline-block px-1.5 py-0.5 text-[9px] font-bold rounded bg-slate-800 text-slate-400">
+                    <span className="ml-2 inline-block px-1.5 py-0.5 text-[9px] font-bold rounded bg-white text-gray-500">
                       {option.type}
                     </span>
                   </div>
                 </div>
-                <span className="text-xs font-mono font-bold text-slate-400">{option.priceText}</span>
+                <span className="text-xs font-mono font-bold text-gray-500">{option.priceText}</span>
               </div>
             );
           })}
         </div>
       </div>
 
-      <Separator className="bg-slate-850" />
+      <Separator className="bg-gray-100" />
 
       {/* Custom CLS */}
       <div className="space-y-2.5">
@@ -145,12 +145,12 @@ export function ClsOrderForm({ visitId, onSuccess }: ClsOrderFormProps) {
             placeholder="Tên xét nghiệm / siêu âm..."
             value={customName}
             onChange={(e) => setCustomName(e.target.value)}
-            className="col-span-2 bg-slate-950 border-slate-850 text-white"
+            className="col-span-2 bg-gray-50 border-gray-200 text-gray-900"
           />
           <select
             value={customType}
             onChange={(e) => setCustomType(e.target.value as any)}
-            className="col-span-1 rounded-md border border-slate-850 bg-slate-950 text-white px-3 text-xs focus:ring-blue-500 focus:border-blue-500"
+            className="col-span-1 rounded-md border border-gray-200 bg-gray-50 text-gray-900 px-3 text-xs focus:ring-blue-500 focus:border-blue-500"
           >
             <option value="LAB">Xét nghiệm (LAB)</option>
             <option value="IMAGING">Chụp chiếu (IMAGING)</option>

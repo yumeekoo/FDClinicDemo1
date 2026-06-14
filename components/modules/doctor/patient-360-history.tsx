@@ -36,9 +36,9 @@ export function Patient360History({ patientId }: Patient360HistoryProps) {
   if (loading) {
     return (
       <div className="space-y-4 animate-pulse">
-        <div className="h-20 bg-slate-900 rounded-xl" />
-        <div className="h-40 bg-slate-900 rounded-xl" />
-        <div className="h-40 bg-slate-900 rounded-xl" />
+        <div className="h-20 bg-gray-50 rounded-xl" />
+        <div className="h-40 bg-gray-50 rounded-xl" />
+        <div className="h-40 bg-gray-50 rounded-xl" />
       </div>
     );
   }
@@ -56,40 +56,40 @@ export function Patient360History({ patientId }: Patient360HistoryProps) {
   return (
     <div className="space-y-6 text-left">
       {/* Patient Summary Card */}
-      <Card className="border-slate-800 bg-slate-900/40 backdrop-blur-xl">
+      <Card className="border-gray-200 bg-gray-50/40 backdrop-blur-xl">
         <CardHeader className="pb-3">
           <CardTitle className="text-lg font-bold text-white flex items-center justify-between">
             <span>Thông tin hành chính bệnh nhân</span>
             <Badge className="bg-blue-600 text-white font-mono text-xs">{patient.patientCode}</Badge>
           </CardTitle>
         </CardHeader>
-        <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-slate-300">
+        <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-600">
           <div>
-            <span className="text-slate-500 block text-xs">Họ và tên</span>
-            <strong className="text-white text-base">{patient.fullName}</strong>
+            <span className="text-gray-500 block text-xs">Họ và tên</span>
+            <strong className="text-gray-900 text-base">{patient.fullName}</strong>
           </div>
           <div>
-            <span className="text-slate-500 block text-xs">Ngày sinh</span>
+            <span className="text-gray-500 block text-xs">Ngày sinh</span>
             <span>{new Date(patient.dateOfBirth).toLocaleDateString("vi-VN")}</span>
           </div>
           <div>
-            <span className="text-slate-500 block text-xs">Giới tính</span>
+            <span className="text-gray-500 block text-xs">Giới tính</span>
             <span>{patient.gender === "MALE" ? "Nam" : patient.gender === "FEMALE" ? "Nữ" : "Khác"}</span>
           </div>
           <div>
-            <span className="text-slate-500 block text-xs">Số điện thoại</span>
+            <span className="text-gray-500 block text-xs">Số điện thoại</span>
             <span>{patient.phone}</span>
           </div>
           <div className="col-span-2">
-            <span className="text-slate-500 block text-xs">Địa chỉ thường trú</span>
+            <span className="text-gray-500 block text-xs">Địa chỉ thường trú</span>
             <span>{patient.address}</span>
           </div>
           <div>
-            <span className="text-slate-500 block text-xs">CCCD</span>
+            <span className="text-gray-500 block text-xs">CCCD</span>
             <span>{patient.cccd || "Chưa có"}</span>
           </div>
           <div>
-            <span className="text-slate-500 block text-xs">Mã thẻ BHYT</span>
+            <span className="text-gray-500 block text-xs">Mã thẻ BHYT</span>
             <span>{patient.bhytCode || "Chưa có"}</span>
           </div>
         </CardContent>
@@ -97,50 +97,50 @@ export function Patient360History({ patientId }: Patient360HistoryProps) {
 
       {/* Timeline Section */}
       <div className="space-y-4">
-        <h3 className="text-base font-bold text-slate-200">Lịch sử các lượt khám ({history.length})</h3>
+        <h3 className="text-base font-bold text-gray-700">Lịch sử các lượt khám ({history.length})</h3>
 
         {history.length === 0 ? (
-          <Card className="border-dashed border-slate-800 bg-transparent text-center p-12 text-slate-500 text-sm">
+          <Card className="border-dashed border-gray-200 bg-transparent text-center p-12 text-gray-500 text-sm">
             Bệnh nhân chưa có lịch sử khám bệnh nào hoàn thành trước đây.
           </Card>
         ) : (
-          <div className="space-y-6 relative border-l border-slate-800 pl-6 ml-3">
+          <div className="space-y-6 relative border-l border-gray-200 pl-6 ml-3">
             {history.map((record: any) => {
               const { visit, diagnoses: diagList, prescriptions: prescItems, clsOrders: clsList } = record;
 
               return (
                 <div key={visit.id} className="relative group">
                   {/* Timeline dot */}
-                  <span className="absolute -left-[31px] top-1.5 h-4.5 w-4.5 rounded-full border border-slate-800 bg-slate-950 flex items-center justify-center">
+                  <span className="absolute -left-[31px] top-1.5 h-4.5 w-4.5 rounded-full border border-gray-200 bg-gray-50 flex items-center justify-center">
                     <span className="h-2 w-2 rounded-full bg-blue-500 group-hover:scale-125 transition" />
                   </span>
 
-                  <Card className="border-slate-800 bg-slate-900/10 hover:bg-slate-900/25 transition duration-150">
-                    <CardHeader className="py-3 px-4 border-b border-slate-850 bg-slate-950/20 flex flex-row justify-between items-center flex-wrap gap-2">
+                  <Card className="border-gray-200 bg-gray-50/10 hover:bg-gray-50/25 transition duration-150">
+                    <CardHeader className="py-3 px-4 border-b border-gray-200 bg-gray-50/20 flex flex-row justify-between items-center flex-wrap gap-2">
                       <div>
-                        <span className="text-xs font-semibold text-slate-500 block">
+                        <span className="text-xs font-semibold text-gray-500 block">
                           {new Date(visit.createdAt).toLocaleString("vi-VN")}
                         </span>
-                        <span className="text-xs font-bold text-slate-300">
+                        <span className="text-xs font-bold text-gray-600">
                           Mã lượt khám: {visit.visitCode}
                         </span>
                       </div>
                       <div className="text-right">
-                        <span className="text-xs text-slate-400 block">Bác sĩ khám</span>
-                        <span className="text-xs font-bold text-white">BS. {visit.doctorName || "Không rõ"}</span>
+                        <span className="text-xs text-gray-500 block">Bác sĩ khám</span>
+                        <span className="text-xs font-bold text-gray-900">BS. {visit.doctorName || "Không rõ"}</span>
                       </div>
                     </CardHeader>
-                    <CardContent className="p-4 space-y-4 text-sm text-slate-300">
+                    <CardContent className="p-4 space-y-4 text-sm text-gray-600">
                       {/* Clinical Complaint */}
                       <div>
-                        <span className="text-slate-500 text-xs block">Triệu chứng/Bệnh sử</span>
-                        <p className="mt-0.5 text-slate-200">{visit.chiefComplaint}</p>
+                        <span className="text-gray-500 text-xs block">Triệu chứng/Bệnh sử</span>
+                        <p className="mt-0.5 text-gray-700">{visit.chiefComplaint}</p>
                       </div>
 
                       {/* Diagnoses */}
                       {diagList && diagList.length > 0 && (
                         <div>
-                          <span className="text-slate-500 text-xs block">Chẩn đoán xác định</span>
+                          <span className="text-gray-500 text-xs block">Chẩn đoán xác định</span>
                           <div className="mt-1 space-y-1">
                             {diagList.map((d: any) => (
                               <div key={d.id} className="flex items-start gap-2">
@@ -157,11 +157,11 @@ export function Patient360History({ patientId }: Patient360HistoryProps) {
                       {/* Prescriptions */}
                       {prescItems && prescItems.length > 0 && (
                         <div>
-                          <span className="text-slate-500 text-xs block mb-1">Toa thuốc đã kê</span>
-                          <div className="bg-slate-950/50 rounded-lg border border-slate-850 p-3 space-y-2">
+                          <span className="text-gray-500 text-xs block mb-1">Toa thuốc đã kê</span>
+                          <div className="bg-gray-50/50 rounded-lg border border-gray-200 p-3 space-y-2">
                             <table className="w-full text-xs text-left">
                               <thead>
-                                <tr className="text-slate-500 border-b border-slate-850 pb-1">
+                                <tr className="text-gray-500 border-b border-gray-200 pb-1">
                                   <th className="pb-1 font-semibold">Tên thuốc</th>
                                   <th className="pb-1 font-semibold">Liều dùng</th>
                                   <th className="pb-1 font-semibold text-center">Số lượng</th>
@@ -170,12 +170,12 @@ export function Patient360History({ patientId }: Patient360HistoryProps) {
                               <tbody>
                                 {prescItems.map((item: any) => (
                                   <tr key={item.id} className="border-b border-slate-900/50 last:border-0">
-                                    <td className="py-1.5 font-semibold text-slate-200">{item.drugName}</td>
-                                    <td className="py-1.5 text-slate-400">
+                                    <td className="py-1.5 font-semibold text-gray-700">{item.drugName}</td>
+                                    <td className="py-1.5 text-gray-500">
                                       {item.dosage} — {item.frequency} ({item.durationDays} ngày)
-                                      {item.instructions && <span className="block text-[10px] text-slate-500 italic">{item.instructions}</span>}
+                                      {item.instructions && <span className="block text-[10px] text-gray-500 italic">{item.instructions}</span>}
                                     </td>
-                                    <td className="py-1.5 text-center text-slate-200 font-mono">
+                                    <td className="py-1.5 text-center text-gray-700 font-mono">
                                       {item.quantity} {item.unit}
                                     </td>
                                   </tr>
@@ -189,7 +189,7 @@ export function Patient360History({ patientId }: Patient360HistoryProps) {
                       {/* CLS Orders */}
                       {clsList && clsList.length > 0 && (
                         <div>
-                          <span className="text-slate-500 text-xs block mb-1">Chỉ định cận lâm sàng</span>
+                          <span className="text-gray-500 text-xs block mb-1">Chỉ định cận lâm sàng</span>
                           <div className="flex flex-wrap gap-2">
                             {clsList.map((c: any) => (
                               <Badge

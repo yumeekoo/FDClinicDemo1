@@ -102,8 +102,8 @@ export function CashierQueue({ branchId }: CashierQueueProps) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {[1, 2].map((i) => (
-          <Card key={i} className="border-slate-800 bg-slate-900/40 animate-pulse">
-            <CardHeader className="h-16 border-b border-slate-850" />
+          <Card key={i} className="border-gray-200 bg-gray-50/40 animate-pulse">
+            <CardHeader className="h-16 border-b border-gray-200" />
             <CardContent className="h-64" />
           </Card>
         ))}
@@ -131,7 +131,7 @@ export function CashierQueue({ branchId }: CashierQueueProps) {
     return (
       <Card
         key={visit.id}
-        className="border-slate-800 bg-slate-950/40 hover:bg-slate-900/50 transition duration-150 relative overflow-hidden group"
+        className="border-gray-200 bg-gray-50/40 hover:bg-gray-50/50 transition duration-150 relative overflow-hidden group"
       >
         <div
           className={`absolute left-0 top-0 bottom-0 w-1 ${
@@ -141,42 +141,42 @@ export function CashierQueue({ branchId }: CashierQueueProps) {
         <CardContent className="p-4 pl-5 space-y-3">
           <div className="flex justify-between items-start">
             <div>
-              <span className="text-[10px] text-slate-500 font-mono block">
+              <span className="text-[10px] text-gray-500 font-mono block">
                 Mã khám: {visit.visitCode}
               </span>
-              <h4 className="font-bold text-white text-sm group-hover:text-blue-400 transition">
+              <h4 className="font-bold text-gray-900 text-sm group-hover:text-blue-400 transition">
                 {patient.fullName}
               </h4>
-              <p className="text-[10px] text-slate-400">
+              <p className="text-[10px] text-gray-500">
                 {patient.gender === "MALE" ? "Nam" : patient.gender === "FEMALE" ? "Nữ" : "Khác"} • {new Date(patient.dateOfBirth).toLocaleDateString("vi-VN")}
               </p>
             </div>
             <div className="flex flex-col items-end gap-1">
-              <span className="text-[10px] text-slate-500">{timeAgo}</span>
+              <span className="text-[10px] text-gray-500">{timeAgo}</span>
               <Badge className={isPendingPayment ? "bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[9px] font-bold" : "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[9px] font-bold"}>
                 {isPendingPayment ? "Chờ thanh toán" : "Đã thanh toán"}
               </Badge>
             </div>
           </div>
 
-          <div className="p-2.5 rounded bg-slate-900/80 border border-slate-850/50 flex justify-between items-center text-xs">
+          <div className="p-2.5 rounded bg-gray-50/80 border border-gray-200/50 flex justify-between items-center text-xs">
             <div className="space-y-0.5">
-              <span className="text-slate-500 block text-[10px]">Hóa đơn: <strong className="text-slate-300 font-mono">{invoice?.invoiceCode}</strong></span>
-              <span className="text-slate-400">BS chỉ định: <strong className="text-slate-200">{doctor.fullName}</strong></span>
+              <span className="text-gray-500 block text-[10px]">Hóa đơn: <strong className="text-gray-600 font-mono">{invoice?.invoiceCode}</strong></span>
+              <span className="text-gray-500">BS chỉ định: <strong className="text-gray-700">{doctor.fullName}</strong></span>
             </div>
             <div className="text-right">
-              <span className="text-[10px] text-slate-500 block">Tổng cộng</span>
-              <strong className="text-sm font-mono text-white font-extrabold">
+              <span className="text-[10px] text-gray-500 block">Tổng cộng</span>
+              <strong className="text-sm font-mono text-gray-900 font-extrabold">
                 {formatCurrency(invoice?.totalAmount || invoice?.subtotal || "0.00")}
               </strong>
             </div>
           </div>
 
-          <div className="pt-2 border-t border-slate-850 flex justify-end">
+          <div className="pt-2 border-t border-gray-200 flex justify-end">
             {isPendingPayment ? (
               <Button
                 size="sm"
-                className="bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer"
+                className="bg-amber-600 hover:bg-amber-500 text-gray-900 font-bold text-xs flex items-center gap-1.5 cursor-pointer"
                 onClick={() => router.push(`/cashier/payment/${visit.id}`)}
               >
                 <CreditCard className="h-3.5 w-3.5" />
@@ -186,7 +186,7 @@ export function CashierQueue({ branchId }: CashierQueueProps) {
               <Button
                 size="sm"
                 variant="outline"
-                className="border-slate-800 hover:bg-slate-900 text-slate-300 font-medium text-xs flex items-center gap-1.5 cursor-pointer"
+                className="border-gray-200 hover:bg-gray-50 text-gray-600 font-medium text-xs flex items-center gap-1.5 cursor-pointer"
                 onClick={() => router.push(`/cashier/payment/${visit.id}`)}
               >
                 <Receipt className="h-3.5 w-3.5" />
@@ -204,18 +204,18 @@ export function CashierQueue({ branchId }: CashierQueueProps) {
       {/* Search and tools */}
       <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
         <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-2.5 h-4.5 w-4.5 text-slate-500" />
+          <Search className="absolute left-3 top-2.5 h-4.5 w-4.5 text-gray-500" />
           <Input
             placeholder="Tìm theo tên BN, mã BN, mã khám, mã hóa đơn..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-9 bg-slate-900/60 border-slate-800 text-white"
+            className="pl-9 bg-gray-50/60 border-gray-200 text-gray-900"
           />
         </div>
         <Button
           size="sm"
           variant="outline"
-          className="border-slate-800 hover:bg-slate-900 text-slate-400 hover:text-white text-xs"
+          className="border-gray-200 hover:bg-gray-50 text-gray-500 hover:text-gray-900 text-xs"
           onClick={fetchQueue}
         >
           Làm mới hàng đợi
@@ -237,7 +237,7 @@ export function CashierQueue({ branchId }: CashierQueueProps) {
           </div>
           <div className="space-y-3 overflow-y-auto max-h-[70vh] pr-1">
             {pendingPayments.length === 0 ? (
-              <Card className="border-dashed border-slate-800 bg-slate-900/10 py-12 text-center text-xs text-slate-500">
+              <Card className="border-dashed border-gray-200 bg-gray-50/10 py-12 text-center text-xs text-gray-500">
                 <AlertCircle className="h-7 w-7 mx-auto mb-2 text-slate-600" />
                 Không có bệnh nhân chờ thanh toán
               </Card>
@@ -260,7 +260,7 @@ export function CashierQueue({ branchId }: CashierQueueProps) {
           </div>
           <div className="space-y-3 overflow-y-auto max-h-[70vh] pr-1">
             {completedPayments.length === 0 ? (
-              <Card className="border-dashed border-slate-800 bg-slate-900/10 py-12 text-center text-xs text-slate-500">
+              <Card className="border-dashed border-gray-200 bg-gray-50/10 py-12 text-center text-xs text-gray-500">
                 <AlertCircle className="h-7 w-7 mx-auto mb-2 text-slate-600" />
                 Chưa có giao dịch thanh toán nào hôm nay
               </Card>

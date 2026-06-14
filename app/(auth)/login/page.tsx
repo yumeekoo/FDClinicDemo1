@@ -72,14 +72,14 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-slate-950 py-12 sm:px-6 lg:px-8">
+    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gray-50 py-12 sm:px-6 lg:px-8">
       {/* Dynamic background gradient elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
 
       <div className="relative z-10 w-full max-w-md space-y-8 px-4 sm:px-0">
         <div className="text-center">
-          <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-tr from-blue-600 to-emerald-500 text-white shadow-lg shadow-blue-500/20">
+          <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-tr from-blue-600 to-emerald-500 text-gray-900 shadow-lg shadow-blue-500/20">
             <svg
               className="h-8 w-8"
               fill="none"
@@ -95,15 +95,15 @@ export default function LoginPage() {
               />
             </svg>
           </div>
-          <h2 className="mt-6 text-3xl font-extrabold tracking-tight text-white">
+          <h2 className="mt-6 text-3xl font-extrabold tracking-tight text-gray-900">
             Clinic Hub
           </h2>
-          <p className="mt-2 text-sm text-slate-400">
+          <p className="mt-2 text-sm text-gray-500">
             Hệ thống quản lý phòng khám đa chi nhánh
           </p>
         </div>
 
-        <div className="mt-8 rounded-2xl border border-slate-800 bg-slate-900/50 p-8 shadow-2xl backdrop-blur-xl">
+        <div className="mt-8 rounded-2xl border border-gray-200 bg-gray-50/50 p-8 shadow-2xl backdrop-blur-xl">
           <form className="space-y-6" onSubmit={handleLogin}>
             {error && (
               <div className="rounded-lg bg-red-500/10 border border-red-500/20 p-4 text-sm text-red-400">
@@ -114,7 +114,7 @@ export default function LoginPage() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-slate-300"
+                className="block text-sm font-medium text-gray-600"
               >
                 Địa chỉ Email
               </label>
@@ -127,7 +127,7 @@ export default function LoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-white placeholder-slate-500 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm"
+                  className="block w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 placeholder-slate-500 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm"
                   placeholder="name@example.com"
                 />
               </div>
@@ -136,7 +136,7 @@ export default function LoginPage() {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-slate-300"
+                className="block text-sm font-medium text-gray-600"
               >
                 Mật khẩu
               </label>
@@ -149,7 +149,7 @@ export default function LoginPage() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-white placeholder-slate-500 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm"
+                  className="block w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 placeholder-slate-500 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm"
                   placeholder="••••••••"
                 />
               </div>
@@ -159,7 +159,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex w-full justify-center rounded-xl bg-gradient-to-r from-blue-600 to-emerald-600 px-4 py-3 text-sm font-semibold text-white shadow-lg hover:from-blue-500 hover:to-emerald-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 transition duration-200"
+                className="flex w-full justify-center rounded-xl bg-gradient-to-r from-blue-600 to-emerald-600 px-4 py-3 text-sm font-semibold text-gray-900 shadow-lg hover:from-blue-500 hover:to-emerald-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 transition duration-200"
               >
                 {loading ? "Đang đăng nhập..." : "Đăng nhập"}
               </button>

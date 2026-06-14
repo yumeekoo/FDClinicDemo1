@@ -156,7 +156,7 @@ export function AppointmentsClient({
       case "BOOKED": return "bg-blue-500/10 border-blue-500/20 text-blue-400";
       case "CONFIRMED": return "bg-purple-500/10 border-purple-500/20 text-purple-400";
       case "ARRIVED": return "bg-emerald-500/10 border-emerald-500/20 text-emerald-400";
-      case "CANCELLED": return "bg-slate-500/10 border-slate-500/20 text-slate-400";
+      case "CANCELLED": return "bg-slate-500/10 border-slate-500/20 text-gray-500";
       case "NO_SHOW": return "bg-red-500/10 border-red-500/20 text-red-400";
       default: return "";
     }
@@ -177,12 +177,12 @@ export function AppointmentsClient({
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-extrabold text-white">Quản lý Lịch hẹn</h2>
-          <p className="text-sm text-slate-400">Xem, đặt lịch hẹn và thực hiện check-in tiếp đón</p>
+          <h2 className="text-2xl font-extrabold text-gray-900">Quản lý Lịch hẹn</h2>
+          <p className="text-sm text-gray-500">Xem, đặt lịch hẹn và thực hiện check-in tiếp đón</p>
         </div>
         <Button
           onClick={openAddModal}
-          className="bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 text-white font-semibold text-xs py-2 px-4 rounded-xl shadow-lg shadow-blue-500/10 self-start sm:self-auto"
+          className="bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 text-gray-900 font-semibold text-xs py-2 px-4 rounded-xl shadow-lg shadow-blue-500/10 self-start sm:self-auto"
         >
           Đặt lịch hẹn
         </Button>
@@ -194,15 +194,15 @@ export function AppointmentsClient({
           placeholder="Tìm theo bệnh nhân, bác sĩ, lý do..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="bg-slate-900 border-slate-800 text-xs text-white rounded-xl placeholder-slate-500 focus:ring-1 focus:ring-blue-500 max-w-sm"
+          className="bg-gray-50 border-gray-200 text-xs text-gray-900 rounded-xl placeholder-slate-500 focus:ring-1 focus:ring-blue-500 max-w-sm"
         />
 
-        <div className="flex items-center space-x-2 bg-slate-900 border border-slate-800 rounded-xl px-2.5 py-1.5">
-          <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Trạng thái:</span>
+        <div className="flex items-center space-x-2 bg-gray-50 border border-gray-200 rounded-xl px-2.5 py-1.5">
+          <span className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Trạng thái:</span>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="bg-transparent text-xs text-white focus:outline-none cursor-pointer"
+            className="bg-transparent text-xs text-gray-900 focus:outline-none cursor-pointer"
           >
             <option value="ALL">Tất cả</option>
             <option value="BOOKED">Đã đặt (BOOKED)</option>
@@ -215,23 +215,23 @@ export function AppointmentsClient({
       </div>
 
       {/* Table grid */}
-      <div className="rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-xl overflow-hidden">
+      <div className="rounded-2xl border border-gray-200 bg-gray-50/40 backdrop-blur-xl overflow-hidden">
         <Table>
-          <TableHeader className="bg-slate-950/40">
-            <TableRow className="border-slate-800">
-              <TableHead className="text-slate-400 font-bold">Thời gian hẹn</TableHead>
-              <TableHead className="text-slate-400 font-bold">Bệnh nhân</TableHead>
-              <TableHead className="text-slate-400 font-bold">Điện thoại</TableHead>
-              <TableHead className="text-slate-400 font-bold">Bác sĩ hẹn</TableHead>
-              <TableHead className="text-slate-400 font-bold">Lý do khám</TableHead>
-              <TableHead className="text-slate-400 font-bold text-center">Trạng thái</TableHead>
-              <TableHead className="text-slate-400 font-bold text-right">Thao tác</TableHead>
+          <TableHeader className="bg-gray-50/40">
+            <TableRow className="border-gray-200">
+              <TableHead className="text-gray-500 font-bold">Thời gian hẹn</TableHead>
+              <TableHead className="text-gray-500 font-bold">Bệnh nhân</TableHead>
+              <TableHead className="text-gray-500 font-bold">Điện thoại</TableHead>
+              <TableHead className="text-gray-500 font-bold">Bác sĩ hẹn</TableHead>
+              <TableHead className="text-gray-500 font-bold">Lý do khám</TableHead>
+              <TableHead className="text-gray-500 font-bold text-center">Trạng thái</TableHead>
+              <TableHead className="text-gray-500 font-bold text-right">Thao tác</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {filtered.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={7} className="text-center text-slate-500 py-8">
+                <TableCell colSpan={7} className="text-center text-gray-500 py-8">
                   Không tìm thấy lịch hẹn nào
                 </TableCell>
               </TableRow>
@@ -242,21 +242,21 @@ export function AppointmentsClient({
                 const isCancelled = row.appointment.status === "CANCELLED";
 
                 return (
-                  <TableRow key={row.appointment.id} className="border-slate-800/60 hover:bg-slate-800/10 transition">
-                    <TableCell className="text-white text-xs font-semibold">
+                  <TableRow key={row.appointment.id} className="border-gray-200/60 hover:bg-white/10 transition">
+                    <TableCell className="text-gray-900 text-xs font-semibold">
                       {format(dateObj, "dd/MM/yyyy HH:mm", { locale: vi })}
                     </TableCell>
                     <TableCell className="font-semibold text-blue-400 text-xs">
                       {row.patient.fullName}
-                      <span className="block text-[10px] text-slate-500 font-mono font-normal">
+                      <span className="block text-[10px] text-gray-500 font-mono font-normal">
                         {row.patient.patientCode}
                       </span>
                     </TableCell>
-                    <TableCell className="text-slate-300 text-xs">{row.patient.phone}</TableCell>
-                    <TableCell className="text-slate-300 text-xs">
-                      {row.doctor?.fullName || <span className="text-slate-500">Chưa xếp bác sĩ</span>}
+                    <TableCell className="text-gray-600 text-xs">{row.patient.phone}</TableCell>
+                    <TableCell className="text-gray-600 text-xs">
+                      {row.doctor?.fullName || <span className="text-gray-500">Chưa xếp bác sĩ</span>}
                     </TableCell>
-                    <TableCell className="text-slate-400 text-xs truncate max-w-xs" title={row.appointment.reason}>
+                    <TableCell className="text-gray-500 text-xs truncate max-w-xs" title={row.appointment.reason}>
                       {row.appointment.reason}
                     </TableCell>
                     <TableCell className="text-center">
@@ -271,7 +271,7 @@ export function AppointmentsClient({
                           size="sm"
                           onClick={() => handleCheckIn(row.appointment.id)}
                           disabled={isPending}
-                          className="bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-[10px] h-7 px-2.5 font-bold shadow-md shadow-emerald-500/10"
+                          className="bg-emerald-600 hover:bg-emerald-500 text-gray-900 rounded-lg text-[10px] h-7 px-2.5 font-bold shadow-md shadow-emerald-500/10"
                         >
                           Check-in
                         </Button>
@@ -286,7 +286,7 @@ export function AppointmentsClient({
                               variant="ghost"
                               onClick={() => handleStatusChange(row.appointment.id, "CONFIRMED")}
                               disabled={isPending}
-                              className="text-purple-400 hover:text-white hover:bg-purple-600/10 rounded-lg text-[10px] h-7 px-2"
+                              className="text-purple-400 hover:text-gray-900 hover:bg-purple-600/10 rounded-lg text-[10px] h-7 px-2"
                             >
                               Xác nhận
                             </Button>
@@ -296,7 +296,7 @@ export function AppointmentsClient({
                             variant="ghost"
                             onClick={() => handleStatusChange(row.appointment.id, "CANCELLED")}
                             disabled={isPending}
-                            className="text-red-400 hover:text-white hover:bg-red-600/10 rounded-lg text-[10px] h-7 px-2"
+                            className="text-red-400 hover:text-gray-900 hover:bg-red-600/10 rounded-lg text-[10px] h-7 px-2"
                           >
                             Hủy hẹn
                           </Button>
@@ -313,10 +313,10 @@ export function AppointmentsClient({
 
       {/* Booking Form Modal */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="bg-slate-900 border-slate-800 text-white max-w-md">
+        <DialogContent className="bg-gray-50 border-gray-200 text-gray-900 max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-lg font-bold text-white">Đặt lịch hẹn khám</DialogTitle>
-            <DialogDescription className="text-slate-400 text-xs">
+            <DialogTitle className="text-lg font-bold text-gray-900">Đặt lịch hẹn khám</DialogTitle>
+            <DialogDescription className="text-gray-500 text-xs">
               Điền các thông tin để lên lịch hẹn khám cho bệnh nhân.
             </DialogDescription>
           </DialogHeader>
@@ -324,13 +324,13 @@ export function AppointmentsClient({
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             {/* Patient Select */}
             <div className="space-y-1">
-              <Label htmlFor="patientId" className="text-xs font-semibold text-slate-300">
+              <Label htmlFor="patientId" className="text-xs font-semibold text-gray-600">
                 Bệnh nhân đã đăng ký
               </Label>
               <select
                 id="patientId"
                 disabled={isPending}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl text-xs text-white px-3 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500 h-10 cursor-pointer"
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-900 px-3 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500 h-10 cursor-pointer"
                 {...register("patientId", { required: true })}
               >
                 {patientsList.map((p) => (
@@ -343,13 +343,13 @@ export function AppointmentsClient({
 
             {/* Doctor Select */}
             <div className="space-y-1">
-              <Label htmlFor="doctorId" className="text-xs font-semibold text-slate-300">
+              <Label htmlFor="doctorId" className="text-xs font-semibold text-gray-600">
                 Bác sĩ phụ trách
               </Label>
               <select
                 id="doctorId"
                 disabled={isPending}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl text-xs text-white px-3 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500 h-10 cursor-pointer"
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-900 px-3 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500 h-10 cursor-pointer"
                 {...register("doctorId")}
               >
                 <option value="">-- Không xếp bác sĩ trước --</option>
@@ -363,14 +363,14 @@ export function AppointmentsClient({
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <Label htmlFor="scheduledAt" className="text-xs font-semibold text-slate-300">
+                <Label htmlFor="scheduledAt" className="text-xs font-semibold text-gray-600">
                   Thời gian hẹn khám
                 </Label>
                 <Input
                   id="scheduledAt"
                   type="datetime-local"
                   disabled={isPending}
-                  className="bg-slate-950 border-slate-800 text-xs text-white rounded-xl focus:ring-1 focus:ring-blue-500 h-10"
+                  className="bg-gray-50 border-gray-200 text-xs text-gray-900 rounded-xl focus:ring-1 focus:ring-blue-500 h-10"
                   {...register("scheduledAt", { required: "Vui lòng chọn thời gian" })}
                 />
                 {errors.scheduledAt && (
@@ -379,13 +379,13 @@ export function AppointmentsClient({
               </div>
 
               <div className="space-y-1">
-                <Label htmlFor="durationMinutes" className="text-xs font-semibold text-slate-300">
+                <Label htmlFor="durationMinutes" className="text-xs font-semibold text-gray-600">
                   Thời lượng dự kiến
                 </Label>
                 <select
                   id="durationMinutes"
                   disabled={isPending}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl text-xs text-white px-3 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500 h-10 cursor-pointer"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-900 px-3 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500 h-10 cursor-pointer"
                   {...register("durationMinutes", { required: true })}
                 >
                   <option value={15}>15 phút</option>
@@ -397,14 +397,14 @@ export function AppointmentsClient({
             </div>
 
             <div className="space-y-1">
-              <Label htmlFor="reason" className="text-xs font-semibold text-slate-300">
+              <Label htmlFor="reason" className="text-xs font-semibold text-gray-600">
                 Lý do hẹn khám
               </Label>
               <Input
                 id="reason"
                 placeholder="Ví dụ: Tái khám định kỳ, khám răng..."
                 disabled={isPending}
-                className="bg-slate-950 border-slate-800 text-xs text-white rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
+                className="bg-gray-50 border-gray-200 text-xs text-gray-900 rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
                 {...register("reason", { required: "Vui lòng nhập lý do" })}
               />
               {errors.reason && (
@@ -413,32 +413,32 @@ export function AppointmentsClient({
             </div>
 
             <div className="space-y-1">
-              <Label htmlFor="notes" className="text-xs font-semibold text-slate-300">
+              <Label htmlFor="notes" className="text-xs font-semibold text-gray-600">
                 Ghi chú thêm (nếu có)
               </Label>
               <Input
                 id="notes"
                 placeholder="Ví dụ: Mang theo hồ sơ cũ..."
                 disabled={isPending}
-                className="bg-slate-950 border-slate-800 text-xs text-white rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
+                className="bg-gray-50 border-gray-200 text-xs text-gray-900 rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
                 {...register("notes")}
               />
             </div>
 
-            <DialogFooter className="pt-4 border-t border-slate-800/60">
+            <DialogFooter className="pt-4 border-t border-gray-200/60">
               <Button
                 type="button"
                 variant="ghost"
                 onClick={() => setIsOpen(false)}
                 disabled={isPending}
-                className="text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl text-xs h-10"
+                className="text-gray-500 hover:text-gray-900 hover:bg-white rounded-xl text-xs h-10"
               >
                 Hủy
               </Button>
               <Button
                 type="submit"
                 disabled={isPending}
-                className="bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 text-white font-semibold text-xs h-10 rounded-xl px-6"
+                className="bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 text-gray-900 font-semibold text-xs h-10 rounded-xl px-6"
               >
                 {isPending ? "Đang đặt..." : "Lên lịch"}
               </Button>

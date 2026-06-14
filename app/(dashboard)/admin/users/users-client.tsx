@@ -145,12 +145,12 @@ export function UsersClient({ initialProfiles, branches, currentUserRole, curren
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-extrabold text-white">Quản lý Nhân viên</h2>
-          <p className="text-sm text-slate-400">Danh sách nhân sự và phân quyền vị trí làm việc</p>
+          <h2 className="text-2xl font-extrabold text-gray-900">Quản lý Nhân viên</h2>
+          <p className="text-sm text-gray-500">Danh sách nhân sự và phân quyền vị trí làm việc</p>
         </div>
         <Button
           onClick={openAddModal}
-          className="bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 text-white font-semibold text-xs py-2 px-4 rounded-xl shadow-lg shadow-blue-500/10 self-start sm:self-auto"
+          className="bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 text-gray-900 font-semibold text-xs py-2 px-4 rounded-xl shadow-lg shadow-blue-500/10 self-start sm:self-auto"
         >
           Thêm Nhân viên
         </Button>
@@ -162,42 +162,42 @@ export function UsersClient({ initialProfiles, branches, currentUserRole, curren
           placeholder="Tìm theo họ tên, mã nhân viên, số điện thoại..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="bg-slate-900 border-slate-800 text-xs text-white rounded-xl placeholder-slate-500 focus:ring-1 focus:ring-blue-500"
+          className="bg-gray-50 border-gray-200 text-xs text-gray-900 rounded-xl placeholder-slate-500 focus:ring-1 focus:ring-blue-500"
         />
       </div>
 
-      <div className="rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-xl overflow-hidden">
+      <div className="rounded-2xl border border-gray-200 bg-gray-50/40 backdrop-blur-xl overflow-hidden">
         <Table>
-          <TableHeader className="bg-slate-950/40">
-            <TableRow className="border-slate-800">
-              <TableHead className="text-slate-400 font-bold">Mã NV</TableHead>
-              <TableHead className="text-slate-400 font-bold">Họ tên nhân viên</TableHead>
-              <TableHead className="text-slate-400 font-bold">Điện thoại</TableHead>
-              <TableHead className="text-slate-400 font-bold">Vai trò</TableHead>
-              <TableHead className="text-slate-400 font-bold">Chi nhánh</TableHead>
-              <TableHead className="text-slate-400 font-bold text-center">Trạng thái</TableHead>
-              <TableHead className="text-slate-400 font-bold text-right">Thao tác</TableHead>
+          <TableHeader className="bg-gray-50/40">
+            <TableRow className="border-gray-200">
+              <TableHead className="text-gray-500 font-bold">Mã NV</TableHead>
+              <TableHead className="text-gray-500 font-bold">Họ tên nhân viên</TableHead>
+              <TableHead className="text-gray-500 font-bold">Điện thoại</TableHead>
+              <TableHead className="text-gray-500 font-bold">Vai trò</TableHead>
+              <TableHead className="text-gray-500 font-bold">Chi nhánh</TableHead>
+              <TableHead className="text-gray-500 font-bold text-center">Trạng thái</TableHead>
+              <TableHead className="text-gray-500 font-bold text-right">Thao tác</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {filteredProfiles.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={7} className="text-center text-slate-500 py-8">
+                <TableCell colSpan={7} className="text-center text-gray-500 py-8">
                   Không tìm thấy nhân viên nào
                 </TableCell>
               </TableRow>
             ) : (
               filteredProfiles.map((p) => (
-                <TableRow key={p.id} className="border-slate-800/60 hover:bg-slate-800/10 transition">
+                <TableRow key={p.id} className="border-gray-200/60 hover:bg-white/10 transition">
                   <TableCell className="font-mono text-xs text-blue-400">{p.employeeCode}</TableCell>
-                  <TableCell className="font-semibold text-white text-xs">{p.fullName}</TableCell>
-                  <TableCell className="text-slate-300 text-xs">{p.phone}</TableCell>
+                  <TableCell className="font-semibold text-gray-900 text-xs">{p.fullName}</TableCell>
+                  <TableCell className="text-gray-600 text-xs">{p.phone}</TableCell>
                   <TableCell className="text-xs">
                     <span className="inline-block px-2 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 font-medium">
                       {getRoleLabel(p.role)}
                     </span>
                   </TableCell>
-                  <TableCell className="text-slate-400 text-xs truncate max-w-xs">
+                  <TableCell className="text-gray-500 text-xs truncate max-w-xs">
                     {getBranchName(p.branchId)}
                   </TableCell>
                   <TableCell className="text-center">
@@ -231,12 +231,12 @@ export function UsersClient({ initialProfiles, branches, currentUserRole, curren
 
       {/* Add/Edit Modal */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="bg-slate-900 border-slate-800 text-white max-w-md">
+        <DialogContent className="bg-gray-50 border-gray-200 text-gray-900 max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-lg font-bold text-white">
+            <DialogTitle className="text-lg font-bold text-gray-900">
               {editingProfile ? "Sửa hồ sơ nhân viên" : "Đăng ký nhân viên mới"}
             </DialogTitle>
-            <DialogDescription className="text-slate-400 text-xs">
+            <DialogDescription className="text-gray-500 text-xs">
               Nhập các thông tin đăng ký tài khoản nhân viên.
             </DialogDescription>
           </DialogHeader>
@@ -244,7 +244,7 @@ export function UsersClient({ initialProfiles, branches, currentUserRole, curren
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             {/* Email (only editable on creation) */}
             <div className="space-y-1">
-              <Label htmlFor="email" className="text-xs font-semibold text-slate-300">
+              <Label htmlFor="email" className="text-xs font-semibold text-gray-600">
                 Địa chỉ Email đăng nhập
               </Label>
               <Input
@@ -252,7 +252,7 @@ export function UsersClient({ initialProfiles, branches, currentUserRole, curren
                 type="email"
                 placeholder="Ví dụ: nhanvien@clinichub.vn"
                 disabled={!!editingProfile || isPending}
-                className="bg-slate-950 border-slate-800 text-xs text-white rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
+                className="bg-gray-50 border-gray-200 text-xs text-gray-900 rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
                 {...register("email", { required: "Vui lòng nhập Email" })}
               />
               {errors.email && (
@@ -263,7 +263,7 @@ export function UsersClient({ initialProfiles, branches, currentUserRole, curren
             {/* Password (required on creation, ignored on edit) */}
             {!editingProfile && (
               <div className="space-y-1">
-                <Label htmlFor="password" className="text-xs font-semibold text-slate-300">
+                <Label htmlFor="password" className="text-xs font-semibold text-gray-600">
                   Mật khẩu đăng nhập
                 </Label>
                 <Input
@@ -271,7 +271,7 @@ export function UsersClient({ initialProfiles, branches, currentUserRole, curren
                   type="password"
                   placeholder="Mật khẩu tối thiểu 6 ký tự"
                   disabled={isPending}
-                  className="bg-slate-950 border-slate-800 text-xs text-white rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
+                  className="bg-gray-50 border-gray-200 text-xs text-gray-900 rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
                   {...register("password", { required: "Vui lòng nhập mật khẩu" })}
                 />
                 {errors.password && (
@@ -282,14 +282,14 @@ export function UsersClient({ initialProfiles, branches, currentUserRole, curren
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <Label htmlFor="employeeCode" className="text-xs font-semibold text-slate-300">
+                <Label htmlFor="employeeCode" className="text-xs font-semibold text-gray-600">
                   Mã nhân viên (Code)
                 </Label>
                 <Input
                   id="employeeCode"
                   placeholder="Ví dụ: BS01, LT02"
                   disabled={isPending}
-                  className="bg-slate-950 border-slate-800 text-xs text-white rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
+                  className="bg-gray-50 border-gray-200 text-xs text-gray-900 rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
                   {...register("employeeCode", { required: "Vui lòng nhập mã" })}
                 />
                  {errors.employeeCode && (
@@ -298,14 +298,14 @@ export function UsersClient({ initialProfiles, branches, currentUserRole, curren
               </div>
 
               <div className="space-y-1">
-                <Label htmlFor="fullName" className="text-xs font-semibold text-slate-300">
+                <Label htmlFor="fullName" className="text-xs font-semibold text-gray-600">
                   Họ tên đầy đủ
                 </Label>
                 <Input
                   id="fullName"
                   placeholder="Ví dụ: Nguyễn Văn A"
                   disabled={isPending}
-                  className="bg-slate-950 border-slate-800 text-xs text-white rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
+                  className="bg-gray-50 border-gray-200 text-xs text-gray-900 rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
                   {...register("fullName", { required: "Vui lòng nhập họ tên" })}
                 />
                  {errors.fullName && (
@@ -316,14 +316,14 @@ export function UsersClient({ initialProfiles, branches, currentUserRole, curren
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1">
-                <Label htmlFor="phone" className="text-xs font-semibold text-slate-300">
+                <Label htmlFor="phone" className="text-xs font-semibold text-gray-600">
                   Số điện thoại di động
                 </Label>
                 <Input
                   id="phone"
                   placeholder="Ví dụ: 0987654321"
                   disabled={isPending}
-                  className="bg-slate-950 border-slate-800 text-xs text-white rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
+                  className="bg-gray-50 border-gray-200 text-xs text-gray-900 rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
                   {...register("phone", {
                     required: "Vui lòng nhập số điện thoại",
                     pattern: {
@@ -338,13 +338,13 @@ export function UsersClient({ initialProfiles, branches, currentUserRole, curren
               </div>
 
               <div className="space-y-1">
-                <Label htmlFor="role" className="text-xs font-semibold text-slate-300">
+                <Label htmlFor="role" className="text-xs font-semibold text-gray-600">
                   Vai trò (Quyền hạn)
                 </Label>
                 <select
                   id="role"
                   disabled={isPending}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl text-xs text-white px-3 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500 h-10"
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-900 px-3 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500 h-10"
                   {...register("role", { required: true })}
                 >
                   <option value="RECEPTION">Lễ tân tiếp đón</option>
@@ -360,13 +360,13 @@ export function UsersClient({ initialProfiles, branches, currentUserRole, curren
 
             {/* Branch Selector */}
             <div className="space-y-1">
-              <Label htmlFor="branchId" className="text-xs font-semibold text-slate-300">
+              <Label htmlFor="branchId" className="text-xs font-semibold text-gray-600">
                 Chi nhánh công tác
               </Label>
               <select
                 id="branchId"
                 disabled={!isSuperAdmin || isPending}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl text-xs text-white px-3 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500 h-10 disabled:opacity-60"
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl text-xs text-gray-900 px-3 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500 h-10 disabled:opacity-60"
                 {...register("branchId", { required: true })}
               >
                 {branches.map((b) => (
@@ -376,7 +376,7 @@ export function UsersClient({ initialProfiles, branches, currentUserRole, curren
                 ))}
               </select>
               {!isSuperAdmin && (
-                <span className="text-[9px] text-slate-500 block">
+                <span className="text-[9px] text-gray-500 block">
                   Cố định theo chi nhánh của bạn (Branch Admin)
                 </span>
               )}
@@ -387,28 +387,28 @@ export function UsersClient({ initialProfiles, branches, currentUserRole, curren
                 type="checkbox"
                 id="isActiveEmployee"
                 disabled={isPending}
-                className="h-4 w-4 rounded border-slate-800 bg-slate-950 text-blue-600 focus:ring-blue-500 focus:ring-offset-slate-900"
+                className="h-4 w-4 rounded border-gray-200 bg-gray-50 text-blue-600 focus:ring-blue-500 focus:ring-offset-slate-900"
                 {...register("isActive")}
               />
-              <Label htmlFor="isActiveEmployee" className="text-xs text-slate-300 select-none cursor-pointer">
+              <Label htmlFor="isActiveEmployee" className="text-xs text-gray-600 select-none cursor-pointer">
                 Tài khoản nhân viên được phép hoạt động
               </Label>
             </div>
 
-            <DialogFooter className="pt-4 border-t border-slate-800/60">
+            <DialogFooter className="pt-4 border-t border-gray-200/60">
               <Button
                 type="button"
                 variant="ghost"
                 onClick={() => setIsOpen(false)}
                 disabled={isPending}
-                className="text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl text-xs h-10"
+                className="text-gray-500 hover:text-gray-900 hover:bg-white rounded-xl text-xs h-10"
               >
                 Hủy
               </Button>
               <Button
                 type="submit"
                 disabled={isPending}
-                className="bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 text-white font-semibold text-xs h-10 rounded-xl px-6"
+                className="bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 text-gray-900 font-semibold text-xs h-10 rounded-xl px-6"
               >
                 {isPending ? "Đang xử lý..." : editingProfile ? "Cập nhật" : "Tạo mới"}
               </Button>

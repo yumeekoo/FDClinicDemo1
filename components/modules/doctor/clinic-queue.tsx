@@ -145,8 +145,8 @@ export function ClinicQueue({ branchId, role }: ClinicQueueProps) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[1, 2, 3].map((i) => (
-          <Card key={i} className="border-slate-800 bg-slate-900/40 animate-pulse">
-            <CardHeader className="h-16 border-b border-slate-850" />
+          <Card key={i} className="border-gray-200 bg-gray-50/40 animate-pulse">
+            <CardHeader className="h-16 border-b border-gray-200" />
             <CardContent className="h-64" />
           </Card>
         ))}
@@ -172,7 +172,7 @@ export function ClinicQueue({ branchId, role }: ClinicQueueProps) {
     return (
       <Card
         key={visit.id}
-        className="border-slate-800 bg-slate-950/40 hover:bg-slate-900/60 transition duration-150 relative overflow-hidden group"
+        className="border-gray-200 bg-gray-50/40 hover:bg-gray-50/60 transition duration-150 relative overflow-hidden group"
       >
         <div
           className={`absolute left-0 top-0 bottom-0 w-1 ${
@@ -186,54 +186,54 @@ export function ClinicQueue({ branchId, role }: ClinicQueueProps) {
         <CardContent className="p-4 pl-5 space-y-3">
           <div className="flex justify-between items-start">
             <div>
-              <h4 className="font-bold text-white text-sm group-hover:text-blue-400 transition">
+              <h4 className="font-bold text-gray-900 text-sm group-hover:text-blue-400 transition">
                 {patient.fullName}
               </h4>
-              <p className="text-[10px] text-slate-500 font-mono">
+              <p className="text-[10px] text-gray-500 font-mono">
                 {patient.patientCode} • {visit.visitCode}
               </p>
             </div>
-            <span className="text-[10px] text-slate-500">{timeAgo}</span>
+            <span className="text-[10px] text-gray-500">{timeAgo}</span>
           </div>
 
           <div className="text-xs space-y-1 text-slate-350">
             <div>
-              <span className="text-slate-500">Giới tính: </span>
+              <span className="text-gray-500">Giới tính: </span>
               <span>{patient.gender === "MALE" ? "Nam" : patient.gender === "FEMALE" ? "Nữ" : "Khác"}</span>
               <span className="text-slate-600 mx-1.5">|</span>
-              <span className="text-slate-500">Ngày sinh: </span>
+              <span className="text-gray-500">Ngày sinh: </span>
               <span>{new Date(patient.dateOfBirth).toLocaleDateString("vi-VN")}</span>
             </div>
             <div>
-              <span className="text-slate-500">Lý do khám: </span>
-              <span className="text-slate-200">{visit.chiefComplaint}</span>
+              <span className="text-gray-500">Lý do khám: </span>
+              <span className="text-gray-700">{visit.chiefComplaint}</span>
             </div>
           </div>
 
           {vitals && (
-            <div className="bg-slate-900/80 p-2 rounded border border-slate-850 grid grid-cols-4 gap-1 text-[10px] font-mono text-slate-400 text-center">
+            <div className="bg-gray-50/80 p-2 rounded border border-gray-200 grid grid-cols-4 gap-1 text-[10px] font-mono text-gray-500 text-center">
               <div>
-                <span className="text-slate-500 block">Huyết Áp</span>
-                <span className="text-white font-bold">
+                <span className="text-gray-500 block">Huyết Áp</span>
+                <span className="text-gray-900 font-bold">
                   {vitals.bloodPressureSystolic}/{vitals.bloodPressureDiastolic}
                 </span>
               </div>
               <div>
-                <span className="text-slate-500 block">Nhịp Tim</span>
+                <span className="text-gray-500 block">Nhịp Tim</span>
                 <span className="text-sky-400 font-bold">{vitals.heartRate}</span>
               </div>
               <div>
-                <span className="text-slate-500 block">Nhiệt Độ</span>
+                <span className="text-gray-500 block">Nhiệt Độ</span>
                 <span className="text-emerald-400 font-bold">{vitals.temperature}°C</span>
               </div>
               <div>
-                <span className="text-slate-500 block">SpO2</span>
+                <span className="text-gray-500 block">SpO2</span>
                 <span className="text-rose-400 font-bold">{vitals.spo2}%</span>
               </div>
             </div>
           )}
 
-          <div className="pt-2 border-t border-slate-850 flex justify-end">
+          <div className="pt-2 border-t border-gray-200 flex justify-end">
             {visit.status === "WAITING" ? (
               <Button
                 size="sm"
@@ -246,7 +246,7 @@ export function ClinicQueue({ branchId, role }: ClinicQueueProps) {
             ) : (
               <Button
                 size="sm"
-                className="bg-emerald-600 hover:bg-emerald-500 text-white font-medium"
+                className="bg-emerald-600 hover:bg-emerald-500 text-gray-900 font-medium"
                 onClick={() => router.push(`/doctor/examination/${visit.id}`)}
               >
                 {visit.status === "IN_PROGRESS" ? "Khám tiếp" : "Xem hồ sơ / Kêt quả CLS"}
@@ -262,7 +262,7 @@ export function ClinicQueue({ branchId, role }: ClinicQueueProps) {
     <div className="space-y-6 text-left">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-xl font-bold text-white">Hàng đợi khám của bạn hôm nay</h2>
+          <h2 className="text-xl font-bold text-gray-900">Hàng đợi khám của bạn hôm nay</h2>
           <p className="text-sm text-slate-450 mt-0.5">
             Danh sách bệnh nhân đăng ký phòng khám đang hoạt động tại chi nhánh.
           </p>
@@ -271,7 +271,7 @@ export function ClinicQueue({ branchId, role }: ClinicQueueProps) {
           <Button
             size="sm"
             variant="outline"
-            className="border-slate-800 hover:bg-slate-900 text-slate-400 hover:text-white text-xs"
+            className="border-gray-200 hover:bg-gray-50 text-gray-500 hover:text-gray-900 text-xs"
             onClick={fetchQueue}
           >
             Làm mới hàng đợi
@@ -279,7 +279,7 @@ export function ClinicQueue({ branchId, role }: ClinicQueueProps) {
           <Button
             size="sm"
             variant="secondary"
-            className="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs"
+            className="bg-white hover:bg-gray-50 text-gray-700 text-xs"
             onClick={handleSeedInventory}
           >
             Nạp kho thuốc mẫu (Demo)
@@ -289,10 +289,10 @@ export function ClinicQueue({ branchId, role }: ClinicQueueProps) {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Column 1: WAITING for doctor */}
-        <Card className="border-slate-800 bg-slate-900/30 flex flex-col min-h-[500px]">
-          <CardHeader className="pb-3 border-b border-slate-850 bg-slate-950/20">
+        <Card className="border-gray-200 bg-gray-50/30 flex flex-col min-h-[500px]">
+          <CardHeader className="pb-3 border-b border-gray-200 bg-gray-50/20">
             <div className="flex justify-between items-center">
-              <CardTitle className="text-sm font-bold text-slate-200">Bệnh nhân chờ khám</CardTitle>
+              <CardTitle className="text-sm font-bold text-gray-700">Bệnh nhân chờ khám</CardTitle>
               <Badge className="bg-sky-500/10 text-sky-400 border border-sky-500/20 font-bold">
                 {waitingForDoc.length}
               </Badge>
@@ -300,7 +300,7 @@ export function ClinicQueue({ branchId, role }: ClinicQueueProps) {
           </CardHeader>
           <CardContent className="p-3 space-y-3 flex-1 overflow-y-auto">
             {waitingForDoc.length === 0 ? (
-              <p className="text-xs text-slate-500 text-center py-12">Không có bệnh nhân chờ khám</p>
+              <p className="text-xs text-gray-500 text-center py-12">Không có bệnh nhân chờ khám</p>
             ) : (
               waitingForDoc.map(renderPatientCard)
             )}
@@ -308,10 +308,10 @@ export function ClinicQueue({ branchId, role }: ClinicQueueProps) {
         </Card>
 
         {/* Column 2: IN PROGRESS */}
-        <Card className="border-slate-800 bg-slate-900/30 flex flex-col min-h-[500px]">
-          <CardHeader className="pb-3 border-b border-slate-850 bg-slate-950/20">
+        <Card className="border-gray-200 bg-gray-50/30 flex flex-col min-h-[500px]">
+          <CardHeader className="pb-3 border-b border-gray-200 bg-gray-50/20">
             <div className="flex justify-between items-center">
-              <CardTitle className="text-sm font-bold text-slate-200">Đang khám bệnh</CardTitle>
+              <CardTitle className="text-sm font-bold text-gray-700">Đang khám bệnh</CardTitle>
               <Badge className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
                 {activeExams.length}
               </Badge>
@@ -319,7 +319,7 @@ export function ClinicQueue({ branchId, role }: ClinicQueueProps) {
           </CardHeader>
           <CardContent className="p-3 space-y-3 flex-1 overflow-y-auto">
             {activeExams.length === 0 ? (
-              <p className="text-xs text-slate-500 text-center py-12">Không có bệnh nhân đang khám</p>
+              <p className="text-xs text-gray-500 text-center py-12">Không có bệnh nhân đang khám</p>
             ) : (
               activeExams.map(renderPatientCard)
             )}
@@ -327,10 +327,10 @@ export function ClinicQueue({ branchId, role }: ClinicQueueProps) {
         </Card>
 
         {/* Column 3: CLS PENDING */}
-        <Card className="border-slate-800 bg-slate-900/30 flex flex-col min-h-[500px]">
-          <CardHeader className="pb-3 border-b border-slate-850 bg-slate-950/20">
+        <Card className="border-gray-200 bg-gray-50/30 flex flex-col min-h-[500px]">
+          <CardHeader className="pb-3 border-b border-gray-200 bg-gray-50/20">
             <div className="flex justify-between items-center">
-              <CardTitle className="text-sm font-bold text-slate-200">Chờ kết quả cận lâm sàng (CLS)</CardTitle>
+              <CardTitle className="text-sm font-bold text-gray-700">Chờ kết quả cận lâm sàng (CLS)</CardTitle>
               <Badge className="bg-purple-500/10 text-purple-400 border border-purple-500/20 font-bold">
                 {clsPending.length}
               </Badge>
@@ -338,7 +338,7 @@ export function ClinicQueue({ branchId, role }: ClinicQueueProps) {
           </CardHeader>
           <CardContent className="p-3 space-y-3 flex-1 overflow-y-auto">
             {clsPending.length === 0 ? (
-              <p className="text-xs text-slate-500 text-center py-12">Không có bệnh nhân chờ CLS</p>
+              <p className="text-xs text-gray-500 text-center py-12">Không có bệnh nhân chờ CLS</p>
             ) : (
               clsPending.map(renderPatientCard)
             )}

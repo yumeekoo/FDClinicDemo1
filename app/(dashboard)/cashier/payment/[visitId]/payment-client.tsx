@@ -150,12 +150,12 @@ export function PaymentWorkspaceClient({ initialData }: PaymentWorkspaceClientPr
             variant="ghost"
             size="sm"
             onClick={() => router.push("/cashier")}
-            className="text-slate-400 hover:text-white border border-slate-800 hover:bg-slate-900 h-9 w-9 p-0"
+            className="text-gray-500 hover:text-gray-900 border border-gray-200 hover:bg-gray-50 h-9 w-9 p-0"
           >
             <ArrowLeft className="h-4 w-4" />
           </Button>
           <div>
-            <h1 className="text-2xl font-black text-white flex items-center gap-2">
+            <h1 className="text-2xl font-black text-gray-900 flex items-center gap-2">
               Duyệt hóa đơn: {patient.fullName}
               {invoice.status === "PAID" ? (
                 <Badge className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
@@ -167,7 +167,7 @@ export function PaymentWorkspaceClient({ initialData }: PaymentWorkspaceClientPr
                 </Badge>
               )}
             </h1>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-gray-500 mt-1">
               Số hóa đơn: {invoice.invoiceCode} • Bác sĩ khám: BS. {doctor.fullName}
             </p>
           </div>
@@ -176,7 +176,7 @@ export function PaymentWorkspaceClient({ initialData }: PaymentWorkspaceClientPr
         <div className="flex gap-2">
           <Button
             variant="outline"
-            className="border-slate-800 hover:bg-slate-900 text-slate-300 flex items-center gap-1.5"
+            className="border-gray-200 hover:bg-gray-50 text-gray-600 flex items-center gap-1.5"
             onClick={handlePrint}
           >
             <Printer className="h-4 w-4" />
@@ -187,7 +187,7 @@ export function PaymentWorkspaceClient({ initialData }: PaymentWorkspaceClientPr
             <Button
               disabled={isPending}
               onClick={handleConfirmPayment}
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 flex items-center gap-1.5"
+              className="bg-emerald-600 hover:bg-emerald-500 text-gray-900 font-bold px-6 flex items-center gap-1.5"
             >
               {isPending ? "Đang xử lý..." : (
                 <>
@@ -203,9 +203,9 @@ export function PaymentWorkspaceClient({ initialData }: PaymentWorkspaceClientPr
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 no-print">
         {/* Left Column: Details of bill items (2/3) */}
         <div className="lg:col-span-2 space-y-6">
-          <Card className="border-slate-800 bg-slate-900/40 backdrop-blur-xl">
-            <CardHeader className="py-3 px-4 border-b border-slate-850 bg-slate-950/20">
-              <CardTitle className="text-sm font-bold text-slate-200">
+          <Card className="border-gray-200 bg-gray-50/40 backdrop-blur-xl">
+            <CardHeader className="py-3 px-4 border-b border-gray-200 bg-gray-50/20">
+              <CardTitle className="text-sm font-bold text-gray-700">
                 Chi tiết các danh mục dịch vụ & sản phẩm thu phí
               </CardTitle>
             </CardHeader>
@@ -213,7 +213,7 @@ export function PaymentWorkspaceClient({ initialData }: PaymentWorkspaceClientPr
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-left">
                   <thead>
-                    <tr className="text-slate-500 border-b border-slate-850 bg-slate-950/10 text-xs">
+                    <tr className="text-gray-500 border-b border-gray-200 bg-gray-50/10 text-xs">
                       <th className="py-2.5 px-4 font-semibold">Phân loại</th>
                       <th className="py-2.5 px-4 font-semibold">Diễn giải dịch vụ / Thuốc</th>
                       <th className="py-2.5 px-4 font-semibold text-center">SL</th>
@@ -223,20 +223,20 @@ export function PaymentWorkspaceClient({ initialData }: PaymentWorkspaceClientPr
                   </thead>
                   <tbody>
                     {items.map((item) => (
-                      <tr key={item.id} className="border-b border-slate-900/50 hover:bg-slate-900/20 text-xs">
+                      <tr key={item.id} className="border-b border-slate-900/50 hover:bg-gray-50/20 text-xs">
                         <td className="py-3 px-4 font-medium text-slate-450">
                           {getItemTypeLabel(item.itemType)}
                         </td>
-                        <td className="py-3 px-4 text-slate-200 font-semibold">
+                        <td className="py-3 px-4 text-gray-700 font-semibold">
                           {item.description}
                         </td>
                         <td className="py-3 px-4 text-center font-mono">
                           {item.quantity}
                         </td>
-                        <td className="py-3 px-4 text-right font-mono text-slate-400">
+                        <td className="py-3 px-4 text-right font-mono text-gray-500">
                           {formatCurrency(parseFloat(item.unitPrice))}
                         </td>
-                        <td className="py-3 px-4 text-right font-mono font-bold text-slate-200">
+                        <td className="py-3 px-4 text-right font-mono font-bold text-gray-700">
                           {formatCurrency(parseFloat(item.amount))}
                         </td>
                       </tr>
@@ -250,31 +250,31 @@ export function PaymentWorkspaceClient({ initialData }: PaymentWorkspaceClientPr
 
         {/* Right Column: Checkout Calculation / Payment form (1/3) */}
         <div className="lg:col-span-1 space-y-6">
-          <Card className="border-slate-800 bg-slate-900/40 backdrop-blur-xl">
-            <CardHeader className="pb-3 border-b border-slate-850">
-              <CardTitle className="text-sm font-bold text-slate-200 uppercase tracking-wider">
+          <Card className="border-gray-200 bg-gray-50/40 backdrop-blur-xl">
+            <CardHeader className="pb-3 border-b border-gray-200">
+              <CardTitle className="text-sm font-bold text-gray-700 uppercase tracking-wider">
                 Thanh toán viện phí
               </CardTitle>
             </CardHeader>
             <CardContent className="p-4 space-y-4 text-xs">
               {/* Receipt Summary values */}
               <div className="space-y-2.5">
-                <div className="flex justify-between items-center text-slate-400">
+                <div className="flex justify-between items-center text-gray-500">
                   <span>Tổng chi phí (Subtotal):</span>
-                  <strong className="font-mono text-sm text-slate-200">
+                  <strong className="font-mono text-sm text-gray-700">
                     {formatCurrency(subtotal)}
                   </strong>
                 </div>
 
                 {invoice.status === "PAID" ? (
                   <>
-                    <div className="flex justify-between items-center text-slate-400">
+                    <div className="flex justify-between items-center text-gray-500">
                       <span>Miễn giảm / Ưu đãi:</span>
                       <span className="font-mono text-sm text-rose-400 font-semibold">
                         -{formatCurrency(discountAmount)}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center text-slate-400">
+                    <div className="flex justify-between items-center text-gray-500">
                       <span>Bảo hiểm chi trả (BHYT):</span>
                       <span className="font-mono text-sm text-emerald-400 font-semibold">
                         -{formatCurrency(bhytAmount)}
@@ -292,7 +292,7 @@ export function PaymentWorkspaceClient({ initialData }: PaymentWorkspaceClientPr
                           type="number"
                           value={discountAmount || ""}
                           onChange={(e) => setDiscountAmount(parseFloat(e.target.value) || 0)}
-                          className="bg-slate-950 border-slate-800 text-white pl-8 font-mono"
+                          className="bg-gray-50 border-gray-200 text-gray-900 pl-8 font-mono"
                           placeholder="0"
                         />
                         <DollarSign className="absolute left-2.5 top-2.5 h-4 w-4 text-slate-600" />
@@ -308,7 +308,7 @@ export function PaymentWorkspaceClient({ initialData }: PaymentWorkspaceClientPr
                           type="number"
                           value={bhytAmount || ""}
                           onChange={(e) => setBhytAmount(parseFloat(e.target.value) || 0)}
-                          className="bg-slate-950 border-slate-800 text-white pl-8 font-mono"
+                          className="bg-gray-50 border-gray-200 text-gray-900 pl-8 font-mono"
                           placeholder="0"
                         />
                         <DollarSign className="absolute left-2.5 top-2.5 h-4 w-4 text-slate-600" />
@@ -317,10 +317,10 @@ export function PaymentWorkspaceClient({ initialData }: PaymentWorkspaceClientPr
                   </>
                 )}
 
-                <Separator className="bg-slate-850 my-2" />
+                <Separator className="bg-gray-100 my-2" />
 
-                <div className="flex justify-between items-center py-1 bg-slate-950/40 p-2.5 rounded border border-slate-850">
-                  <span className="text-sm font-bold text-slate-300">Tổng thực thu:</span>
+                <div className="flex justify-between items-center py-1 bg-gray-50/40 p-2.5 rounded border border-gray-200">
+                  <span className="text-sm font-bold text-gray-600">Tổng thực thu:</span>
                   <strong className="font-mono text-lg text-emerald-400 font-black">
                     {formatCurrency(totalAmount)}
                   </strong>
@@ -339,7 +339,7 @@ export function PaymentWorkspaceClient({ initialData }: PaymentWorkspaceClientPr
                         className={`p-2.5 rounded-lg border text-center flex flex-col items-center gap-1.5 transition ${
                           paymentMethod === "CASH"
                             ? "bg-blue-600/10 border-blue-500 text-white"
-                            : "bg-slate-950 border-slate-850 hover:bg-slate-900/50 text-slate-400"
+                            : "bg-gray-50 border-gray-200 hover:bg-gray-50/50 text-gray-500"
                         }`}
                       >
                         <Coins className="h-4.5 w-4.5" />
@@ -351,7 +351,7 @@ export function PaymentWorkspaceClient({ initialData }: PaymentWorkspaceClientPr
                         className={`p-2.5 rounded-lg border text-center flex flex-col items-center gap-1.5 transition ${
                           paymentMethod === "CARD"
                             ? "bg-blue-600/10 border-blue-500 text-white"
-                            : "bg-slate-950 border-slate-850 hover:bg-slate-900/50 text-slate-400"
+                            : "bg-gray-50 border-gray-200 hover:bg-gray-50/50 text-gray-500"
                         }`}
                       >
                         <CreditCard className="h-4.5 w-4.5" />
@@ -363,7 +363,7 @@ export function PaymentWorkspaceClient({ initialData }: PaymentWorkspaceClientPr
                         className={`p-2.5 rounded-lg border text-center flex flex-col items-center gap-1.5 transition ${
                           paymentMethod === "TRANSFER"
                             ? "bg-blue-600/10 border-blue-500 text-white"
-                            : "bg-slate-950 border-slate-850 hover:bg-slate-900/50 text-slate-400"
+                            : "bg-gray-50 border-gray-200 hover:bg-gray-50/50 text-gray-500"
                         }`}
                       >
                         <Landmark className="h-4.5 w-4.5" />
@@ -375,7 +375,7 @@ export function PaymentWorkspaceClient({ initialData }: PaymentWorkspaceClientPr
                   <Button
                     disabled={isPending}
                     onClick={handleConfirmPayment}
-                    className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 mt-2 flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full bg-emerald-600 hover:bg-emerald-500 text-gray-900 font-bold py-2.5 mt-2 flex items-center justify-center gap-2 cursor-pointer"
                   >
                     {isPending ? "Đang xử lý thanh toán..." : (
                       <>
@@ -391,14 +391,14 @@ export function PaymentWorkspaceClient({ initialData }: PaymentWorkspaceClientPr
                     <Check className="h-4 w-4" />
                     ĐÃ THANH TOÁN THÀNH CÔNG
                   </div>
-                  <Separator className="bg-slate-850/50 my-1" />
+                  <Separator className="bg-gray-100/50 my-1" />
                   <div>
-                    <span className="text-slate-500">Hình thức: </span>
-                    <span className="font-semibold text-slate-200">{getPaymentMethodLabel(payment?.method || "CASH")}</span>
+                    <span className="text-gray-500">Hình thức: </span>
+                    <span className="font-semibold text-gray-700">{getPaymentMethodLabel(payment?.method || "CASH")}</span>
                   </div>
                   <div>
-                    <span className="text-slate-500">Thời gian: </span>
-                    <span className="text-slate-200">
+                    <span className="text-gray-500">Thời gian: </span>
+                    <span className="text-gray-700">
                       {invoice.paidAt ? new Date(invoice.paidAt).toLocaleString("vi-VN") : "Hôm nay"}
                     </span>
                   </div>

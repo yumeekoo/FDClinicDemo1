@@ -103,43 +103,43 @@ export function BranchesClient({ initialBranches }: BranchesClientProps) {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-extrabold text-white">Quản lý Chi nhánh</h2>
-          <p className="text-sm text-slate-400">Danh sách và cấu hình các chi nhánh trong hệ thống</p>
+          <h2 className="text-2xl font-extrabold text-gray-900">Quản lý Chi nhánh</h2>
+          <p className="text-sm text-gray-500">Danh sách và cấu hình các chi nhánh trong hệ thống</p>
         </div>
         <Button
           onClick={openAddModal}
-          className="bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 text-white font-semibold text-xs py-2 px-4 rounded-xl shadow-lg shadow-blue-500/10"
+          className="bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 text-gray-900 font-semibold text-xs py-2 px-4 rounded-xl shadow-lg shadow-blue-500/10"
         >
           Thêm Chi nhánh
         </Button>
       </div>
 
-      <div className="rounded-2xl border border-slate-800 bg-slate-900/40 backdrop-blur-xl overflow-hidden">
+      <div className="rounded-2xl border border-gray-200 bg-gray-50/40 backdrop-blur-xl overflow-hidden">
         <Table>
-          <TableHeader className="bg-slate-950/40">
-            <TableRow className="border-slate-800">
-              <TableHead className="text-slate-400 font-bold">Mã</TableHead>
-              <TableHead className="text-slate-400 font-bold">Tên chi nhánh</TableHead>
-              <TableHead className="text-slate-400 font-bold">Điện thoại</TableHead>
-              <TableHead className="text-slate-400 font-bold">Địa chỉ</TableHead>
-              <TableHead className="text-slate-400 font-bold text-center">Trạng thái</TableHead>
-              <TableHead className="text-slate-400 font-bold text-right">Thao tác</TableHead>
+          <TableHeader className="bg-gray-50/40">
+            <TableRow className="border-gray-200">
+              <TableHead className="text-gray-500 font-bold">Mã</TableHead>
+              <TableHead className="text-gray-500 font-bold">Tên chi nhánh</TableHead>
+              <TableHead className="text-gray-500 font-bold">Điện thoại</TableHead>
+              <TableHead className="text-gray-500 font-bold">Địa chỉ</TableHead>
+              <TableHead className="text-gray-500 font-bold text-center">Trạng thái</TableHead>
+              <TableHead className="text-gray-500 font-bold text-right">Thao tác</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {branches.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={6} className="text-center text-slate-500 py-8">
+                <TableCell colSpan={6} className="text-center text-gray-500 py-8">
                   Không tìm thấy chi nhánh nào
                 </TableCell>
               </TableRow>
             ) : (
               branches.map((b) => (
-                <TableRow key={b.id} className="border-slate-800/60 hover:bg-slate-800/10 transition">
+                <TableRow key={b.id} className="border-gray-200/60 hover:bg-white/10 transition">
                   <TableCell className="font-mono text-xs text-blue-400">{b.code}</TableCell>
-                  <TableCell className="font-semibold text-white text-xs">{b.name}</TableCell>
-                  <TableCell className="text-slate-300 text-xs">{b.phone}</TableCell>
-                  <TableCell className="text-slate-400 text-xs truncate max-w-xs" title={b.address}>
+                  <TableCell className="font-semibold text-gray-900 text-xs">{b.name}</TableCell>
+                  <TableCell className="text-gray-600 text-xs">{b.phone}</TableCell>
+                  <TableCell className="text-gray-500 text-xs truncate max-w-xs" title={b.address}>
                     {b.address}
                   </TableCell>
                   <TableCell className="text-center">
@@ -173,26 +173,26 @@ export function BranchesClient({ initialBranches }: BranchesClientProps) {
 
       {/* Add/Edit Modal */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="bg-slate-900 border-slate-800 text-white max-w-md">
+        <DialogContent className="bg-gray-50 border-gray-200 text-gray-900 max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-lg font-bold text-white">
+            <DialogTitle className="text-lg font-bold text-gray-900">
               {editingBranch ? "Sửa thông tin chi nhánh" : "Thêm chi nhánh mới"}
             </DialogTitle>
-            <DialogDescription className="text-slate-400 text-xs">
+            <DialogDescription className="text-gray-500 text-xs">
               Điền thông tin chi nhánh vào form dưới đây.
             </DialogDescription>
           </DialogHeader>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-1">
-              <Label htmlFor="code" className="text-xs font-semibold text-slate-300">
+              <Label htmlFor="code" className="text-xs font-semibold text-gray-600">
                 Mã chi nhánh
               </Label>
               <Input
                 id="code"
                 placeholder="Ví dụ: CHI_NHANH_1"
                 disabled={!!editingBranch || isPending}
-                className="bg-slate-950 border-slate-800 text-xs text-white rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
+                className="bg-gray-50 border-gray-200 text-xs text-gray-900 rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
                 {...register("code", { required: "Vui lòng nhập mã chi nhánh" })}
               />
               {errors.code && (
@@ -201,14 +201,14 @@ export function BranchesClient({ initialBranches }: BranchesClientProps) {
             </div>
 
             <div className="space-y-1">
-              <Label htmlFor="name" className="text-xs font-semibold text-slate-300">
+              <Label htmlFor="name" className="text-xs font-semibold text-gray-600">
                 Tên chi nhánh
               </Label>
               <Input
                 id="name"
                 placeholder="Ví dụ: Clinic Hub Quận 1"
                 disabled={isPending}
-                className="bg-slate-950 border-slate-800 text-xs text-white rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
+                className="bg-gray-50 border-gray-200 text-xs text-gray-900 rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
                 {...register("name", { required: "Vui lòng nhập tên chi nhánh" })}
               />
               {errors.name && (
@@ -217,14 +217,14 @@ export function BranchesClient({ initialBranches }: BranchesClientProps) {
             </div>
 
             <div className="space-y-1">
-              <Label htmlFor="phone" className="text-xs font-semibold text-slate-300">
+              <Label htmlFor="phone" className="text-xs font-semibold text-gray-600">
                 Số điện thoại liên hệ
               </Label>
               <Input
                 id="phone"
                 placeholder="Ví dụ: 0281234567"
                 disabled={isPending}
-                className="bg-slate-950 border-slate-800 text-xs text-white rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
+                className="bg-gray-50 border-gray-200 text-xs text-gray-900 rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
                 {...register("phone", {
                   required: "Vui lòng nhập số điện thoại",
                   pattern: {
@@ -239,14 +239,14 @@ export function BranchesClient({ initialBranches }: BranchesClientProps) {
             </div>
 
             <div className="space-y-1">
-              <Label htmlFor="address" className="text-xs font-semibold text-slate-300">
+              <Label htmlFor="address" className="text-xs font-semibold text-gray-600">
                 Địa chỉ chi nhánh
               </Label>
               <Input
                 id="address"
                 placeholder="Ví dụ: 123 Đường Nguyễn Huệ, Quận 1, TP. HCM"
                 disabled={isPending}
-                className="bg-slate-950 border-slate-800 text-xs text-white rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
+                className="bg-gray-50 border-gray-200 text-xs text-gray-900 rounded-xl placeholder-slate-600 focus:ring-1 focus:ring-blue-500"
                 {...register("address", { required: "Vui lòng nhập địa chỉ" })}
               />
               {errors.address && (
@@ -259,28 +259,28 @@ export function BranchesClient({ initialBranches }: BranchesClientProps) {
                 type="checkbox"
                 id="isActive"
                 disabled={isPending}
-                className="h-4 w-4 rounded border-slate-800 bg-slate-950 text-blue-600 focus:ring-blue-500 focus:ring-offset-slate-900"
+                className="h-4 w-4 rounded border-gray-200 bg-gray-50 text-blue-600 focus:ring-blue-500 focus:ring-offset-slate-900"
                 {...register("isActive")}
               />
-              <Label htmlFor="isActive" className="text-xs text-slate-300 select-none cursor-pointer">
+              <Label htmlFor="isActive" className="text-xs text-gray-600 select-none cursor-pointer">
                 Chi nhánh hoạt động bình thường
               </Label>
             </div>
 
-            <DialogFooter className="pt-4 border-t border-slate-800/60">
+            <DialogFooter className="pt-4 border-t border-gray-200/60">
               <Button
                 type="button"
                 variant="ghost"
                 onClick={() => setIsOpen(false)}
                 disabled={isPending}
-                className="text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl text-xs h-10"
+                className="text-gray-500 hover:text-gray-900 hover:bg-white rounded-xl text-xs h-10"
               >
                 Hủy
               </Button>
               <Button
                 type="submit"
                 disabled={isPending}
-                className="bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 text-white font-semibold text-xs h-10 rounded-xl px-6"
+                className="bg-gradient-to-r from-blue-600 to-emerald-600 hover:from-blue-500 hover:to-emerald-500 text-gray-900 font-semibold text-xs h-10 rounded-xl px-6"
               >
                 {isPending ? "Đang xử lý..." : editingBranch ? "Cập nhật" : "Tạo mới"}
               </Button>

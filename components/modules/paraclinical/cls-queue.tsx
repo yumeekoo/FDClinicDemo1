@@ -115,8 +115,8 @@ export function ClsQueue({ branchId }: ClsQueueProps) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[1, 2, 3].map((i) => (
-          <Card key={i} className="border-slate-800 bg-slate-900/40 animate-pulse">
-            <CardHeader className="h-16 border-b border-slate-850" />
+          <Card key={i} className="border-gray-200 bg-gray-50/40 animate-pulse">
+            <CardHeader className="h-16 border-b border-gray-200" />
             <CardContent className="h-64" />
           </Card>
         ))}
@@ -144,7 +144,7 @@ export function ClsQueue({ branchId }: ClsQueueProps) {
     return (
       <Card
         key={order.id}
-        className="border-slate-800 bg-slate-950/40 hover:bg-slate-900/50 transition duration-150 relative overflow-hidden group"
+        className="border-gray-200 bg-gray-50/40 hover:bg-gray-50/50 transition duration-150 relative overflow-hidden group"
       >
         {/* State strip */}
         <div
@@ -161,36 +161,36 @@ export function ClsQueue({ branchId }: ClsQueueProps) {
         <CardContent className="p-4 pl-5 space-y-3">
           <div className="flex justify-between items-start">
             <div className="space-y-1">
-              <span className="text-[10px] text-slate-500 font-mono block">
+              <span className="text-[10px] text-gray-500 font-mono block">
                 {order.orderCode}
               </span>
-              <h4 className="font-bold text-white text-sm group-hover:text-blue-400 transition">
+              <h4 className="font-bold text-gray-900 text-sm group-hover:text-blue-400 transition">
                 {patient.fullName}
               </h4>
-              <p className="text-[10px] text-slate-400">
+              <p className="text-[10px] text-gray-500">
                 {patient.gender === "MALE" ? "Nam" : patient.gender === "FEMALE" ? "Nữ" : "Khác"} • {new Date(patient.dateOfBirth).toLocaleDateString("vi-VN")}
               </p>
             </div>
             <div className="flex flex-col items-end gap-1.5">
-              <span className="text-[10px] text-slate-500">{timeAgo}</span>
+              <span className="text-[10px] text-gray-500">{timeAgo}</span>
               {isUrgent ? (
                 <Badge className="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[9px] font-bold py-0 px-1.5 animate-pulse">
                   KHẨN CẤP
                 </Badge>
               ) : (
-                <Badge className="bg-slate-800 text-slate-400 border border-slate-700 text-[9px] font-bold py-0 px-1.5">
+                <Badge className="bg-white text-gray-500 border border-gray-200 text-[9px] font-bold py-0 px-1.5">
                   Thường
                 </Badge>
               )}
             </div>
           </div>
 
-          <div className="p-2.5 rounded bg-slate-900/80 border border-slate-850/50 space-y-1">
-            <div className="text-xs font-semibold text-slate-200 flex items-start gap-1">
-              <span className="text-slate-500">Chỉ định:</span>
+          <div className="p-2.5 rounded bg-gray-50/80 border border-gray-200/50 space-y-1">
+            <div className="text-xs font-semibold text-gray-700 flex items-start gap-1">
+              <span className="text-gray-500">Chỉ định:</span>
               <span>{order.serviceName}</span>
             </div>
-            <div className="text-[10px] text-slate-400 flex justify-between">
+            <div className="text-[10px] text-gray-500 flex justify-between">
               <div>
                 <span className="text-slate-650">Bác sĩ: </span>
                 <span className="font-semibold">{doctor.fullName}</span>
@@ -200,7 +200,7 @@ export function ClsQueue({ branchId }: ClsQueueProps) {
               </Badge>
             </div>
             {order.notes && (
-              <div className="text-[10px] text-slate-500 italic pt-1 border-t border-slate-850/30">
+              <div className="text-[10px] text-gray-500 italic pt-1 border-t border-gray-200/30">
                 Ghi chú: {order.notes}
               </div>
             )}
@@ -212,23 +212,23 @@ export function ClsQueue({ branchId }: ClsQueueProps) {
                 <CheckCircle2 className="h-3.5 w-3.5" />
                 <span>Kết quả: {result.isAbnormal ? "BẤT THƯỜNG" : "Bình thường"}</span>
               </div>
-              <p className="line-clamp-2 text-[10px] text-slate-400 italic">
+              <p className="line-clamp-2 text-[10px] text-gray-500 italic">
                 "{result.resultText}"
               </p>
               {result.fileUrls && result.fileUrls.length > 0 && (
-                <span className="text-[9px] text-slate-500 font-mono block">
+                <span className="text-[9px] text-gray-500 font-mono block">
                   Đính kèm: {result.fileUrls.length} file
                 </span>
               )}
             </div>
           )}
 
-          <div className="pt-2 border-t border-slate-850 flex justify-end gap-2">
+          <div className="pt-2 border-t border-gray-200 flex justify-end gap-2">
             {order.status === "PENDING" && (
               <Button
                 size="sm"
                 disabled={isPending}
-                className="bg-amber-600 hover:bg-amber-500 text-white font-medium text-xs flex items-center gap-1"
+                className="bg-amber-600 hover:bg-amber-500 text-gray-900 font-medium text-xs flex items-center gap-1"
                 onClick={() => handleStartCls(order.id)}
               >
                 <Play className="h-3 w-3" />
@@ -251,7 +251,7 @@ export function ClsQueue({ branchId }: ClsQueueProps) {
               <Button
                 size="sm"
                 variant="outline"
-                className="border-slate-800 hover:bg-slate-900 text-slate-300 font-medium text-xs flex items-center gap-1"
+                className="border-gray-200 hover:bg-gray-50 text-gray-600 font-medium text-xs flex items-center gap-1"
                 onClick={() => router.push(`/paraclinical/order/${order.id}`)}
               >
                 <FileText className="h-3 w-3" />
@@ -269,19 +269,19 @@ export function ClsQueue({ branchId }: ClsQueueProps) {
       {/* Search and refresh tools */}
       <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
         <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-2.5 h-4.5 w-4.5 text-slate-500" />
+          <Search className="absolute left-3 top-2.5 h-4.5 w-4.5 text-gray-500" />
           <Input
             placeholder="Tìm theo tên BN, mã BN, tên dịch vụ..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-9 bg-slate-900/60 border-slate-800 text-white"
+            className="pl-9 bg-gray-50/60 border-gray-200 text-gray-900"
           />
         </div>
         <div className="flex gap-2">
           <Button
             size="sm"
             variant="outline"
-            className="border-slate-800 hover:bg-slate-900 text-slate-400 hover:text-white text-xs"
+            className="border-gray-200 hover:bg-gray-50 text-gray-500 hover:text-gray-900 text-xs"
             onClick={fetchQueue}
           >
             Làm mới hàng đợi
@@ -294,7 +294,7 @@ export function ClsQueue({ branchId }: ClsQueueProps) {
         {/* Column 1: WAITING / PENDING */}
         <div className="space-y-4">
           <div className="flex items-center justify-between px-1">
-            <h3 className="text-sm font-bold text-slate-300 flex items-center gap-2">
+            <h3 className="text-sm font-bold text-gray-600 flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-amber-500" />
               Chờ thực hiện
             </h3>
@@ -304,7 +304,7 @@ export function ClsQueue({ branchId }: ClsQueueProps) {
           </div>
           <div className="space-y-3 overflow-y-auto max-h-[70vh] pr-1">
             {pendingOrders.length === 0 ? (
-              <Card className="border-dashed border-slate-800 bg-slate-900/10 py-10 text-center text-xs text-slate-500">
+              <Card className="border-dashed border-gray-200 bg-gray-50/10 py-10 text-center text-xs text-gray-500">
                 <AlertCircle className="h-6.5 w-6.5 mx-auto mb-2 text-slate-600" />
                 Không có y lệnh chờ thực hiện
               </Card>
@@ -317,7 +317,7 @@ export function ClsQueue({ branchId }: ClsQueueProps) {
         {/* Column 2: IN_PROGRESS */}
         <div className="space-y-4">
           <div className="flex items-center justify-between px-1">
-            <h3 className="text-sm font-bold text-slate-300 flex items-center gap-2">
+            <h3 className="text-sm font-bold text-gray-600 flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-blue-500 animate-pulse" />
               Đang thực hiện
             </h3>
@@ -327,7 +327,7 @@ export function ClsQueue({ branchId }: ClsQueueProps) {
           </div>
           <div className="space-y-3 overflow-y-auto max-h-[70vh] pr-1">
             {inProgressOrders.length === 0 ? (
-              <Card className="border-dashed border-slate-800 bg-slate-900/10 py-10 text-center text-xs text-slate-500">
+              <Card className="border-dashed border-gray-200 bg-gray-50/10 py-10 text-center text-xs text-gray-500">
                 <AlertCircle className="h-6.5 w-6.5 mx-auto mb-2 text-slate-600" />
                 Không có y lệnh đang thực hiện
               </Card>
@@ -340,7 +340,7 @@ export function ClsQueue({ branchId }: ClsQueueProps) {
         {/* Column 3: COMPLETED */}
         <div className="space-y-4">
           <div className="flex items-center justify-between px-1">
-            <h3 className="text-sm font-bold text-slate-300 flex items-center gap-2">
+            <h3 className="text-sm font-bold text-gray-600 flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-emerald-500" />
               Đã hoàn tất hôm nay
             </h3>
@@ -350,7 +350,7 @@ export function ClsQueue({ branchId }: ClsQueueProps) {
           </div>
           <div className="space-y-3 overflow-y-auto max-h-[70vh] pr-1">
             {completedOrders.length === 0 ? (
-              <Card className="border-dashed border-slate-800 bg-slate-900/10 py-10 text-center text-xs text-slate-500">
+              <Card className="border-dashed border-gray-200 bg-gray-50/10 py-10 text-center text-xs text-gray-500">
                 <AlertCircle className="h-6.5 w-6.5 mx-auto mb-2 text-slate-600" />
                 Chưa có y lệnh nào hoàn tất hôm nay
               </Card>
