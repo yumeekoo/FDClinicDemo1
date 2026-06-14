@@ -1,10 +1,12 @@
 "use client";
 
-import React, { useState, useEffect, useTransition } from "react";
-import { ComboChart } from "@/components/modules/admin/combo-chart";
-import { DonutChart } from "@/components/modules/admin/donut-chart";
+import React, { useState, useTransition } from "react";
+import dynamic from "next/dynamic";
 import { getAdminStatsAction } from "@/actions/admin";
 import { toast } from "sonner";
+
+const ComboChart = dynamic(() => import("@/components/modules/admin/combo-chart").then(m => m.ComboChart), { ssr: false, loading: () => <div className="h-80 rounded-2xl bg-slate-100/50 animate-pulse border border-slate-200"></div> });
+const DonutChart = dynamic(() => import("@/components/modules/admin/donut-chart").then(m => m.DonutChart), { ssr: false, loading: () => <div className="h-80 rounded-2xl bg-slate-100/50 animate-pulse border border-slate-200"></div> });
 
 interface AdminClientProps {
   initialStats: any;

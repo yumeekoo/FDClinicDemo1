@@ -1,4 +1,4 @@
-import { pgTable, uuid, varchar, decimal, date, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, uuid, varchar, decimal, date, timestamp, index } from "drizzle-orm/pg-core";
 import { branches } from "./branches";
 
 export const inventoryItems = pgTable("inventory_items", {
@@ -16,4 +16,8 @@ export const inventoryItems = pgTable("inventory_items", {
   receivedAt: timestamp("received_at").defaultNow().notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (t) => {
+  return [
+    index("inventory_branch_expiry_idx").on(t.branchId, t.expiryDate),
+  ];
 });

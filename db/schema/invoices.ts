@@ -1,4 +1,4 @@
-import { pgTable, uuid, varchar, decimal, timestamp, pgEnum, integer } from "drizzle-orm/pg-core";
+import { pgTable, uuid, varchar, decimal, timestamp, pgEnum, integer, index } from "drizzle-orm/pg-core";
 import { visits } from "./visits";
 import { branches } from "./branches";
 
@@ -36,6 +36,11 @@ export const invoices = pgTable("invoices", {
   paidAt: timestamp("paid_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (t) => {
+  return [
+    index("invoices_branch_paid_idx").on(t.branchId, t.paidAt),
+    index("invoices_status_idx").on(t.status),
+  ];
 });
 
 export const invoiceItems = pgTable("invoice_items", {

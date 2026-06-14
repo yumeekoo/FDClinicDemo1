@@ -1,4 +1,4 @@
-import { pgTable, uuid, varchar, text, timestamp, pgEnum } from "drizzle-orm/pg-core";
+import { pgTable, uuid, varchar, text, timestamp, pgEnum, index } from "drizzle-orm/pg-core";
 import { patients } from "./patients";
 import { branches } from "./branches";
 import { profiles } from "./users";
@@ -36,4 +36,9 @@ export const visits = pgTable("visits", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
   deletedAt: timestamp("deleted_at"),
+}, (t) => {
+  return [
+    index("visits_branch_created_idx").on(t.branchId, t.createdAt),
+    index("visits_status_idx").on(t.status),
+  ];
 });

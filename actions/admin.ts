@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { branchSchema, BranchInput, employeeSchema, EmployeeInput } from "@/lib/validations/admin";
 import { revalidatePath } from "next/cache";
+import { getDashboardStats } from "@/services/admin.service";
 
 type ActionResult<T> =
   | { success: true; data: T }
@@ -32,138 +33,11 @@ export async function getAdminStatsAction(selectedBranchId?: string): Promise<Ac
       targetBranchId = userBranchId;
     }
 
-    const todayStart = new Date();
-    todayStart.setHours(0, 0, 0, 0);
-    const todayEnd = new Date();
-    todayEnd.setHours(23, 59, 59, 999);
-
-    // 1. Fetch visits count today
-    const visitsConditions = [
-      gte(visits.createdAt, todayStart),
-      lte(visits.createdAt, todayEnd),
-      isNull(visits.deletedAt)
-    ];
-    if (targetBranchId) {
-      visitsConditions.push(eq(visits.branchId, targetBranchId));
-    }
-    const [{ count: visitsToday }] = await db
-      .select({ count: sql<number>`count(*)` })
-      .from(visits)
-      .where(and(...visitsConditions));
-
-    // 2. Fetch revenue today
-    const revenueConditions = [
-      eq(invoices.status, "PAID"),
-      gte(invoices.paidAt, todayStart),
-      lte(invoices.paidAt, todayEnd)
-    ];
-    if (targetBranchId) {
-      revenueConditions.push(eq(invoices.branchId, targetBranchId));
-    }
-    const [{ sum: revenueRaw }] = await db
-      .select({ sum: sql<string>`sum(cast(total_amount as decimal))` })
-      .from(invoices)
-      .where(and(...revenueConditions));
-    const revenueToday = parseFloat(revenueRaw || "0");
-
-    // 3. Drug status (Donut)
-    const now = new Date();
-    const sixMonthsLater = new Date();
-    sixMonthsLater.setMonth(now.getMonth() + 6);
-
-    const inventoryConditions = [
-      sql`cast(${inventoryItems.quantityInStock} as decimal) > 0.00`
-    ];
-    if (targetBranchId) {
-      inventoryConditions.push(eq(inventoryItems.branchId, targetBranchId));
-    }
-    const items = await db
-      .select({
-        id: inventoryItems.id,
-        expiryDate: inventoryItems.expiryDate,
-        quantity: inventoryItems.quantityInStock,
-      })
-      .from(inventoryItems)
-      .where(and(...inventoryConditions));
-
-    let expiredCount = 0;
-    let warningCount = 0;
-    let normalCount = 0;
-
-    items.forEach((item) => {
-      if (!item.expiryDate) {
-        normalCount++;
-        return;
-      }
-      const exp = new Date(item.expiryDate);
-      if (exp <= now) {
-        expiredCount++;
-      } else if (exp <= sixMonthsLater) {
-        warningCount++;
-      } else {
-        normalCount++;
-      }
-    });
-
-    // 4. Trend (last 7 days)
-    const trendData: any[] = [];
-    for (let i = 6; i >= 0; i--) {
-      const dStart = new Date();
-      dStart.setDate(dStart.getDate() - i);
-      dStart.setHours(0, 0, 0, 0);
-
-      const dEnd = new Date();
-      dEnd.setDate(dEnd.getDate() - i);
-      dEnd.setHours(23, 59, 59, 999);
-
-      const dayVisitsConditions = [
-        gte(visits.createdAt, dStart),
-        lte(visits.createdAt, dEnd),
-        isNull(visits.deletedAt)
-      ];
-      if (targetBranchId) {
-        dayVisitsConditions.push(eq(visits.branchId, targetBranchId));
-      }
-      const [{ count: dayVisits }] = await db
-        .select({ count: sql<number>`count(*)` })
-        .from(visits)
-        .where(and(...dayVisitsConditions));
-
-      const dayRevConditions = [
-        eq(invoices.status, "PAID"),
-        gte(invoices.paidAt, dStart),
-        lte(invoices.paidAt, dEnd)
-      ];
-      if (targetBranchId) {
-        dayRevConditions.push(eq(invoices.branchId, targetBranchId));
-      }
-      const [{ sum: dayRevRaw }] = await db
-        .select({ sum: sql<string>`sum(cast(total_amount as decimal))` })
-        .from(invoices)
-        .where(and(...dayRevConditions));
-      const dayRev = parseFloat(dayRevRaw || "0");
-
-      const dayLabel = `${dStart.getDate().toString().padStart(2, "0")}/${(dStart.getMonth() + 1).toString().padStart(2, "0")}`;
-      trendData.push({
-        date: dayLabel,
-        visits: dayVisits,
-        revenue: dayRev,
-      });
-    }
+    const data = await getDashboardStats(targetBranchId);
 
     return {
       success: true,
-      data: {
-        visitsToday,
-        revenueToday,
-        inventoryStats: {
-          normal: normalCount,
-          warning: warningCount,
-          expired: expiredCount,
-          total: items.length,
-        },
-        trendData,
-      },
+      data,
     };
   } catch (error: any) {
     return { success: false, error: error.message || "Lỗi khi lấy thống kê" };
