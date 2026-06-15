@@ -4,6 +4,8 @@ import { db } from "./index";
 import { branches, profiles, inventoryItems } from "./schema";
 import { supabaseAdmin } from "../lib/supabase/admin";
 import { eq } from "drizzle-orm";
+import { fakerVI as faker } from "@faker-js/faker";
+import { patients, patientBranchLinks, visits } from "./schema";
 
 async function main() {
   console.log("🌱 Bắt đầu nạp dữ liệu mẫu (Seeding)...");
@@ -207,6 +209,60 @@ async function main() {
     });
   }
   console.log("✅ Đã nạp thành công kho thuốc chi nhánh Hà Nội phục vụ cho quy trình FEFO.");
+
+  // 4. Sinh dữ liệu 60 bệnh nhân và Lượt khám
+  console.log("🧬 Bắt đầu sinh 60 bệnh nhân và lịch sử khám...");
+  
+  // Lấy ID thật của Bác sĩ và Lễ tân HN/HCM
+  const bsHN = authUsersList.find(u => u.email === "doctor@clinichub.vn")?.id;
+  const ltHN = authUsersList.find(u => u.email === "receptionist@clinichub.vn")?.id;
+  
+  // Xóa cũ để seed lại an toàn
+  await db.delete(visits).where(eq(visits.branchId, branchHNId));
+  await db.delete(patientBranchLinks).where(eq(patientBranchLinks.branchId, branchHNId));
+  await db.delete(patients).where(eq(patients.primaryBranchId, branchHNId));
+
+  for (let i = 0; i < 60; i++) {
+    const branchId = i < 30 ? branchHNId : branchHCMId;
+    const dId = bsHN;
+    const rId = ltHN;
+    
+    if(!dId || !rId) continue;
+
+    const phone = '09' + faker.string.numeric(8);
+    const pCode = `BN-${Date.now()}-${i}`;
+    
+    const [patient] = await db.insert(patients).values({
+      patientCode: pCode,
+      fullName: faker.person.fullName(),
+      dateOfBirth: faker.date.birthdate({ min: 5, max: 80, mode: 'age' }),
+      gender: faker.helpers.arrayElement(["MALE", "FEMALE"]),
+      phone: phone,
+      cccd: faker.string.numeric(12),
+      address: faker.location.streetAddress(),
+      primaryBranchId: branchId,
+    }).returning();
+    
+    await db.insert(patientBranchLinks).values({
+      patientId: patient.id,
+      branchId: branchId,
+      visitCount: 1,
+      isPrimary: true,
+    });
+    
+    const statuses = ["WAITING", "IN_PROGRESS", "CLS_PENDING", "COMPLETED", "PAID"];
+    await db.insert(visits).values({
+      visitCode: `KH-${Date.now()}-${i}`,
+      patientId: patient.id,
+      branchId: branchId,
+      doctorId: dId,
+      receptionistId: rId,
+      status: faker.helpers.arrayElement(statuses) as any,
+      chiefComplaint: faker.lorem.sentence(),
+      medicalHistory: faker.lorem.sentence(),
+    });
+  }
+  console.log("✅ Đã sinh xong 60 bệnh nhân và lượt khám ngẫu nhiên.");
 
   console.log("🎉 Hoàn tất quá trình nạp dữ liệu mẫu (Seeding)!");
   process.exit(0);

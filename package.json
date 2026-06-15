@@ -7,7 +7,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:seed": "npx tsx --env-file=.env.local db/seed.ts"
+    "db:seed": "npx tsx --env-file=.env.local db/seed.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:security": "vitest run tests/security",
+    "test:all": "npm run test && npm run test:e2e",
+    "test:report": "open tests/reports/playwright/index.html"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
@@ -32,17 +41,26 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@faker-js/faker": "^10.4.0",
     "@playwright/test": "^1.60.0",
     "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/ws": "^8.18.1",
+    "@vitejs/plugin-react": "^6.0.2",
+    "axe-playwright": "^2.2.2",
     "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "jsdom": "^29.1.1",
+    "msw": "^2.14.6",
     "tailwindcss": "^4",
     "typescript": "^5",
+    "vitest": "^4.1.8",
     "ws": "^8.21.0"
   }
 }
