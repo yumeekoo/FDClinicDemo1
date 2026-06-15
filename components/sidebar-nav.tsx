@@ -11,7 +11,7 @@ interface SidebarLink {
   roles: string[];
 }
 
-export function SidebarNav({ links, role }: { links: SidebarLink[]; role: string }) {
+export function SidebarNav({ links, role, isCollapsed = false }: { links: SidebarLink[]; role: string; isCollapsed?: boolean }) {
   const pathname = usePathname();
 
   return (
@@ -28,7 +28,8 @@ export function SidebarNav({ links, role }: { links: SidebarLink[]; role: string
             <Link
               key={link.href}
               href={link.href}
-              className={`nav-item flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] transition-all ${
+              title={isCollapsed ? link.label : undefined}
+              className={`nav-item flex items-center ${isCollapsed ? 'justify-center px-0' : 'gap-2.5 px-3'} py-2.5 rounded-lg text-[13px] transition-all duration-200 ${
                 isActive
                   ? "bg-[var(--sidebar-active-bg)] text-white font-semibold border-l-2 border-white"
                   : "text-[var(--sidebar-muted)] font-medium hover:bg-[var(--sidebar-hover-bg)] hover:text-[var(--sidebar-fg)]"
@@ -37,7 +38,7 @@ export function SidebarNav({ links, role }: { links: SidebarLink[]; role: string
               <div className={`flex-shrink-0 flex items-center justify-center ${isActive ? "text-white" : "text-inherit opacity-80"}`}>
                 {link.icon}
               </div>
-              <span>{link.label}</span>
+              {!isCollapsed && <span className="whitespace-nowrap overflow-hidden">{link.label}</span>}
             </Link>
           );
         })}

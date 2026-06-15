@@ -153,8 +153,8 @@ export function DonutChart({ stats }: DonutChartProps) {
             {!hoveredSegment && (
               <>
                 <span className="text-2xl font-bold text-foreground">{total}</span>
-                <span className="text-[9px] text-muted-foreground uppercase tracking-wider">
-                  Thuốc / Vật tư
+                <span className="text-[10px] text-muted-foreground uppercase tracking-wider px-1 text-center leading-tight">
+                  Sản phẩm
                 </span>
               </>
             )}
