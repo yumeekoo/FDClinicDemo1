@@ -54,17 +54,17 @@ export function BranchProvider({
   }, []);
 
   const switchBranch = async (branchId: string) => {
-    startTransition(async () => {
-      const res = await switchActiveBranchAction(branchId);
-      if (res.success) {
+    const res = await switchActiveBranchAction(branchId);
+    if (res.success) {
+      startTransition(() => {
         setActiveBranchId(res.data.id);
         setActiveBranchName(res.data.name);
-        toast.success(`Đã chuyển sang chi nhánh: ${res.data.name}`);
         router.refresh();
-      } else {
-        toast.error(res.error || "Không thể chuyển chi nhánh");
-      }
-    });
+      });
+      toast.success(`Đã chuyển sang chi nhánh: ${res.data.name}`);
+    } else {
+      toast.error(res.error || "Không thể chuyển chi nhánh");
+    }
   };
 
   return (

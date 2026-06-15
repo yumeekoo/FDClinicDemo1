@@ -113,8 +113,8 @@ function getRedirectUrlForRole(role?: string): string {
     case "PHARMACIST":
       return "/pharmacy";
     default:
-      // Default fallback
-      return "/login";
+      // Default fallback for users without a role
+      return "/unauthorized";
   }
 }
 

@@ -156,10 +156,10 @@ export default async function DashboardLayout({
           {/* Brand */}
           <div className="h-16 flex items-center px-6 border-b border-[var(--sidebar-border,var(--border))]">
             <div className="flex items-center space-x-3">
-              <div className="h-9 w-9 rounded-xl bg-[#2563EB] flex items-center justify-center text-gray-900 font-bold text-lg">
+              <div className="h-9 w-9 rounded-xl bg-[#2563EB] flex items-center justify-center text-white font-bold text-lg shadow-lg">
                 CH
               </div>
-              <span className="font-semibold text-xl text-gray-900">
+              <span className="font-semibold text-xl text-white">
                 Clinic Hub
               </span>
             </div>
@@ -168,11 +168,11 @@ export default async function DashboardLayout({
           {/* User Info Card */}
           <div className="p-4 mx-3 my-4 rounded-xl border border-white/10 bg-white/5">
             <div className="flex items-center space-x-3">
-              <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500 flex items-center justify-center text-gray-900 font-medium border border-white/20">
+              <div className="h-9 w-9 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500 flex items-center justify-center text-white font-medium border border-white/20">
                 {fullName.charAt(0).toUpperCase()}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold truncate text-gray-900">{fullName}</p>
+                <p className="text-sm font-semibold truncate text-gray-100">{fullName}</p>
                 <span className="inline-block px-2 py-0.5 mt-1 text-[10px] font-semibold tracking-wider uppercase rounded bg-blue-500/20 text-blue-300">
                   {role}
                 </span>
