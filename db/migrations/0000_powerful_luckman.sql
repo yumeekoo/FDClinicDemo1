@@ -24,10 +24,6 @@ CREATE TABLE "branches" (
 	CONSTRAINT "branches_code_unique" UNIQUE("code")
 );
 --> statement-breakpoint
-CREATE TABLE "auth"."users" (
-	"id" uuid PRIMARY KEY NOT NULL
-);
---> statement-breakpoint
 CREATE TABLE "profiles" (
 	"id" uuid PRIMARY KEY NOT NULL,
 	"full_name" varchar(255) NOT NULL,
